@@ -14,7 +14,9 @@ Dockerfile
 
 # Persistent folders with user data and configuration
 data/
-
+config/*
+# Except the example config
+!config/example/
 
 # Other common files
 __pycache__
