@@ -62,11 +62,6 @@
 	varsity += /obj/item/clothing/suit/storage/toggle/varsity/blue
 	varsity += /obj/item/clothing/suit/storage/toggle/varsity/red
 	varsity += /obj/item/clothing/suit/storage/toggle/varsity/brown
-	varsity += /obj/item/clothing/suit/storage/toggle/varsity/cargo
-	varsity += /obj/item/clothing/suit/storage/toggle/varsity/med
-	varsity += /obj/item/clothing/suit/storage/toggle/varsity/science
-	varsity += /obj/item/clothing/suit/storage/toggle/varsity/eng
-	varsity += /obj/item/clothing/suit/storage/toggle/varsity/sec
 	gear_tweaks += new /datum/gear_tweak/path/specified_types_list(varsity)
 
 /datum/gear/suit/hazard

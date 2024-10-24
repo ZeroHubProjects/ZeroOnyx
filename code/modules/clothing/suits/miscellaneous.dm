@@ -382,41 +382,6 @@
 	icon_open = "varsity_brown_open"
 	icon_closed = "varsity_brown"
 
-/obj/item/clothing/suit/storage/toggle/varsity/med
-	name = "medical varsity"
-	icon_state = "varsity_med"
-	desc = "Where are you right now?"
-	icon_open = "varsity_med_open"
-	icon_closed = "varsity_med"
-
-/obj/item/clothing/suit/storage/toggle/varsity/cargo
-	name = "cargo varsity"
-	icon_state = "varsity_cargo"
-	desc = "Where are you right now?"
-	icon_open = "varsity_cargo_open"
-	icon_closed = "varsity_cargo"
-
-/obj/item/clothing/suit/storage/toggle/varsity/sec
-	name = "security varsity"
-	icon_state = "varsity_sec"
-	desc = "Where are you right now?"
-	icon_open = "varsity_sec_open"
-	icon_closed = "varsity_sec"
-
-/obj/item/clothing/suit/storage/toggle/varsity/science
-	name = "science varsity"
-	icon_state = "varsity_science"
-	desc = "Where are you right now?"
-	icon_open = "varsity_science_open"
-	icon_closed = "varsity_science"
-
-/obj/item/clothing/suit/storage/toggle/varsity/eng
-	name = "engineering varsity"
-	icon_state = "varsity_eng"
-	desc = "Where are you right now?"
-	icon_open = "varsity_eng_open"
-	icon_closed = "varsity_eng"
-
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "black leather jacket"
 	desc = "A black leather coat."
