@@ -31,3 +31,5 @@ Thumbs.db
 *.old
 build_log.txt
 tmp/
+/config
+config/example/admins.txt
