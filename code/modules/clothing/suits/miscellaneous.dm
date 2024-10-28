@@ -382,6 +382,41 @@
 	icon_open = "varsity_brown_open"
 	icon_closed = "varsity_brown"
 
+/obj/item/clothing/suit/storage/toggle/varsity/med
+	name = "medical varsity"
+	desc = "A varsity jacket in blue, red, and white, featuring an image of the Caduceus on the back, symbolizing not only the art of healing but also your fraternity (or sorority)"
+	icon_state = "varsity_med"
+	icon_open = "varsity_med_open"
+	icon_closed = "varsity_med"
+
+/obj/item/clothing/suit/storage/toggle/varsity/cargo
+	name = "cargo varsity"
+	desc = "An old, worn but loyal and reliable varsity jacket in faded white and yellow. Comes with extra pockets for convenience!"
+	icon_state = "varsity_cargo"
+	icon_open = "varsity_cargo_open"
+	icon_closed = "varsity_cargo"
+
+/obj/item/clothing/suit/storage/toggle/varsity/sec
+	name = "security varsity"
+	desc = "A varsity jacket in red, white, and black with a scorpion design on the back and a badge on the front. This jacket was given only to the top drivers of the fraternity (or sorority)."
+	icon_state = "varsity_sec"
+	icon_open = "varsity_sec_open"
+	icon_closed = "varsity_sec"
+
+/obj/item/clothing/suit/storage/toggle/varsity/science
+	name = "science varsity"
+	icon_state = "varsity_science"
+	desc = "A white and purple varsity with no particular design, but embodying progress and curiosity."
+	icon_open = "varsity_science_open"
+	icon_closed = "varsity_science"
+
+/obj/item/clothing/suit/storage/toggle/varsity/eng
+	name = "engineering varsity"
+	desc = "A yellow and orange varsity jacket with a lightning bolt and a gear symbol—the emblem of the fraternity (or sorority)—on the back. Funny enough, there are no gears on a space station."
+	icon_state = "varsity_eng"
+	icon_open = "varsity_eng_open"
+	icon_closed = "varsity_eng"
+
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "black leather jacket"
 	desc = "A black leather coat."
