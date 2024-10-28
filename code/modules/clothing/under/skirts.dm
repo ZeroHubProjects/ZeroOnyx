@@ -61,6 +61,7 @@
 	name = "swept skirt"
 	desc = "A skirt that is swept to one side."
 	icon_state = "skirt_swept"
+	item_state = "skirt_swept"
 	worn_state = "skirt_swept"
 
 /obj/item/clothing/under/skirt_c/pencil
