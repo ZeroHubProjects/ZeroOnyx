@@ -38,7 +38,7 @@
 
 /obj/item/clothing/under/skirt_c/casual
 	name = "casual skirt"
-	desc = "A short, colorful skirt."
+	desc = "A short, classic skirt."
 	icon_state = "skirt_casual"
 	item_state = "skirt_casual"
 	worn_state = "skirt_casual"
