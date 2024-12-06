@@ -27,21 +27,6 @@
 	item_state = "kilt"
 	worn_state = "plaid_purple"
 
-// discreet skirts, dont cover upper/arms etc
-/obj/item/clothing/under/skirt/khaki
-	name = "khaki skirt"
-	desc = "A khaki skirt with a flare at the hem."
-	icon_state = "skirt_khaki"
-	worn_state = "skirt_khaki"
-	body_parts_covered = LOWER_TORSO
-
-/obj/item/clothing/under/skirt/swept
-	name = "swept skirt"
-	desc = "A skirt that is swept to one side."
-	icon_state = "skirt_swept"
-	worn_state = "skirt_swept"
-	body_parts_covered = LOWER_TORSO
-
 // colour selection, needs to be different for loadout type selection
 
 /obj/item/clothing/under/skirt_c
@@ -50,6 +35,62 @@
 	icon_state = "skirt_short"
 	worn_state = "skirt_short"
 	body_parts_covered = LOWER_TORSO
+
+/obj/item/clothing/under/skirt_c/casual
+	name = "casual skirt"
+	desc = "A short, classic skirt."
+	icon_state = "skirt_casual"
+	item_state = "skirt_casual"
+	worn_state = "skirt_casual"
+
+/obj/item/clothing/under/skirt_c/high
+	name = "high skirt"
+	desc = "A modest skirt going up to the waist."
+	icon_state = "skirt_high"
+	item_state = "skirt_high"
+	worn_state = "skirt_high"
+
+/obj/item/clothing/under/skirt_c/long
+	name = "long skirt"
+	desc = "A long, modest skirt."
+	icon_state = "skirt_long"
+	item_state = "skirt_long"
+	worn_state = "skirt_long"
+
+/obj/item/clothing/under/skirt_c/swept
+	name = "swept skirt"
+	desc = "A skirt that is swept to one side."
+	icon_state = "skirt_swept"
+	item_state = "skirt_swept"
+	worn_state = "skirt_swept"
+
+/obj/item/clothing/under/skirt_c/pencil
+	name = "pencil skirt"
+	desc = "A professional-looking pencil skirt."
+	icon_state = "skirt_pencil"
+	item_state = "skirt_pencil"
+	worn_state = "skirt_pencil"
+
+/obj/item/clothing/under/skirt_c/plaid
+	name = "plaid skirt"
+	desc = "A preppy plaid skirt."
+	icon_state = "skirt_plaid"
+	item_state = "skirt_plaid"
+	worn_state = "skirt_plaid"
+
+/obj/item/clothing/under/skirt_c/skater
+	name = "skater skirt"
+	desc = "A plush skater skirt."
+	icon_state = "skirt_skater"
+	item_state = "skirt_skater"
+	worn_state = "skirt_skater"
+
+/obj/item/clothing/under/skirt_c/tube
+	name = "tube skirt"
+	desc = "A long tube skirt."
+	icon_state = "skirt_tube"
+	item_state = "skirt_tube"
+	worn_state = "skirt_tube"
 
 // dresses
 /obj/item/clothing/under/skirt_c/dress
