@@ -23,3 +23,8 @@
 	icon_state = "lawgiver_mag100"
 	icon_state_key = "lawgiver_mag"
 	maxcharge = 2000 WATTHOURS
+
+// Lawgiver cell is designed for electrocution on failed ID checks, so it gets its own increased electrocution damage
+/obj/item/cell/magazine/lawgiver/get_electrocute_damage()
+	if(charge)
+		return min(rand(30, 60),rand(30, 60))

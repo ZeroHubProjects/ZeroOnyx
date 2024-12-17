@@ -153,6 +153,21 @@
 	damage = 50 //Revolvers get snowflake bullets, to keep them relevant
 	armor_penetration = 20
 
+/obj/item/projectile/bullet/pistol/lawgiver
+	name = "burst shard"
+	damage = 18.5 // materialized from energy burst-fire round
+	armor_penetration = 10
+	fire_sound = 'sound/effects/weapons/gun/fire_9mm2.ogg'
+
+/obj/item/projectile/bullet/pistol/lawgiver/armorpierce
+	name = "armor-piercing striker"
+	icon_state = "sliver"
+	damage = 15 // materialized from energy armor-piercing round
+	armor_penetration = 70
+	penetrating = 5
+	penetration_modifier = 1.1
+	fire_sound = 'sound/effects/weapons/energy/fire14.ogg'
+
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
 	check_armour = "melee"
