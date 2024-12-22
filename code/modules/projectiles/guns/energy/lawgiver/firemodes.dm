@@ -12,8 +12,8 @@
 
 /datum/firemode/lawgiver/stun
 	name = "stun"
-	keywords = list("stun","taser","стан","тазер")
-	activation_sound = null // TODO(rufus): add sound
+	keywords = list("stun","taser","shock","paralyze","disable","стан","тазер","шок","парализ","обездвиживающий")
+	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_stun.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/energy/electrode/stunsphere,
 		charge_cost = 50,
@@ -23,8 +23,8 @@
 
 /datum/firemode/lawgiver/laser
 	name = "laser"
-	keywords = list("laser","lethal","beam","лазер","летал","луч")
-	activation_sound = null // TODO(rufus): add sound
+	keywords = list("laser","lethal","beam","ray","лазер","летал","луч")
+	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_laser.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/beam/laser/small,
 		charge_cost = 	80,
@@ -35,7 +35,7 @@
 /datum/firemode/lawgiver/rapid
 	name = "rapid"
 	keywords = list("rapid","auto","рапид","авто","автомат")
-	activation_sound = null // TODO(rufus): add sound
+	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_rapid.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/bullet/pistol/lawgiver,
 		charge_cost = 	100/3,
@@ -45,8 +45,8 @@
 
 /datum/firemode/lawgiver/flash
 	name = "flash"
-	keywords = list("flash","signal","флеш","флэш","сигнальный")
-	activation_sound = null // TODO(rufus): add sound
+	keywords = list("flash","signal","flare","флеш","флэш","сигнальный","сигнал")
+	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_flash.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/energy/flash,
 		charge_cost = 80,
@@ -56,8 +56,8 @@
 
 /datum/firemode/lawgiver/armorpierce
 	name = "armor-piercing"
-	keywords = list("armor-piercing","armor piercing","ap","бронебойный","бб","ар")
-	activation_sound = null // TODO(rufus): add sound
+	keywords = list("armor-piercing","armor piercing","ap","striker","breaker","бронебойный","бб","ар","ап","страйкер","брейкер")
+	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_ap.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/bullet/pistol/lawgiver/armorpierce,
 		charge_cost = 125,
