@@ -1,0 +1,10 @@
+The effects are based on the movie Dredd (2012), all the rights belong to the respective owners:
+Dredd (Movie, 2012) - Rena Films (PTY) Ltd and Peach Tree Films Ltd.
+Judge Dredd (character), Lawgiver, and other materials from "2000AD" universe - Rebellion Developments Ltd.
+
+Mode switching effects (mode_*.ogg) were extracted from the movie Dredd (2012) and processed into standalone sound effects by the Props3D team:
+Github: https://github.com/Props3D
+Discord: https://discord.com/invite/Rjn6MRfxQS
+Project page with source audio samples: https://github.com/Props3D/dredd-lawgiver
+
+Full permission to use their modifications to the effects can be found on their Discord server (https://discord.com/invite/Rjn6MRfxQS) by Chris (@props3d), message link: https://discord.com/channels/864753146201767936/871666989804965929/1320093732048994334
