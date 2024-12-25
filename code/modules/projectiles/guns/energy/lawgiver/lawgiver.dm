@@ -9,18 +9,15 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 	screen_shake = 0
 	cell_type = /obj/item/cell/magazine/lawgiver
-
-	projectile_type = /obj/item/projectile/energy/electrode/stunsphere
-
-	var/registered_owner_dna
-	var/emagged = FALSE
-
+	projectile_type = null
 	firemodes = list(
 		new /datum/firemode/lawgiver/stun,
 		new /datum/firemode/lawgiver/laser,
 		new /datum/firemode/lawgiver/rapid,
 		new /datum/firemode/lawgiver/flash,
 		new /datum/firemode/lawgiver/armorpierce)
+	var/registered_owner_dna
+	var/emagged = FALSE
 
 /obj/item/gun/energy/lawgiver/Initialize()
 	. = ..()
@@ -33,6 +30,9 @@
 	for(var/datum/firemode/lawgiver/mode in firemodes)
 		firemode_keywords_info += "[capitalize(mode.name)] - [jointext(mode.keywords, ", ")]\n"
 	description_info = description_info + firemode_keywords_info
+
+	if(firemodes)
+		switch_firemodes(firemodes[1])
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
