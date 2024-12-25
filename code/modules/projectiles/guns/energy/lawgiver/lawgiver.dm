@@ -163,6 +163,7 @@
 	if(!registered_owner_dna)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
 		playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
+		return
 	if(!dna_check())
 		id_fail_action()
 		return FALSE
