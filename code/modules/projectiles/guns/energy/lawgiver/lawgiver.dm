@@ -136,11 +136,7 @@
 	var/mob/living/carbon/H = loc
 	registered_owner_dna = H.dna.unique_enzymes
 	to_chat(usr, SPAN("notice", "You submit your DNA to \the [src]."))
-	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
-	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
-	spawn(1.5 SECOND)
-		audible_message("<b>\The [src]</b> reports, \"I.D. OK\"", runechat_message = "I.D. OK")
-	update_icon()
+	effects_id_check_ok()
 
 /obj/item/gun/energy/lawgiver/proc/reset_owner()
 	if(!registered_owner_dna)
@@ -180,12 +176,9 @@
 	return registered_owner_dna == holder.dna.unique_enzymes
 
 /obj/item/gun/energy/lawgiver/proc/id_fail_action()
-	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
-	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
-	spawn(1 SECOND)
-		audible_message("<b>\The [src]</b> reports, \"I.D. FAIL\"", runechat_message = "I.D. FAIL")
-	spawn(3 SECONDS)
-		if(!istype(loc,/mob/living/carbon))
+	effects_id_check_fail()
+	spawn(3.5 SECONDS)
+		if(!istype(loc, /mob/living/carbon))
 			return
 		var/mob/living/carbon/user = loc
 		if(electrocute_mob(user, src.power_supply, src))
@@ -204,3 +197,30 @@
 /obj/item/gun/energy/lawgiver/proc/triple_beep_and_blink()
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
 	flick("lawgiver_indicator_blink_triple", src)
+
+// NOTE: sound effects and animations are padded to 3.5 seconds exactly for synchronization
+/obj/item/gun/energy/lawgiver/proc/effects_id_check_ok()
+	// full sound effect
+	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
+	// speech
+	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
+	spawn(2 SECONDS)
+		// delayed to match the audio effect and simulate ID being processed
+		audible_message("<b>\The [src]</b> reports, \"I.D. OK\"", runechat_message = "I.D. OK")
+	// full indicator blinking sequence, part of the lawgiver sprite
+	flick("lawgiver_indicator_blink_id_check_ok", src)
+	// full animated display overlay sequence
+	// TODO(rufus): implement
+
+/obj/item/gun/energy/lawgiver/proc/effects_id_check_fail()
+	// full sound effect
+	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
+	// speech
+	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
+	spawn(2 SECONDS)
+		// delayed to match the audio effect and simulate ID being processed
+		audible_message("<b>\The [src]</b> reports, \"I.D. FAIL\"", runechat_message = "I.D. FAIL")
+	// full indicator blinking sequence, part of the lawgiver sprite
+	flick("lawgiver_indicator_blink_id_check_fail", src)
+	// full animated display overlay sequence
+	// TODO(rufus): implement
