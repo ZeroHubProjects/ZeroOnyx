@@ -32,7 +32,8 @@
 	description_info = description_info + firemode_keywords_info
 
 	if(firemodes)
-		switch_firemodes(firemodes[1])
+		// feedback set to false so newly spawned lawgivers don't immediately play effects and produce audible messages
+		switch_firemodes(firemodes[1], feedback = FALSE)
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
@@ -56,14 +57,16 @@
 		if(msg in mode.keywords)
 			switch_firemodes(mode)
 
-/obj/item/gun/energy/lawgiver/switch_firemodes(datum/firemode/lawgiver/new_mode)
+/obj/item/gun/energy/lawgiver/switch_firemodes(datum/firemode/lawgiver/new_mode, feedback = TRUE)
 	if(!istype(new_mode))
 		return
 	for(var/i in 1 to firemodes.len)
 		if(firemodes[i]?.name == new_mode.name)
 			sel_mode = i
 	new_mode.apply_to(src)
-	report_firemode()
+	if(feedback)
+		report_firemode()
+	update_icon()
 
 /obj/item/gun/energy/lawgiver/attack_self()
 	// TODO(rufus): attack_self action can and should be updated to the preference of active HoS players
@@ -71,6 +74,13 @@
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
 		playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
 		return
+	report_firemode()
+
+/obj/item/gun/energy/lawgiver/AltClick()
+	if(!registered_owner_dna)
+		submit_dna_sample()
+		return
+	// TODO(rufus): add ID check
 	report_firemode()
 
 /obj/item/gun/energy/lawgiver/proc/report_firemode()
@@ -81,13 +91,6 @@
 	audible_message("<b>\The [src]</b> reports, \"[firemode_name]\"", runechat_message = firemode_name)
 	if(current_firemode.activation_sound)
 		playsound(src, current_firemode.activation_sound, 75)
-
-/obj/item/gun/energy/lawgiver/AltClick()
-	if(!registered_owner_dna)
-		submit_dna_sample()
-		return
-	// TODO(rufus): AltClick action can and should be updated to the preference of active HoS players
-	report_firemode()
 
 /obj/item/gun/energy/lawgiver/verb/submit_dna_sample()
 	set name = "Submit DNA sample"
