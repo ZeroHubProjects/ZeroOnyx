@@ -66,6 +66,7 @@
 			sel_mode = i
 	new_mode.apply_to(src)
 	if(feedback)
+		spawn(0.4 SECONDS)
 		report_firemode()
 	update_icon()
 
