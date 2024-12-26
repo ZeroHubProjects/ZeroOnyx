@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 	screen_shake = 0
 	cell_type = /obj/item/cell/magazine/lawgiver
+	charge_meter = FALSE
 	projectile_type = null
 	firemodes = list(
 		new /datum/firemode/lawgiver/stun,

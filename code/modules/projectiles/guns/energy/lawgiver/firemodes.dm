@@ -2,7 +2,7 @@
 	name = "base-lawgiver-firemode"
 	settings = null
 	var/keywords = list() // keywords that will trigger this firemode if spoken by the registered operator
-	var/activation_sound = null // sound that will be played every time this firemode is selected
+	var/activation_sound // sound that will be played every time this firemode is selected
 
 /datum/firemode/lawgiver/apply_to(obj/item/gun/gun)
 	if(src.type == __TYPE__)
