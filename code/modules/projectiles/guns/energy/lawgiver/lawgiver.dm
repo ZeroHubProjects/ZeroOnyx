@@ -6,6 +6,8 @@
 	Equipped with several security features, including a <b>DNA sensor</b> handgrip, it allows access \
 	only to the operator it is registered to."
 	icon_state = "lawgiver"
+	// inherited flags + KEEP_TOGETHER for grouping display together with the lawgiver
+	appearance_flags = DEFAULT_APPEARANCE_FLAGS | TILE_BOUND | KEEP_TOGETHER
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 	screen_shake = 0
 	cell_type = /obj/item/cell/magazine/lawgiver
@@ -17,6 +19,7 @@
 		new /datum/firemode/lawgiver/rapid,
 		new /datum/firemode/lawgiver/flash,
 		new /datum/firemode/lawgiver/armorpierce)
+	var/obj/lawgiver_display/display
 	var/registered_owner_dna
 	var/emagged = FALSE
 
@@ -32,9 +35,17 @@
 		firemode_keywords_info += "[capitalize(mode.name)] - [jointext(mode.keywords, ", ")]\n"
 	description_info = description_info + firemode_keywords_info
 
+	display = new(src)
+	vis_contents += display
+
 	if(firemodes)
 		// feedback set to false so newly spawned lawgivers don't immediately play effects and produce audible messages
 		switch_firemodes(firemodes[1], feedback = FALSE)
+
+/obj/item/gun/energy/lawgiver/update_icon()
+	. = ..()
+	if(registered_owner_dna)
+		display.icon_state = "lawgiver_display_overlay_[firemodes[sel_mode].name]"
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
@@ -67,7 +78,7 @@
 	new_mode.apply_to(src)
 	if(feedback)
 		spawn(0.4 SECONDS)
-		report_firemode()
+			report_firemode()
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/attack_self()
@@ -213,8 +224,8 @@
 		audible_message("<b>\The [src]</b> reports, \"I.D. OK\"", runechat_message = "I.D. OK")
 	// full indicator blinking sequence, part of the lawgiver sprite
 	flick("lawgiver_indicator_blink_id_check_ok", src)
-	// full animated display overlay sequence
-	// TODO(rufus): implement
+	// full display animation
+	display.id_check_ok_animation()
 
 /obj/item/gun/energy/lawgiver/proc/effects_id_check_fail()
 	// full sound effect
@@ -226,5 +237,5 @@
 		audible_message("<b>\The [src]</b> reports, \"I.D. FAIL\"", runechat_message = "I.D. FAIL")
 	// full indicator blinking sequence, part of the lawgiver sprite
 	flick("lawgiver_indicator_blink_id_check_fail", src)
-	// full animated display overlay sequence
-	// TODO(rufus): implement
+	// full display animation
+	display.id_check_fail_animation()
