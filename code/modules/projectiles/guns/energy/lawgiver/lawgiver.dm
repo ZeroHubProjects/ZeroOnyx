@@ -69,10 +69,10 @@
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/attack_self()
-	// TODO(rufus): attack_self action can and should be updated to the preference of active HoS players
+	// TODO(rufus): change attack_self to flashlight toggle
 	if(!registered_owner_dna)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
-		playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
+		triple_beep_and_blink()
 		return
 	report_firemode()
 
@@ -122,7 +122,7 @@
 			// if we're already registered, but are not held in hands, we can't do any DNA checks, just return
 			return
 		to_chat(usr, SPAN("notice", "\The [src] must be held in hands to register."))
-		sound_beep()
+		beep_and_blink()
 		return
 
 	if(registered_owner_dna)
@@ -130,7 +130,7 @@
 			id_fail_action()
 			return
 		to_chat(usr, "\The [src] is already registered, nothing happens.")
-		sound_beep()
+		beep_and_blink()
 		return
 
 	var/mob/living/carbon/H = loc
@@ -149,7 +149,7 @@
 
 	if(!istype(loc, /mob/living/carbon))
 		to_chat(usr, SPAN("notice", "\The [src] must be held in hands to reset DNA."))
-		sound_beep()
+		beep_and_blink()
 		return
 
 	if(!dna_check())
@@ -157,14 +157,14 @@
 		return
 
 	registered_owner_dna = null
-	playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
 	audible_message("<b>\The [src]</b> reports, \"I.D. RESET\"", runechat_message = "I.D. RESET")
+	triple_beep_and_blink()
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/special_check()
 	if(!registered_owner_dna)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
-		playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
+		triple_beep_and_blink()
 		return
 	if(!dna_check())
 		id_fail_action()
@@ -193,9 +193,14 @@
 			spark.set_up(5, 0, src)
 			spark.start()
 
-/obj/item/gun/energy/lawgiver/proc/sound_beep()
-	playsound(src, 'sound/effects/weapons/energy/lawgiver/beep.ogg', 75)
-
 /obj/item/gun/energy/lawgiver/emp_act()
 	. = ..()
 	switch_firemodes(pick(firemodes))
+
+/obj/item/gun/energy/lawgiver/proc/beep_and_blink()
+	playsound(src, 'sound/effects/weapons/energy/lawgiver/beep.ogg', 75)
+	flick("lawgiver_indicator_blink", src)
+
+/obj/item/gun/energy/lawgiver/proc/triple_beep_and_blink()
+	playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
+	flick("lawgiver_indicator_blink_triple", src)
