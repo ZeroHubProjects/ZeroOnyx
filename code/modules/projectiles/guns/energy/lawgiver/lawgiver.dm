@@ -93,7 +93,9 @@
 	if(!registered_owner_dna)
 		submit_dna_sample()
 		return
-	// TODO(rufus): add ID check
+	if(!dna_check())
+		id_fail_action()
+		return
 	report_firemode()
 
 /obj/item/gun/energy/lawgiver/proc/report_firemode()
