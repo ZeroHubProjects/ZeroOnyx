@@ -122,15 +122,15 @@
 		sound_beep()
 		return
 
-	var/mob/living/carbon/H = loc
 	if(registered_owner_dna)
 		if(!dna_check())
-			id_fail_action(H)
+			id_fail_action()
 			return
 		to_chat(usr, "\The [src] is already registered, nothing happens.")
 		sound_beep()
 		return
 
+	var/mob/living/carbon/H = loc
 	registered_owner_dna = H.dna.unique_enzymes
 	to_chat(usr, SPAN("notice", "You submit your DNA to \the [src]."))
 	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
@@ -149,9 +149,8 @@
 		sound_beep()
 		return
 
-	var/mob/living/carbon/H = loc
 	if(!dna_check())
-		id_fail_action(H)
+		id_fail_action()
 		return
 
 	registered_owner_dna = null
@@ -177,7 +176,7 @@
 	var/mob/living/carbon/holder = loc
 	return registered_owner_dna == holder.dna.unique_enzymes
 
-/obj/item/gun/energy/lawgiver/proc/id_fail_action(mob/user)
+/obj/item/gun/energy/lawgiver/proc/id_fail_action()
 	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
 	spawn(1 SECOND)
@@ -185,6 +184,7 @@
 	spawn(3 SECONDS)
 		if(!istype(loc,/mob/living/carbon))
 			return
+		var/mob/living/carbon/user = loc
 		if(electrocute_mob(user, src.power_supply, src))
 			var/datum/effect/effect/system/spark_spread/spark = new /datum/effect/effect/system/spark_spread()
 			spark.set_up(5, 0, src)
