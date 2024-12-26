@@ -120,7 +120,8 @@
 /obj/item/gun/energy/lawgiver/proc/register_owner()
 	if(!istype(loc, /mob/living/carbon))
 		if(registered_owner_dna)
-			// if we're already registered, but are not held in hands, we can't do any DNA checks, just return
+			to_chat(usr, "\The [src] is already registered and just beeps.")
+			beep_and_blink()
 			return
 		to_chat(usr, SPAN("notice", "\The [src] must be held in hands to register."))
 		beep_and_blink()
@@ -130,7 +131,7 @@
 		if(!dna_check())
 			id_fail_action()
 			return
-		to_chat(usr, "\The [src] is already registered, nothing happens.")
+		to_chat(usr, "\The [src] is already registered and just beeps.")
 		beep_and_blink()
 		return
 
@@ -138,6 +139,7 @@
 	registered_owner_dna = H.dna.unique_enzymes
 	to_chat(usr, SPAN("notice", "You submit your DNA to \the [src]."))
 	effects_id_check_ok()
+	update_icon()
 
 /obj/item/gun/energy/lawgiver/proc/reset_owner()
 	if(!registered_owner_dna)
