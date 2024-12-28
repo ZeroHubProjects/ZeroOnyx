@@ -42,6 +42,10 @@
 		// feedback set to false so newly spawned lawgivers don't immediately play effects and produce audible messages
 		switch_firemodes(firemodes[1], feedback = FALSE)
 
+/obj/item/gun/energy/lawgiver/Destroy()
+	QDEL_NULL(display)
+	return ..()
+
 /obj/item/gun/energy/lawgiver/update_icon()
 	. = ..()
 	if(registered_owner_dna)
