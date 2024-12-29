@@ -21,6 +21,9 @@
 		new /datum/firemode/lawgiver/armorpierce)
 	var/obj/lawgiver_display/display
 	var/registered_owner_dna
+	var/unload_sound = 'sound/effects/weapons/energy/lawgiver/unload.ogg'
+	var/reload_sound = 'sound/effects/weapons/energy/lawgiver/reload.ogg'
+	var/mag_overlay_icon_state = "lawgiver_overlay_mag"
 	var/emagged = FALSE
 
 /obj/item/gun/energy/lawgiver/Initialize()
@@ -50,6 +53,10 @@
 	. = ..()
 	if(registered_owner_dna)
 		display.icon_state = "lawgiver_display_overlay_[firemodes[sel_mode].name]"
+
+	overlays.Cut()
+	if(power_supply)
+		overlays += mag_overlay_icon_state
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
@@ -92,6 +99,43 @@
 		triple_beep_and_blink()
 		return
 	report_firemode()
+
+/obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell/magazine/lawgiver))
+		load_cell(I, user)
+		return
+	if(istype(I, /obj/item/cell))
+		to_chat(user, SPAN("warning", "\The [src]'s power connector is not compatible with \the [I]."))
+		return
+	return ..()
+
+/obj/item/gun/energy/lawgiver/attack_hand(mob/user)
+	if(user.get_inactive_hand() == src && power_supply)
+		unload_cell(user)
+		return
+	return ..()
+
+/obj/item/gun/energy/lawgiver/proc/load_cell(obj/item/cell/magazine/lawgiver/I, mob/user)
+	if(power_supply)
+		to_chat(user, SPAN("warning", "\The [src] already has \a [power_supply] installed."))
+		return
+	if(!istype(user))
+		return
+	if(!user.drop(I, src))
+		return
+	power_supply = I
+	playsound(src, reload_sound, 75, FALSE)
+	update_icon()
+
+/obj/item/gun/energy/lawgiver/proc/unload_cell(mob/user)
+	if(!power_supply)
+		return
+	if(!istype(user))
+		return
+	user.pick_or_drop(power_supply)
+	power_supply = null
+	playsound(src, unload_sound, 75, TRUE)
+	update_icon()
 
 /obj/item/gun/energy/lawgiver/AltClick()
 	if(!registered_owner_dna)
