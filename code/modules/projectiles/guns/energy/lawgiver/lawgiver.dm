@@ -53,6 +53,8 @@
 	. = ..()
 	if(registered_owner_dna)
 		display.icon_state = "lawgiver_display_overlay_[firemodes[sel_mode].name]"
+	else
+		display.icon_state = "lawgiver_display_overlay_disabled"
 
 	overlays.Cut()
 	if(power_supply)
