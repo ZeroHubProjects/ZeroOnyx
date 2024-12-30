@@ -98,7 +98,7 @@
 
 /obj/item/gun/energy/lawgiver/attack_self()
 	// TODO(rufus): change attack_self to flashlight toggle
-	if(!registered_owner_dna && !emagegd)
+	if(!registered_owner_dna && !emagged)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
 		triple_beep_and_blink()
 		return
