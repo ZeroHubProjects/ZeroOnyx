@@ -166,7 +166,7 @@
 
 /obj/item/gun/energy/lawgiver/AltClick()
 	if(!registered_owner_dna && !emagged)
-		submit_dna_sample()
+		register_owner()
 		return
 	if(!dna_check())
 		id_fail_action()
@@ -186,17 +186,13 @@
 	set name = "Submit DNA sample"
 	set category = "Object"
 	set src in usr
-
 	register_owner()
-	update_verbs()
 
 /obj/item/gun/energy/lawgiver/verb/erase_dna_sample()
 	set name = "Erase DNA sample"
 	set category = "Object"
 	set src in usr
-
 	reset_owner()
-	update_verbs()
 
 /obj/item/gun/energy/lawgiver/proc/update_verbs()
 	if(emagged)
@@ -232,6 +228,7 @@
 	registered_owner_dna = H.dna.unique_enzymes
 	to_chat(usr, SPAN("notice", "You submit your DNA to \the [src]."))
 	effects_id_check_ok()
+	update_verbs()
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/proc/reset_owner()
@@ -251,6 +248,7 @@
 	registered_owner_dna = null
 	audible_message("<b>\The [src]</b> reports, \"I.D. RESET\"", runechat_message = "I.D. RESET")
 	triple_beep_and_blink()
+	update_verbs()
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/special_check()
