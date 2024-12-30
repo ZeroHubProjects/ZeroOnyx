@@ -25,6 +25,15 @@
 	var/reload_sound = 'sound/effects/weapons/energy/lawgiver/reload.ogg'
 	var/mag_overlay_icon_state = "lawgiver_overlay_mag"
 	var/emagged = FALSE
+	// see flashlight defines and atom lighting for more information on these values
+	var/flashlight_enabled = FALSE
+	var/flashlight_max_bright = 0.5
+	var/flashlight_inner_range = 1
+	var/flashlight_outer_range = 4
+	var/flashlight_falloff_curve = 4
+	var/flashlight_color = "#ffffff" // following security maglights, pure white lighting
+	var/flashlight_toggle_sound = 'sound/effects/weapons/energy/lawgiver/flashlight_click.ogg'
+	var/flashlight_overlay_icon_state = "lawgiver_overlay_flashlight"
 
 /obj/item/gun/energy/lawgiver/Initialize()
 	. = ..()
@@ -59,6 +68,8 @@
 	overlays.Cut()
 	if(power_supply)
 		overlays += mag_overlay_icon_state
+	if(flashlight_enabled)
+		overlays += flashlight_overlay_icon_state
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
@@ -79,12 +90,15 @@
 	return ..()
 
 /obj/item/gun/energy/lawgiver/attack_self()
-	// TODO(rufus): change attack_self to flashlight toggle
-	if(!registered_owner_dna && !emagged)
-		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
-		triple_beep_and_blink()
-		return
-	report_firemode()
+	flashlight_enabled = !flashlight_enabled
+	if(flashlight_enabled)
+		set_light(flashlight_max_bright, flashlight_inner_range, flashlight_outer_range, flashlight_falloff_curve, flashlight_color)
+	else
+		set_light(0)
+
+	if(flashlight_toggle_sound)
+		playsound(src, flashlight_toggle_sound, 20, TRUE) // quiet as it's a small switch on a handgun
+	update_icon()
 
 /obj/item/gun/energy/lawgiver/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && power_supply)
