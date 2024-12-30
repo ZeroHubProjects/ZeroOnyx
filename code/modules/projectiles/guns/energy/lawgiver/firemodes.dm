@@ -4,7 +4,7 @@
 	var/keywords = list() // keywords that will trigger this firemode if spoken by the registered operator
 	var/activation_sound // sound that will be played every time this firemode is selected
 
-/datum/firemode/lawgiver/apply_to(obj/item/gun/gun)
+/datum/firemode/lawgiver/apply_to()
 	if(src.type == __TYPE__)
 		CRASH("attempted to apply base lawgiver firemode: [__TYPE__]")
 	..()
