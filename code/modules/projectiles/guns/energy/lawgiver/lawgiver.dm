@@ -63,9 +63,9 @@
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(emagged)
-			to_chat(user, "You swipe your [I], but nothing happens.")
+			to_chat(user, SPAN("notice", "You swipe your [I], but nothing happens."))
 			return
-		to_chat(user, "You swipe your [I], initiating the DNA sampler of \the [src].")
+		to_chat(user, SPAN("notice", "You swipe your [I], initiating the DNA sampler of \the [src]."))
 		register_owner()
 		return
 	..()
@@ -190,10 +190,10 @@
 /obj/item/gun/energy/lawgiver/proc/register_owner()
 	if(!istype(loc, /mob/living/carbon))
 		if(registered_owner_dna)
-			to_chat(usr, "\The [src] is already registered and just beeps.")
+			to_chat(usr, SPAN("notice", "\The [src] is already registered and just beeps."))
 			beep_and_blink()
 			return
-		to_chat(usr, SPAN("notice", "\The [src] must be held in hands to register."))
+		to_chat(usr, SPAN("warning", "\The [src] must be held in hands to register."))
 		beep_and_blink()
 		return
 
@@ -201,7 +201,7 @@
 		if(!dna_check())
 			id_fail_action()
 			return
-		to_chat(usr, "\The [src] is already registered and just beeps.")
+		to_chat(usr, SPAN("notice", "\The [src] is already registered and just beeps."))
 		beep_and_blink()
 		return
 
@@ -217,7 +217,7 @@
 		return
 
 	if(!istype(loc, /mob/living/carbon))
-		to_chat(usr, SPAN("notice", "\The [src] must be held in hands to reset DNA."))
+		to_chat(usr, SPAN("warning", "\The [src] must be held in hands to reset DNA."))
 		beep_and_blink()
 		return
 
@@ -269,7 +269,7 @@
 
 /obj/item/gun/energy/lawgiver/emag_act(remaining_charges, mob/user, emag_source)
 	if(emagged || !remaining_charges)
-		to_chat(user, SPAN_NOTICE("You swipe your [emag_source] through \the [src], but nothing happens."))
+		to_chat(user, SPAN("notice", "You swipe your [emag_source] through \the [src], but nothing happens."))
 		return NO_EMAG_ACT
 	emagged = 1
 	registered_owner_dna = null
