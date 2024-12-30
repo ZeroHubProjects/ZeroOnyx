@@ -51,7 +51,7 @@
 
 /obj/item/gun/energy/lawgiver/update_icon()
 	. = ..()
-	if(registered_owner_dna)
+	if(registered_owner_dna || emagged)
 		display.icon_state = "lawgiver_display_overlay_[firemodes[sel_mode].name]"
 	else
 		display.icon_state = "lawgiver_display_overlay_disabled"
@@ -71,11 +71,13 @@
 	..()
 
 /obj/item/gun/energy/lawgiver/hear_talk(mob/speaker, msg)
-	if(loc != speaker || !istype(speaker, /mob/living/carbon))
-		return
-	var/mob/living/carbon/holder = speaker
-	if(!registered_owner_dna || holder.dna.unique_enzymes != registered_owner_dna)
-		return
+	if(!emagged)
+		if(loc != speaker || !istype(speaker, /mob/living/carbon))
+			return
+		var/mob/living/carbon/holder = speaker
+		if(!registered_owner_dna || holder.dna.unique_enzymes != registered_owner_dna)
+			return
+	// hacked lawgiver listens to everyone and everywhere, it's broken
 
 	msg = replace_characters(lowertext(msg), list("."="", "!"=""))
 	for(var/datum/firemode/lawgiver/mode in firemodes)
@@ -96,7 +98,7 @@
 
 /obj/item/gun/energy/lawgiver/attack_self()
 	// TODO(rufus): change attack_self to flashlight toggle
-	if(!registered_owner_dna)
+	if(!registered_owner_dna && !emagegd)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
 		triple_beep_and_blink()
 		return
@@ -140,7 +142,7 @@
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/AltClick()
-	if(!registered_owner_dna)
+	if(!registered_owner_dna && !emagged)
 		submit_dna_sample()
 		return
 	if(!dna_check())
@@ -174,6 +176,10 @@
 	update_verbs()
 
 /obj/item/gun/energy/lawgiver/proc/update_verbs()
+	if(emagged)
+		verbs -= /obj/item/gun/energy/lawgiver/verb/submit_dna_sample
+		verbs -= /obj/item/gun/energy/lawgiver/verb/erase_dna_sample
+		return
 	if(registered_owner_dna)
 		verbs += /obj/item/gun/energy/lawgiver/verb/erase_dna_sample
 		verbs -= /obj/item/gun/energy/lawgiver/verb/submit_dna_sample
@@ -225,6 +231,8 @@
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/special_check()
+	if(emagged)
+		return ..()
 	if(!registered_owner_dna)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
 		triple_beep_and_blink()
@@ -235,6 +243,8 @@
 	return ..()
 
 /obj/item/gun/energy/lawgiver/proc/dna_check()
+	if(emagged)
+		return TRUE // everyone's welcome
 	if(!registered_owner_dna)
 		return FALSE
 	if(!istype(loc, /mob/living/carbon))
@@ -257,6 +267,16 @@
 	. = ..()
 	switch_firemodes(pick(firemodes))
 
+/obj/item/gun/energy/lawgiver/emag_act(remaining_charges, mob/user, emag_source)
+	if(emagged || !remaining_charges)
+		to_chat(user, SPAN_NOTICE("You swipe your [emag_source] through \the [src], but nothing happens."))
+		return NO_EMAG_ACT
+	emagged = 1
+	registered_owner_dna = null
+	update_verbs()
+	effects_hacked()
+	return 1
+
 /obj/item/gun/energy/lawgiver/proc/beep_and_blink()
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/beep.ogg', 75)
 	flick("lawgiver_indicator_blink", src)
@@ -265,29 +285,43 @@
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/triple_beep.ogg', 75)
 	flick("lawgiver_indicator_blink_triple", src)
 
-// NOTE: sound effects and animations are padded to 3.5 seconds exactly for synchronization
+// NOTE: sound effects and animations are 3.5 seconds long
 /obj/item/gun/energy/lawgiver/proc/effects_id_check_ok()
-	// full sound effect
+	// sound effect
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
 	// speech
 	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
 	spawn(2 SECONDS)
 		// delayed to match the audio effect and simulate ID being processed
 		audible_message("<b>\The [src]</b> reports, \"I.D. OK\"", runechat_message = "I.D. OK")
-	// full indicator blinking sequence, part of the lawgiver sprite
+	// indicator blinking sequence, part of the lawgiver sprite
 	flick("lawgiver_indicator_blink_id_check_ok", src)
-	// full display animation
+	// display animation
 	display.id_check_ok_animation()
 
 /obj/item/gun/energy/lawgiver/proc/effects_id_check_fail()
-	// full sound effect
+	// sound effect
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/id_check.ogg', 60)
 	// speech
 	audible_message("<b>\The [src]</b> reports, \"DNA CHECK\"", runechat_message = "DNA CHECK")
 	spawn(2 SECONDS)
 		// delayed to match the audio effect and simulate ID being processed
 		audible_message("<b>\The [src]</b> reports, \"I.D. FAIL\"", runechat_message = "I.D. FAIL")
-	// full indicator blinking sequence, part of the lawgiver sprite
+	// indicator blinking sequence, part of the lawgiver sprite
 	flick("lawgiver_indicator_blink_id_check_fail", src)
-	// full display animation
+	// display animation
 	display.id_check_fail_animation()
+
+/obj/item/gun/energy/lawgiver/proc/effects_hacked()
+	// sound effect
+	playsound(src, 'sound/effects/weapons/energy/lawgiver/hacked.ogg', 60)
+	// speech
+	audible_message("<b>\The [src]</b> reports, \"DNA CHECK-K-K\"", runechat_message = "DNA CHECK-K-K")
+	spawn(1.5 SECONDS)
+		audible_message("<b>\The [src]</b> reports, \"I.D. RE-OK-RE-\"", runechat_message = "I.D. RE-OK-RE-")
+	spawn(2 SECONDS)
+		audible_message("<b>\The [src]</b> reports, \"I.D. RESET\"", runechat_message = "I.D. RESET")
+	// indicator blinking sequence, part of the lawgiver sprite
+	flick("lawgiver_indicator_blink_hacked", src)
+	// display animation
+	display.hacked_animation()

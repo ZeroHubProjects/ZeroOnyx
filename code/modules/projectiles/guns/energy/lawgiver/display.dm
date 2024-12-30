@@ -16,3 +16,6 @@
 
 /obj/lawgiver_display/proc/id_check_fail_animation()
 	flick("lawgiver_display_overlay_id_check_fail", src)
+
+/obj/lawgiver_display/proc/hacked_animation()
+	flick("lawgiver_display_overlay_hacked", src)
