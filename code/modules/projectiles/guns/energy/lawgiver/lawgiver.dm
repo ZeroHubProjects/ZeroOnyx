@@ -68,7 +68,29 @@
 		to_chat(user, SPAN("notice", "You swipe your [I], initiating the DNA sampler of \the [src]."))
 		register_owner()
 		return
-	..()
+	if(istype(I, /obj/item/cell/magazine/lawgiver))
+		load_cell(I, user)
+		return
+	if(istype(I, /obj/item/cell))
+		to_chat(user, SPAN("warning", "\The [src]'s power connector is not compatible with \the [I]."))
+		return
+	if(istype(I, /obj/item/device/multitool))
+		multitool_hack(I, user)
+	return ..()
+
+/obj/item/gun/energy/lawgiver/attack_self()
+	// TODO(rufus): change attack_self to flashlight toggle
+	if(!registered_owner_dna && !emagged)
+		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
+		triple_beep_and_blink()
+		return
+	report_firemode()
+
+/obj/item/gun/energy/lawgiver/attack_hand(mob/user)
+	if(user.get_inactive_hand() == src && power_supply)
+		unload_cell(user)
+		return
+	return ..()
 
 /obj/item/gun/energy/lawgiver/hear_talk(mob/speaker, msg)
 	if(!emagged)
@@ -95,31 +117,6 @@
 		spawn(0.4 SECONDS)
 			report_firemode()
 	update_icon()
-
-/obj/item/gun/energy/lawgiver/attack_self()
-	// TODO(rufus): change attack_self to flashlight toggle
-	if(!registered_owner_dna && !emagged)
-		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
-		triple_beep_and_blink()
-		return
-	report_firemode()
-
-/obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/cell/magazine/lawgiver))
-		load_cell(I, user)
-		return
-	if(istype(I, /obj/item/cell))
-		to_chat(user, SPAN("warning", "\The [src]'s power connector is not compatible with \the [I]."))
-		return
-	if(istype(I, /obj/item/device/multitool))
-		multitool_hack(I, user)
-	return ..()
-
-/obj/item/gun/energy/lawgiver/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src && power_supply)
-		unload_cell(user)
-		return
-	return ..()
 
 /obj/item/gun/energy/lawgiver/proc/load_cell(obj/item/cell/magazine/lawgiver/I, mob/user)
 	if(power_supply)
