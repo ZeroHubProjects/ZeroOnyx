@@ -1,3 +1,8 @@
+// Lawgiver gun is a reference to the Judge Dredd universe created by John Wagner and Carlos Ezquerra.
+// This specific version is based on the version from the movie Dredd (2012) https://www.imdb.com/title/tt1343727/.
+// Copyright:
+// Dredd (Movie, 2012) - Rena Films (PTY) Ltd and Peach Tree Films Ltd.
+// Judge Dredd (character), Lawgiver, and other materials from "2000AD" universe - Rebellion Developments Ltd.
 /obj/item/gun/energy/lawgiver
 	name = "lawgiver"
 	desc = "The Lawgiver II-E, an energy-based continuation of the unique Lawgiver series.\n\
