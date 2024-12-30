@@ -27,7 +27,7 @@
 	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_laser.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/beam/laser/small,
-		charge_cost = 	80,
+		charge_cost = 80,
 		fire_delay = 6,
 		burst = 1,
 		screen_shake = 0)
@@ -38,7 +38,7 @@
 	activation_sound = 'sound/effects/weapons/energy/lawgiver/mode_rapid.ogg'
 	settings = list(
 		projectile_type = /obj/item/projectile/bullet/pistol/lawgiver,
-		charge_cost = 	100/3,
+		charge_cost = 100/3,
 		fire_delay = 6,
 		burst = 3,
 		screen_shake = 1)
