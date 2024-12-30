@@ -47,6 +47,16 @@
 		firemode_keywords_info += "[capitalize(mode.name)] - [jointext(mode.keywords, ", ")]\n"
 	description_info = description_info + firemode_keywords_info
 
+	description_info += "\n"
+	description_info += "Activating \the [src] in hands will toggle the integrated flashlight module.\n\
+						 \n\
+						 Alt-clicking \the [src] will initiate the DNA sampler. If there is no registered owner, a DNA sample \
+						 will be taken and holder will be registered as the new owner. If [src] is already registered and DNA matches, \
+						 the current firemode will be reported.\n\
+						 \n\
+						 It is also possible to register and unregister the owner via context menu (RMB on \the [src]) or a verb in the \
+						 Object tab."
+
 	display = new(src)
 	vis_contents += display
 
