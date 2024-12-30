@@ -275,6 +275,7 @@
 	registered_owner_dna = null
 	update_verbs()
 	effects_hacked()
+	update_icon()
 	return 1
 
 /obj/item/gun/energy/lawgiver/proc/beep_and_blink()
