@@ -77,7 +77,7 @@
 		var/mob/living/carbon/holder = speaker
 		if(!registered_owner_dna || holder.dna.unique_enzymes != registered_owner_dna)
 			return
-	// hacked lawgiver listens to everyone and everywhere, it's broken
+	// hacked lawgiver listens to everyone and everywhere since its ID system is broken
 
 	msg = replace_characters(lowertext(msg), list("."="", "!"=""))
 	for(var/datum/firemode/lawgiver/mode in firemodes)
@@ -111,6 +111,8 @@
 	if(istype(I, /obj/item/cell))
 		to_chat(user, SPAN("warning", "\The [src]'s power connector is not compatible with \the [I]."))
 		return
+	if(istype(I, /obj/item/device/multitool))
+		multitool_hack(I, user)
 	return ..()
 
 /obj/item/gun/energy/lawgiver/attack_hand(mob/user)
@@ -271,12 +273,44 @@
 	if(emagged || !remaining_charges)
 		to_chat(user, SPAN("notice", "You swipe your [emag_source] through \the [src], but nothing happens."))
 		return NO_EMAG_ACT
+	get_hacked()
+	return 1
+
+/obj/item/gun/energy/lawgiver/proc/multitool_hack(obj/item/device/multitool/mt, mob/user)
+	if(!istype(mt))
+		CRASH("lawgiver multitool_hack() called with wrong tool: expected /obj/item/device/multitool, got [mt.type] ([mt])")
+	if(emagged)
+		to_chat(user, SPAN("warning", "You check the wiring of \the [src] and find the ID system already fried!"))
+		return
+	if(mt.in_use)
+		to_chat(user, SPAN("warning", "This multitool is already in use!"))
+		return
+	mt.in_use = 1
+	// Rolling twice in favor of the player to keep things fun and fast, no need to keep them waiting too long.
+	// They already put in the effort to steal the gun and find a multitool.
+	var/required_attempts = min(rand(3, 10), rand(3, 10))
+	for(var/i in 1 to required_attempts)
+		user.visible_message(SPAN("warning", "[user] picks in the wires of \the [src] with a multitool."),
+							 SPAN("warning", "Attempting to short circuit the ID system... ([i])"))
+		// 12 seconds per attempt gives us 2 minutes in the worst case scenario, matching with breaking out of handcuffs
+		if(!do_after(user, 120))
+			to_chat(user, SPAN("warning", "You stop manipulating the ID system of \the [src] and it resets itself into a working state!"))
+			mt.in_use = 0
+			return
+		if(i == 5 && required_attempts > 5)
+			to_chat(user, SPAN("warning", "Your attempts to crash the ID system caused a failsafe ciruit to activate. \
+										   This will take some additional time to bypass."))
+	get_hacked()
+	mt.in_use = 0
+	user.visible_message(SPAN("warning", "[user] short ciruits ID system of \the [src] with a multitool."),
+						 SPAN("warning", "You short circuit the ID system of \the [src]."))
+
+/obj/item/gun/energy/lawgiver/proc/get_hacked()
 	emagged = 1
 	registered_owner_dna = null
 	update_verbs()
 	effects_hacked()
 	update_icon()
-	return 1
 
 /obj/item/gun/energy/lawgiver/proc/beep_and_blink()
 	playsound(src, 'sound/effects/weapons/energy/lawgiver/beep.ogg', 75)
