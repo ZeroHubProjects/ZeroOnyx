@@ -1,3 +1,5 @@
+### Lawgiver sound effects
+
 The effects are based on the movie Dredd (2012), all the rights belong to the respective owners:
 Dredd (Movie, 2012) - Rena Films (PTY) Ltd and Peach Tree Films Ltd.
 Judge Dredd (character), Lawgiver, and other materials from "2000AD" universe - Rebellion Developments Ltd.
@@ -8,3 +10,10 @@ Discord: https://discord.com/invite/Rjn6MRfxQS
 Project page with source audio samples: https://github.com/Props3D/dredd-lawgiver
 
 Full permission to use their modifications to the effects can be found on their Discord server (https://discord.com/invite/Rjn6MRfxQS) by Chris (@props3d), message link: https://discord.com/channels/864753146201767936/871666989804965929/1320093732048994334
+
+### Other sounds
+
+flashlight_click.ogg based on a free to use sound by Freesound community.
+License: free to use, see https://pixabay.com/service/license-summary/ and https://pixabay.com/service/terms/
+Link to the original sound effect: https://pixabay.com/sound-effects/flashlight-clicking-on-and-off-71252/
+Modifications: trimmed to the first clicking sound effect, noise reduction using Audacity's built-in functionality with noise profile from the rest of the clip, metadata editing.
