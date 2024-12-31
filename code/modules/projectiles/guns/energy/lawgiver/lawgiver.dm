@@ -11,6 +11,7 @@
 	Equipped with several security features, including a <b>DNA sensor</b> handgrip, it allows access \
 	only to the operator it is registered to."
 	icon_state = "lawgiver"
+	item_state = "lawgiver"
 	// inherited flags + KEEP_TOGETHER for grouping display together with the lawgiver
 	appearance_flags = DEFAULT_APPEARANCE_FLAGS | TILE_BOUND | KEEP_TOGETHER
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
