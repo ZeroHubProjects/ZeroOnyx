@@ -162,6 +162,8 @@
 		var/obj/O = target
 		to_chat(user, SPAN("changeling", "We send an electrical pulse up our finger, and into \the [O]."))
 		O.add_fingerprint(user)
+		// TODO(rufus): check if it might be better to receive the return value of the emag_act (the amount of charges actually used)
+		//   and only consume chemicals/message admins if emagging actually happened.
 		O.emag_act(1, user, src)
 		log_and_message_admins("finger-lockpicked \an [O].")
 		source_power.use_chems(source_power.fingerpick_cost)
