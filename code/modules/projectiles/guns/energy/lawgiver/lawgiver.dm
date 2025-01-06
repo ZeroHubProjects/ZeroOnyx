@@ -30,7 +30,7 @@
 	var/unload_sound = 'sound/effects/weapons/energy/lawgiver/unload.ogg'
 	var/reload_sound = 'sound/effects/weapons/energy/lawgiver/reload.ogg'
 	var/mag_overlay_icon_state = "lawgiver_overlay_mag"
-	var/emagged = FALSE
+	var/hacked = FALSE
 	// see flashlight defines and atom lighting for more information on these values
 	var/flashlight_enabled = FALSE
 	var/flashlight_max_bright = 0.5
@@ -76,7 +76,7 @@
 
 /obj/item/gun/energy/lawgiver/update_icon()
 	. = ..()
-	if(registered_owner_dna || emagged)
+	if(registered_owner_dna || hacked)
 		display.icon_state = "lawgiver_display_overlay_[firemodes[sel_mode].name]"
 	else
 		display.icon_state = "lawgiver_display_overlay_disabled"
@@ -89,7 +89,7 @@
 
 /obj/item/gun/energy/lawgiver/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
-		if(emagged)
+		if(hacked)
 			to_chat(user, SPAN("notice", "You swipe your [I], but nothing happens."))
 			return
 		to_chat(user, SPAN("notice", "You swipe your [I], initiating the DNA sampler of \the [src]."))
@@ -123,7 +123,7 @@
 	return ..()
 
 /obj/item/gun/energy/lawgiver/hear_talk(mob/speaker, msg)
-	if(!emagged)
+	if(!hacked)
 		if(loc != speaker || !istype(speaker, /mob/living/carbon))
 			return
 		var/mob/living/carbon/holder = speaker
@@ -171,7 +171,7 @@
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/AltClick()
-	if(!registered_owner_dna && !emagged)
+	if(!registered_owner_dna && !hacked)
 		register_owner()
 		return
 	if(!dna_check())
@@ -201,7 +201,7 @@
 	reset_owner()
 
 /obj/item/gun/energy/lawgiver/proc/update_verbs()
-	if(emagged)
+	if(hacked)
 		verbs -= /obj/item/gun/energy/lawgiver/verb/submit_dna_sample
 		verbs -= /obj/item/gun/energy/lawgiver/verb/erase_dna_sample
 		return
@@ -258,7 +258,7 @@
 	update_icon()
 
 /obj/item/gun/energy/lawgiver/special_check()
-	if(emagged)
+	if(hacked)
 		return ..()
 	if(!registered_owner_dna)
 		audible_message("<b>\The [src]</b> reports, \"I.D. NOT SET\"", runechat_message = "I.D. NOT SET")
@@ -270,7 +270,7 @@
 	return ..()
 
 /obj/item/gun/energy/lawgiver/proc/dna_check()
-	if(emagged)
+	if(hacked)
 		return TRUE // everyone's welcome
 	if(!registered_owner_dna)
 		return FALSE
@@ -295,7 +295,7 @@
 	switch_firemodes(pick(firemodes))
 
 /obj/item/gun/energy/lawgiver/emag_act(remaining_charges, mob/user, emag_source)
-	if(emagged || !remaining_charges)
+	if(hacked || !remaining_charges)
 		to_chat(user, SPAN("notice", "You swipe your [emag_source] through \the [src], but nothing happens."))
 		return NO_EMAG_ACT
 	get_hacked()
@@ -304,7 +304,7 @@
 /obj/item/gun/energy/lawgiver/proc/multitool_hack(obj/item/device/multitool/mt, mob/user)
 	if(!istype(mt))
 		CRASH("lawgiver multitool_hack() called with wrong tool: expected /obj/item/device/multitool, got [mt.type] ([mt])")
-	if(emagged)
+	if(hacked)
 		to_chat(user, SPAN("warning", "You check the wiring of \the [src] and find the ID system already fried!"))
 		return
 	if(mt.in_use)
@@ -331,7 +331,7 @@
 						 SPAN("warning", "You short circuit the ID system of \the [src]."))
 
 /obj/item/gun/energy/lawgiver/proc/get_hacked()
-	emagged = 1
+	hacked = TRUE
 	registered_owner_dna = null
 	update_verbs()
 	effects_hacked()
