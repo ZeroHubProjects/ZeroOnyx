@@ -398,7 +398,7 @@
 
 /obj/item/clothing/suit/storage/toggle/varsity/sec
 	name = "security varsity"
-	desc = "A varsity in red, white, and black with a scorpion design on the back and a patch in the shape of a sheriff's badge on the front. This jacket was given only to the top drivers of the fraternity or sorority.""
+	desc = "A varsity in red, white, and black with a scorpion design on the back and a patch in the shape of a sheriff's badge on the front. This jacket was given only to the top drivers of the fraternity or sorority."
 	icon_state = "varsity_sec"
 	icon_open = "varsity_sec_open"
 	icon_closed = "varsity_sec"
