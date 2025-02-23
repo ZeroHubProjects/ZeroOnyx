@@ -2,11 +2,14 @@
 // It supports two modes, slot-based storage and space-based storage.
 //
 // Slot-based storage uses item slots, where each item takes exactly one slot.
-// It is rendered as a series of 7-slot rows of 32x32 boxes that are added dynamically as items are added.
+// It is rendered as a series of 32x32 boxes that are arranged into rows.
+// Each row contains up to 7 slots. If there are more than 7 slots in a storage
+// and they are occupied, additional rows will be stacked vertically until all the
+// items are placed.
 //
 // Space-based storage uses a single storage space with fixed capacity denominated in "storage cost".
 // Items take space based on their storage cost which grows exponentially with their "w_class".
-// This means that you can either store a lot of small items or one larger item, e.g. 6 syringes or 1 crowbar.
+// This means that you can either store a lot of small items or a couple of larger item, e.g. 6 syringes or 1 crowbar.
 // Space-based storage is rendered as a single horizontally scaled screen object that represents total storage,
 // and a series of smaller horizontally scaled screen objects representing space taken by each stored item.
 /datum/storage_ui/default
@@ -273,6 +276,10 @@
 // get_storage_space_width returns the pixel width that storage space screen object should take based on
 // the capacity of storage item this UI is attached to.
 // This is only used for space-based storage UIs.
+//
+// The UI should use the returned width to fit both decorative and interactive elements.
+// For example, UI of width 288 and with 2 pixel decorative overlays on both sides will have 284 pixels
+// left for rendering it's contents.
 //
 // Each unit of storage space is represented by 16 pixels up to a limit of 18. Storages with capacity over 18
 // are capped at 288 pixels width (16 pixels * 18), at which point the extra capacity will be represented by
