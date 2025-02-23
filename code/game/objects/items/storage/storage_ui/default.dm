@@ -238,18 +238,20 @@
 	var/storage_width = get_storage_space_width()
 	storage_start.overlays.Cut()
 
-	storage_continue.SetTransform(scale_x = (storage_width - storage_cap_width * 2 + 3) / 32)
+	var/storage_continue_width = storage_width - (storage_cap_width * 2)
+	storage_continue.SetTransform(scale_x = storage_continue_width / 32)
 
 	storage_start.screen_loc = "4:16,2:16"
-	storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
-	storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
+	storage_continue.screen_loc = "4:[storage_cap_width+(storage_continue_width)/2],2:16"
+	storage_end.screen_loc = "4:[16+storage_width-storage_cap_width],2:16"
 
 	var/startpoint = 0
 	var/endpoint = 1
 
 	for(var/obj/item/O in storage.contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * O.get_storage_cost() / storage.max_storage_space
+		// Note: we subtract one to adjust for the initial value of the `endpoint`
+		endpoint += (storage_continue_width + storage_cap_width - 1) * O.get_storage_cost() / storage.max_storage_space
 
 		stored_start.SetTransform(offset_x = startpoint)
 		stored_end.SetTransform(offset_x = endpoint - stored_cap_width)
@@ -262,24 +264,24 @@
 		storage_start.overlays += stored_continue
 		storage_start.overlays += stored_end
 
-		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		O.screen_loc = "4:[round((startpoint+endpoint)/2)],2:16"
 		O.maptext = ""
 		O.hud_layerise()
 
-	closer.screen_loc = "4:[storage_width+19],2:16"
+	closer.screen_loc = "4:[storage_width+16],2:16"
 
 // get_storage_space_width returns the pixel width that storage space screen object should take based on
 // the capacity of storage item this UI is attached to.
 // This is only used for space-based storage UIs.
 //
 // Each unit of storage space is represented by 16 pixels up to a limit of 18. Storages with capacity over 18
-// are capped at 284 pixels width, at which point the extra capacity will be represented by stored items themselves
-// visually taking less space in the UI.
+// are capped at 288 pixels width (16 pixels * 18), at which point the extra capacity will be represented by
+// stored items themselves visually taking less space in the UI.
 //
-// The 284 pixel limit is based on the constraints of user's HUD, it allows to view as much storage as possible
+// The 288 pixel limit is based on the constraints of user's HUD, it allows to view as much storage as possible
 // without overlapping with other HUD objects.
 /datum/storage_ui/default/proc/get_storage_space_width()
-	return min(storage.max_storage_space * 16, 284)
+	return min(storage.max_storage_space * 16, 288)
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
