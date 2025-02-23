@@ -110,7 +110,12 @@
 
 /obj/item/reagent_containers/syringe/update_icon()
 	overlays.Cut()
-	SetTransform(rotation = istype(loc, /obj/item/storage) ? 90 : 0)
+	if(istype(loc, /obj/item/storage))
+		// offset_x is used to center the rotated icon in the storage UI as base syringe icon is not
+		// vertically centered by default, and as a result ends up horizontally offset in the storage
+		SetTransform(rotation = 90, offset_x = 3)
+	else
+		SetTransform(rotation = 0, offset_x = 0)
 
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
