@@ -235,9 +235,7 @@
 	closer.screen_loc = "[4+cols+1]:16,2:16"
 
 /datum/storage_ui/default/proc/space_orient_objs()
-	var/baseline_max_storage_space = DEFAULT_BOX_STORAGE //storage size corresponding to 224 pixels
-	var/storage_width = min(round(224 * storage.max_storage_space/baseline_max_storage_space, 1), 284) //length of sprite for the box representing total storage space
-
+	var/storage_width = get_storage_space_width()
 	storage_start.overlays.Cut()
 
 	storage_continue.SetTransform(scale_x = (storage_width - storage_cap_width * 2 + 3) / 32)
@@ -269,6 +267,19 @@
 		O.hud_layerise()
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
+
+// get_storage_space_width returns the pixel width that storage space screen object should take based on
+// the capacity of storage item this UI is attached to.
+// This is only used for space-based storage UIs.
+//
+// Each unit of storage space is represented by 16 pixels up to a limit of 18. Storages with capacity over 18
+// are capped at 284 pixels width, at which point the extra capacity will be represented by stored items themselves
+// visually taking less space in the UI.
+//
+// The 284 pixel limit is based on the constraints of user's HUD, it allows to view as much storage as possible
+// without overlapping with other HUD objects.
+/datum/storage_ui/default/proc/get_storage_space_width()
+	return min(storage.max_storage_space * 16, 284)
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
