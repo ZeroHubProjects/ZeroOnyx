@@ -2,9 +2,17 @@
 	var/list/is_seeing = new /list() //List of mobs which are currently seeing the contents of this item's storage
 
 	var/obj/screen/storage/boxes
+	// Pixel width of "cap" sprites that are placed at the start and end of the storage UI.
+	// You can find these sprites in the icon file of the storage screen object (/obj/screen/storage).
+	// Alternatively, see /datum/storage_ui/default/proc/space_orient_objs() for how this is used.
+	var/const/storage_cap_width = 2
 	var/obj/screen/storage/storage_start //storage UI
 	var/obj/screen/storage/storage_continue
 	var/obj/screen/storage/storage_end
+	// Pixel width of "cap" sprites that are placed at the start and end of the stored item "underlay".
+	// You can find these sprites in the icon file of the storage screen object (/obj/screen/storage).
+	// Alternatively, see /datum/storage_ui/default/proc/space_orient_objs() for how this is used.
+	var/const/stored_cap_width = 4
 	var/obj/screen/storage/stored_start
 	var/obj/screen/storage/stored_continue
 	var/obj/screen/storage/stored_end
@@ -209,8 +217,6 @@
 /datum/storage_ui/default/proc/space_orient_objs()
 
 	var/baseline_max_storage_space = DEFAULT_BOX_STORAGE //storage size corresponding to 224 pixels
-	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
-	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
 	var/storage_width = min( round( 224 * storage.max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
 
 	storage_start.overlays.Cut()
