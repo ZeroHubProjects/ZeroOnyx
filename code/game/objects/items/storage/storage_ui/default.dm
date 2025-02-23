@@ -16,25 +16,34 @@
 	// List of mobs who are currently seeing this storage UI.
 	var/list/is_seeing = new /list()
 
+	// Pixel offsets of the UI from the default screen loc positions.
+	// This is used to center the UI on the user screen and to avoid overlap
+	// with tiles underneath which wouldn't look good from player perspective.
+	var/x_offset = WORLD_ICON_SIZE / 2
+	var/y_offset = WORLD_ICON_SIZE / 2
+
 	// Screen object that represents UI boxes for storages that use fixed item slots instead of storage space.
 	var/obj/screen/storage/boxes
 
-	// `storage` screen objects represent the total storage space, they are drawn under the rest of the storage UI.
-	// These are used for storages that use dynamic storage space interface.
-	// See /datum/storage_ui/default/proc/space_orient_objs() for how these are used.
-	var/const/storage_cap_width = 2 // pixel width of `storage_start` and `storage_end` sprites
-	var/obj/screen/storage/storage_start // start "cap" of the storage space UI
-	var/obj/screen/storage/storage_continue // represents actual storage space, dynamically scaled based on storage space
-	var/obj/screen/storage/storage_end // end "cap" of the storage space UI
+	// Screen object that represents the total storage space, it is the main background of the storage UI.
+	// It is used for space-based storages and scales horizontally based on capacity of the attached `storage`.
+	var/obj/screen/storage/item_space
+	// Tiny sprite of a border that covers start of the `item_space` sprite, used as an overlay.
+	var/image/start_cap
+	// Tiny sprite of a border that covers end of the `item_space` sprite, used as an overlay.
+	var/image/end_cap
+	// Pixel width of `item_space` caps.
+	var/const/cap_width = 2
 
-	// `stored` screen objects represent a single item's used storage space, they are drawn for each stored item individually.
-	// These screen objects aren't actually initialized or used, and instead just hold `icon_state` that will be added
-	// to the main `storage` screen objects as overlays.
-	// See /datum/storage_ui/default/proc/space_orient_objs() for how these are used.
-	var/const/stored_cap_width = 4 // pixel width of `stored_start` and `stored_end` sprites
-	var/obj/screen/storage/stored_start // start "cap" of the screen object representing space of a stored item
-	var/obj/screen/storage/stored_continue // represents actual used space of an item, dynamically scaled based on storage cost
-	var/obj/screen/storage/stored_end // end "cap" of the screen object representing space of a stored item
+	// Tiny sprite of a border that covers start of the individual stored item's background sprite, used as an underlay.
+	var/image/item_start_cap
+	// Sprite of the individual stored item's background, used as an underlay.
+	// It is scaled horizontally to represent the amount of space an item takes.
+	var/image/item_background
+	// Tiny sprite of a border that covers end of the individual stored item's background sprite, used as an underlay.
+	var/image/item_end_cap
+	// Pixel width of individual stored item's background caps.
+	var/const/item_cap_width = 4
 
 	// Screen object representing a button to close storage UI.
 	var/obj/screen/close/closer
@@ -48,37 +57,24 @@
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = HUD_BASE_LAYER
 
-	storage_start = new /obj/screen/storage()
-	storage_start.SetName("storage")
-	storage_start.master = storage
-	storage_start.icon_state = "storage_start"
-	storage_start.screen_loc = "7,7 to 10,8"
-	storage_start.layer = HUD_BASE_LAYER
-	storage_continue = new /obj/screen/storage()
-	storage_continue.SetName("storage")
-	storage_continue.master = storage
-	storage_continue.icon_state = "storage_continue"
-	storage_continue.screen_loc = "7,7 to 10,8"
-	storage_continue.layer = HUD_BASE_LAYER
-	storage_end = new /obj/screen/storage()
-	storage_end.SetName("storage")
-	storage_end.master = storage
-	storage_end.icon_state = "storage_end"
-	storage_end.screen_loc = "7,7 to 10,8"
-	storage_end.layer = HUD_BASE_LAYER
+	item_space = new /obj/screen/storage()
+	item_space.SetName("storage")
+	item_space.master = storage
+	item_space.icon_state = "storage_continue"
+	// NOTE: all images that are used for overlays get RESET_TRANSFORM appearance flag
+	// so they don't inherit scaling and offsets of the `item_space`, and PIXEL_SCALE
+	// as we use fractional offsets and scaling, but want the UI to stay pixel-perfect.
+	start_cap = image(item_space.icon, "storage_start")
+	start_cap.appearance_flags = RESET_TRANSFORM | PIXEL_SCALE
+	end_cap = image(item_space.icon, "storage_end")
+	end_cap.appearance_flags = RESET_TRANSFORM | PIXEL_SCALE
 
-	// Note that `stored` screen objects only have `icon_state`, but don't have an `icon`.
-	// This works because they are only used as overlays and as such inherit the icon of the screen object
-	// they are attached to.
-	stored_start = new /obj
-	stored_start.icon_state = "stored_start"
-	stored_start.layer = HUD_BASE_LAYER
-	stored_continue = new /obj
-	stored_continue.icon_state = "stored_continue"
-	stored_continue.layer = HUD_BASE_LAYER
-	stored_end = new /obj
-	stored_end.icon_state = "stored_end"
-	stored_end.layer = HUD_BASE_LAYER
+	item_start_cap = image(item_space.icon, "stored_start")
+	item_start_cap.appearance_flags = RESET_TRANSFORM | PIXEL_SCALE
+	item_background = image(item_space.icon, "stored_continue")
+	item_background.appearance_flags = RESET_TRANSFORM | PIXEL_SCALE
+	item_end_cap = image(item_space.icon, "stored_end")
+	item_end_cap.appearance_flags = RESET_TRANSFORM | PIXEL_SCALE
 
 	closer = new /obj/screen/close()
 	closer.master = storage
@@ -88,12 +84,7 @@
 /datum/storage_ui/default/Destroy()
 	close_all()
 	QDEL_NULL(boxes)
-	QDEL_NULL(storage_start)
-	QDEL_NULL(storage_continue)
-	QDEL_NULL(storage_end)
-	QDEL_NULL(stored_start)
-	QDEL_NULL(stored_continue)
-	QDEL_NULL(stored_end)
+	QDEL_NULL(item_space)
 	QDEL_NULL(closer)
 	return ..()
 
@@ -145,9 +136,7 @@
 	if(!user.client)
 		return
 	user.client.screen -= boxes
-	user.client.screen -= storage_start
-	user.client.screen -= storage_continue
-	user.client.screen -= storage_end
+	user.client.screen -= item_space
 	user.client.screen -= closer
 	user.client.screen -= storage.contents
 	user.client.screen += closer
@@ -155,9 +144,7 @@
 	if(storage.storage_slots)
 		user.client.screen += boxes
 	else
-		user.client.screen += storage_start
-		user.client.screen += storage_continue
-		user.client.screen += storage_end
+		user.client.screen += item_space
 	is_seeing |= user
 	user.s_active = storage
 
@@ -166,9 +153,7 @@
 	if(!user.client)
 		return
 	user.client.screen -= boxes
-	user.client.screen -= storage_start
-	user.client.screen -= storage_continue
-	user.client.screen -= storage_end
+	user.client.screen -= item_space
 	user.client.screen -= closer
 	user.client.screen -= storage.contents
 	if(user.s_active == storage)
@@ -237,41 +222,70 @@
 
 	closer.screen_loc = "[4+cols+1]:16,2:16"
 
+// space_orient_objs creates (or re-creates) storage interface from scratch.
+// This proc is responsible for placing, scaling, combining, and arranging elements that comprise the storage UI.
+//
+// It utilizes overlays and underlays for representing storage UI objects, as well as transforms elements to
+// properly represent capacity and size.
+//
+// Note: this system utilizes the fact that adding anything as an overlay captures the `appearance` of the thing
+// and doesn't hold any reference to the thing itself.
+// As such, storage UI uses multiple snapshots of the same initial images which are offset as needed.
 /datum/storage_ui/default/proc/space_orient_objs()
+	item_space.overlays.Cut()
+	item_space.underlays.Cut()
+
 	var/storage_width = get_storage_space_width()
-	storage_start.overlays.Cut()
+	var/item_space_width = storage_width - (cap_width * 2)
 
-	var/storage_continue_width = storage_width - (storage_cap_width * 2)
-	storage_continue.SetTransform(scale_x = storage_continue_width / 32)
+	// scale_x:
+	// Item space is scaled to the required pixel size, it initially is WORLD_ICON_SIZE in width, so
+	// we divide by that value to get appropriate factor.
+	// offset_x:
+	// Since scaling is relative to the initial center of the icon, we offset back by half the initial icon size
+	// to basically "reset" the starting point to zero, then shift by `cap_width` so cap has its own space to render,
+	// and then shift by half of the new `item_space_width` to account for scaling that stretched the sprite
+	// in both directions.
+	item_space.SetTransform(
+		scale_x = item_space_width / WORLD_ICON_SIZE,
+		offset_x = -(WORLD_ICON_SIZE / 2) + cap_width + (item_space_width / 2))
+	item_space.screen_loc = "4:[x_offset],2:[y_offset]"
 
-	storage_start.screen_loc = "4:16,2:16"
-	storage_continue.screen_loc = "4:[storage_cap_width+(storage_continue_width)/2],2:16"
-	storage_end.screen_loc = "4:[16+storage_width-storage_cap_width],2:16"
+	item_space.overlays += start_cap
+	end_cap.pixel_x = cap_width + item_space_width
+	item_space.overlays += end_cap
 
-	var/startpoint = 0
-	var/endpoint = 1
-
+	var/start_pixel = cap_width
+	var/end_pixel
 	for(var/obj/item/O in storage.contents)
-		startpoint = endpoint + 1
-		// Note: we subtract one to adjust for the initial value of the `endpoint`
-		endpoint += (storage_continue_width + storage_cap_width - 1) * O.get_storage_cost() / storage.max_storage_space
+		var/fraction_of_storage_used = O.get_storage_cost() / storage.max_storage_space
+		end_pixel = start_pixel + (item_space_width * fraction_of_storage_used)
 
-		stored_start.SetTransform(offset_x = startpoint)
-		stored_end.SetTransform(offset_x = endpoint - stored_cap_width)
-		stored_continue.SetTransform(
-			offset_x = startpoint + stored_cap_width + (endpoint - startpoint - stored_cap_width * 2) / 2 - 16,
-			scale_x = (endpoint - startpoint - stored_cap_width * 2) / 32
+		item_start_cap.SetTransform(offset_x = start_pixel)
+		item_space.underlays += item_start_cap
+
+		var/item_background_width = (end_pixel - start_pixel) - (item_cap_width * 2)
+		// These transforms follow the same pattern as item space transforms above, with the only exception
+		// of `start_pixel` being added to adjust for each item's placement.
+		item_background.SetTransform(
+			scale_x = item_background_width / WORLD_ICON_SIZE,
+			offset_x = start_pixel - (WORLD_ICON_SIZE / 2) + item_cap_width + (item_background_width / 2)
 		)
+		item_space.underlays += item_background
 
-		storage_start.overlays += stored_start
-		storage_start.overlays += stored_continue
-		storage_start.overlays += stored_end
+		item_end_cap.SetTransform(offset_x = start_pixel + item_cap_width + item_background_width)
+		item_space.underlays += item_end_cap
 
-		O.screen_loc = "4:[round((startpoint+endpoint)/2)],2:16"
+		var/storage_placement_offset = round((start_pixel + end_pixel) / 2)
+		var/item_centering_offset = x_offset + storage_placement_offset - (WORLD_ICON_SIZE / 2)
+		O.screen_loc = "4:[item_centering_offset],2:[y_offset]"
 		O.maptext = ""
 		O.hud_layerise()
 
-	closer.screen_loc = "4:[storage_width+16],2:16"
+		// offset by a pixel so there's a spacer between items
+		start_pixel = end_pixel + 1
+
+	closer.screen_loc = "4:[storage_width+x_offset],2:[y_offset]"
 
 // get_storage_space_width returns the pixel width that storage space screen object should take based on
 // the capacity of storage item this UI is attached to.
