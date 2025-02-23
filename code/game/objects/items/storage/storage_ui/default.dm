@@ -1,21 +1,39 @@
+// `default` storage UI represents the main storage interface system in the game.
+// It supports two modes, slot-based storage and space-based storage.
+//
+// Slot-based storage uses item slots, where each item takes exactly one slot.
+// It is rendered as a series of 7-slot rows of 32x32 boxes that are added dynamically as items are added.
+//
+// Space-based storage uses a single storage space with fixed capacity denominated in "storage cost".
+// Items take space based on their storage cost which grows exponentially with their "w_class".
+// This means that you can either store a lot of small items or one larger item, e.g. 6 syringes or 1 crowbar.
+// Space-based storage is rendered as a single horizontally scaled screen object that represents total storage,
+// and a series of smaller horizontally scaled screen objects representing space taken by each stored item.
 /datum/storage_ui/default
-	var/list/is_seeing = new /list() //List of mobs which are currently seeing the contents of this item's storage
+	// List of mobs who are currently seeing this storage UI.
+	var/list/is_seeing = new /list()
 
+	// Screen object that represents UI boxes for storages that use fixed item slots instead of storage space.
 	var/obj/screen/storage/boxes
-	// Pixel width of "cap" sprites that are placed at the start and end of the storage UI.
-	// You can find these sprites in the icon file of the storage screen object (/obj/screen/storage).
-	// Alternatively, see /datum/storage_ui/default/proc/space_orient_objs() for how this is used.
-	var/const/storage_cap_width = 2
-	var/obj/screen/storage/storage_start //storage UI
-	var/obj/screen/storage/storage_continue
-	var/obj/screen/storage/storage_end
-	// Pixel width of "cap" sprites that are placed at the start and end of the stored item "underlay".
-	// You can find these sprites in the icon file of the storage screen object (/obj/screen/storage).
-	// Alternatively, see /datum/storage_ui/default/proc/space_orient_objs() for how this is used.
-	var/const/stored_cap_width = 4
-	var/obj/screen/storage/stored_start
-	var/obj/screen/storage/stored_continue
-	var/obj/screen/storage/stored_end
+
+	// `storage` screen objects represent the total storage space, they are drawn under the rest of the storage UI.
+	// These are used for storages that use dynamic storage space interface.
+	// See /datum/storage_ui/default/proc/space_orient_objs() for how these are used.
+	var/const/storage_cap_width = 2 // pixel width of `storage_start` and `storage_end` sprites
+	var/obj/screen/storage/storage_start // start "cap" of the storage space UI
+	var/obj/screen/storage/storage_continue // represents actual storage space, dynamically scaled based on storage space
+	var/obj/screen/storage/storage_end // end "cap" of the storage space UI
+
+	// `stored` screen objects represent a single item's used storage space, they are drawn for each stored item individually.
+	// These screen objects aren't actually initialized or used, and instead just hold `icon_state` that will be added
+	// to the main `storage` screen objects as overlays.
+	// See /datum/storage_ui/default/proc/space_orient_objs() for how these are used.
+	var/const/stored_cap_width = 4 // pixel width of `stored_start` and `stored_end` sprites
+	var/obj/screen/storage/stored_start // start "cap" of the screen object representing space of a stored item
+	var/obj/screen/storage/stored_continue // represents actual used space of an item, dynamically scaled based on storage cost
+	var/obj/screen/storage/stored_end // end "cap" of the screen object representing space of a stored item
+
+	// Screen object representing a button to close storage UI.
 	var/obj/screen/close/closer
 
 /datum/storage_ui/default/New(storage)
@@ -46,7 +64,10 @@
 	storage_end.screen_loc = "7,7 to 10,8"
 	storage_end.layer = HUD_BASE_LAYER
 
-	stored_start = new /obj //we just need these to hold the icon
+	// Note that `stored` screen objects only have `icon_state`, but don't have an `icon`.
+	// This works because they are only used as overlays and as such inherit the icon of the screen object
+	// they are attached to.
+	stored_start = new /obj
 	stored_start.icon_state = "stored_start"
 	stored_start.layer = HUD_BASE_LAYER
 	stored_continue = new /obj
