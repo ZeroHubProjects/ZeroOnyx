@@ -82,9 +82,10 @@
 	if(istype(usr.loc, /obj/mecha))
 		return
 
-	if(istype(master, /obj/item/storage))
+	var/obj/item/I = usr.get_active_hand()
+	if(istype(master, /obj/item/storage) && I)
 		var/obj/item/storage/master_storage = master
-		master_storage.attackby(usr.get_active_hand(), usr)
+		master_storage.attackby(I, usr)
 		return
 	usr.ClickOn(master)
 
