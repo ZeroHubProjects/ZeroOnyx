@@ -35,12 +35,12 @@
 	// Pixel width of `item_space` caps.
 	var/const/cap_width = 2
 
-	// Tiny sprite of a border that covers start of the individual stored item's background sprite, used as an underlay.
+	// Tiny sprite of a border that covers start of the individual stored item's background sprite, used as an overlay.
 	var/image/item_start_cap
-	// Sprite of the individual stored item's background, used as an underlay.
+	// Sprite of the individual stored item's background, used as an overlay.
 	// It is scaled horizontally to represent the amount of space an item takes.
 	var/image/item_background
-	// Tiny sprite of a border that covers end of the individual stored item's background sprite, used as an underlay.
+	// Tiny sprite of a border that covers end of the individual stored item's background sprite, used as an overlay.
 	var/image/item_end_cap
 	// Pixel width of individual stored item's background caps.
 	var/const/item_cap_width = 4
@@ -225,7 +225,7 @@
 // space_orient_objs creates (or re-creates) storage interface from scratch.
 // This proc is responsible for placing, scaling, combining, and arranging elements that comprise the storage UI.
 //
-// It utilizes overlays and underlays for representing storage UI objects, as well as transforms elements to
+// It utilizes overlays for representing storage UI objects, as well as transforms the elements to
 // properly represent capacity and size.
 //
 // Note: this system utilizes the fact that adding anything as an overlay captures the `appearance` of the thing
@@ -233,7 +233,6 @@
 // As such, storage UI uses multiple snapshots of the same initial images which are offset as needed.
 /datum/storage_ui/default/proc/space_orient_objs()
 	item_space.overlays.Cut()
-	item_space.underlays.Cut()
 
 	var/storage_width = get_storage_space_width()
 	var/item_space_width = storage_width - (cap_width * 2)
@@ -262,7 +261,7 @@
 		end_pixel = start_pixel + (item_space_width * fraction_of_storage_used)
 
 		item_start_cap.SetTransform(offset_x = start_pixel)
-		item_space.underlays += item_start_cap
+		item_space.overlays += item_start_cap
 
 		var/item_background_width = (end_pixel - start_pixel) - (item_cap_width * 2)
 		// These transforms follow the same pattern as item space transforms above, with the only exception
@@ -271,10 +270,10 @@
 			scale_x = item_background_width / WORLD_ICON_SIZE,
 			offset_x = start_pixel - (WORLD_ICON_SIZE / 2) + item_cap_width + (item_background_width / 2)
 		)
-		item_space.underlays += item_background
+		item_space.overlays += item_background
 
 		item_end_cap.SetTransform(offset_x = start_pixel + item_cap_width + item_background_width)
-		item_space.underlays += item_end_cap
+		item_space.overlays += item_end_cap
 
 		var/storage_placement_offset = round((start_pixel + end_pixel) / 2)
 		var/item_centering_offset = x_offset + storage_placement_offset - (WORLD_ICON_SIZE / 2)
