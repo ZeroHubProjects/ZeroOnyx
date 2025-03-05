@@ -1118,7 +1118,8 @@
 		M.client.view = M.client.view == world.view ? -1 : world.view
 		log_and_message_admins("[M.client.view == world.view ? "opened" : "closed"] the game window for [key_name_admin(M)]")
 
-	// TODO(rufus): we have actual buttons for quick send to thunderdome, check and fix
+	// Sends the target mob to the Thunderdome (Team 1).
+	// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 1 spawn point.
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return
 
@@ -1144,6 +1145,8 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
 
+	// Sends the target mob to the Thunderdome (Team 2).
+	// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 2 spawn point.
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))	return
 
@@ -1169,6 +1172,8 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
 
+	// Sends the target mob to the Thunderdome (Admin area).
+	// Paralyses the mob for 5 seconds and teleports them to a random Admin spawn point.
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))	return
 
@@ -1191,6 +1196,9 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
 
+	// Sends the target mob to the Thunderdome (Observer area).
+	// Drops all items, equips the mob with observer uniform (suit jacket and black shoes) if they are human, paralyses for 5 seconds,
+	// and teleports them to a random Observer spawn point.
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))	return
 
