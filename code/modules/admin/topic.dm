@@ -1118,11 +1118,8 @@
 		M.client.view = M.client.view == world.view ? -1 : world.view
 		log_and_message_admins("[M.client.view == world.view ? "opened" : "closed"] the game window for [key_name_admin(M)]")
 
-/// Sends the target mob to the Thunderdome (Team 1).
-/// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 1 spawn point.
-/// @param M Target mob to be teleported.
-/// @param usr Admin who executes the action.
-/// @param GLOB.tdome1 List of coordinates for Team 1 spawn points.
+	// Sends the target mob to the Thunderdome (Team 1).
+	// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 1 spawn point.
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return
 
@@ -1147,11 +1144,9 @@
 			to_chat(M, SPAN("notice", "You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
-/// Sends the target mob to the Thunderdome (Team 2).
-/// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 2 spawn point.
-/// @param M Target mob to be teleported.
-/// @param usr Admin who executes the action.
-/// @param GLOB.tdome2 List of coordinates for Team 2 spawn points.
+
+	// Sends the target mob to the Thunderdome (Team 2).
+	// Drops all items, paralyses the mob for 5 seconds, and teleports them to a random Team 2 spawn point.
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))	return
 
@@ -1176,11 +1171,9 @@
 			to_chat(M, SPAN("notice", "You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
-/// Sends the target mob to the Thunderdome (Admin area).
-/// Paralyses the mob for 5 seconds and teleports them to a random Admin spawn point.
-/// @param M Target mob to be teleported.
-/// @param usr Admin who executes the action.
-/// @param GLOB.tdomeadmin List of coordinates for Admin spawn points.
+
+	// Sends the target mob to the Thunderdome (Admin area).
+	// Paralyses the mob for 5 seconds and teleports them to a random Admin spawn point.
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))	return
 
@@ -1203,16 +1196,15 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
 
+	// Sends the target mob to the Thunderdome (Observer area).
+	// Drops all items, equips the mob with observer uniform (suit jacket and black shoes) if they are human, paralyses for 5 seconds,
+	// and teleports them to a random Observer spawn point.
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
 			return
-/// Sends the target mob to the Thunderdome (Observer area).
-/// Drops all items, equips the mob with observer uniform (suit jacket and black shoes) if they are human, paralyses for 5 seconds, and teleports them to a random Observer spawn point.
-/// @param M Target mob to be teleported.
-/// @param usr Admin who executes the action.
-/// @param GLOB.tdomeobserve List of coordinates for Observer spawn points.
+
 		var/mob/M = locate(href_list["tdomeobserve"])
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
