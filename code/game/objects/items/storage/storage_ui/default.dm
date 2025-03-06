@@ -255,7 +255,14 @@
 	var/end_pixel
 	for(var/obj/item/O in storage.contents)
 		var/fraction_of_storage_used = O.get_storage_cost() / storage.max_storage_space
-		end_pixel = start_pixel + (item_space_width * fraction_of_storage_used)
+		// We shrink the space that item takes by one pixel to accomodate for the "spacer" between
+		// the items that is added at the end of this loop. Otherwise the more items there are
+		// the more spacers will be added in-between the items, and that will eventually cause
+		// item backgrounds to visually overflow the storage container.
+		// It is a hacky approach and calculating the fraction of used storage space including
+		// the spacer is technically more correct, but that would complicate the logic unnecessarily
+		// and produce the exact same result as just subtracting the number of pixels used for spacing.
+		end_pixel = start_pixel + (item_space_width * fraction_of_storage_used) - 1
 
 		// A new item background screen object is constructed, and the item is assigned as its master.
 		// This allows this background to relay clicks to the item, basically making it a functional
