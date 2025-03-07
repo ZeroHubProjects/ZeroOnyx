@@ -12,6 +12,11 @@
 	display_name = "gloves, rainbow"
 	path = /obj/item/clothing/gloves/rainbow
 
+/datum/gear/gloves/fingerless_gloves
+	display_name = "fingerless gloves, colored"
+	path = /obj/item/clothing/gloves/color/fingerless_gloves
+	flags = GEAR_HAS_COLOR_SELECTION
+
 /datum/gear/ring
 	display_name = "ring"
 	path = /obj/item/clothing/ring
@@ -43,4 +48,3 @@
 	display_name = "long evening gloves"
 	path = /obj/item/clothing/gloves/color/long_evening_gloves
 	flags = GEAR_HAS_COLOR_SELECTION
-	
