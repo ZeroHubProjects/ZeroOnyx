@@ -1,0 +1,10 @@
+# This plain text file shows the expected BYOND version for the codebase.
+# It helps developers track version changes and progress during transitions.
+#
+# If a transition notice is present, compilation errors and bugs are expected,
+# but should be resolved before the transition is considered complete and the
+# version number is updated.
+#
+# This file is only for developers and is not used by any scripts or code.
+
+Expected BYOND version: 515.1643
