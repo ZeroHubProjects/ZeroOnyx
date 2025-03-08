@@ -20,19 +20,19 @@
 
 /**
  * Calls a hook, executing every piece of code that's attached to it.
- * @param hook	Identifier of the hook to call.
- * @returns		1 if all hooked code runs successfully, 0 otherwise.
+ * @param    hook_name  Identifier of the hook to call.
+ * @returns             1 if all hooked code runs successfully, 0 otherwise.
  */
-/proc/callHook(hook, list/args=null)
-	var/hook_path = text2path("/hook/[hook]")
+/proc/callHook(hook_name, list/args=null)
+	var/hook_path = text2path("/hook/[hook_name]")
 	if(!hook_path)
-		error("Invalid hook '/hook/[hook]' called.")
+		error("Invalid hook '/hook/[hook_name]' called.")
 		return 0
 
-	var/caller = new hook_path
+	var/hook = new hook_path
 	var/status = 1
 	for(var/P in typesof("[hook_path]/proc"))
-		if(!call(caller, P)(arglist(args)))
+		if(!call(hook, P)(arglist(args)))
 			error("Hook '[P]' failed or runtimed.")
 			status = 0
 
