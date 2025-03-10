@@ -29,9 +29,23 @@
 	if(nref)
 		ref = weakref(nref)
 	// If a client exists, but they have disabled fancy windowing, disable it!
-	if(user?.client?.get_preference_value(/datum/client_preference/browser_style) == GLOB.PREF_PLAIN)
-		return
-	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
+	if(user?.client?.get_preference_value(/datum/client_preference/browser_style) != GLOB.PREF_PLAIN)
+		add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
+	handle_dpi_scaling()
+
+/datum/browser/proc/handle_dpi_scaling()
+	var/dpi_scaling_enabled = user?.client?.get_preference_value(/datum/client_preference/dpi_scaling) == GLOB.PREF_YES
+	var/dpi_scale = text2num(winget(user, null, "dpi"))
+	if(dpi_scaling_enabled)
+		// The contents will be scaled by the browser engine for us, but window size is passed in pixels
+		// and we have to adjust it manually to match the content scale.
+		width = floor(width * dpi_scale)
+		height = floor(height * dpi_scale)
+	else
+		// Otherwise, counter the automatic scaling using css zoom out.
+		// This is done to preserve the way things looked before BYOND switched to WebView2 in version 516.
+		// WebView2 respects system's scaling settings which wasn't the case for old IE-based internal browser.
+		add_head_content("<style>html {zoom: [1/dpi_scale];}</style>")
 
 /datum/browser/proc/user_deleted(datum/source)
 	unregister_signal(user, SIGNAL_QDELETING)

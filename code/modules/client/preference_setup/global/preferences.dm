@@ -259,6 +259,15 @@ var/global/list/_client_preferences_by_type
 	default_value = GLOB.PREF_FANCY
 	options = list(GLOB.PREF_FANCY, GLOB.PREF_PLAIN)
 
+/datum/client_preference/dpi_scaling
+	description = "Scale Interfaces for High-Resolution Displays"
+	key = "DPI_SCALING"
+	category = PREF_CATEGORY_UI
+	default_value = GLOB.PREF_YES
+
+/datum/client_preference/dpi_scaling/changed(mob/preference_mob, new_value)
+	to_chat(preference_mob, SPAN("boldannounce", "Please restart the game for the interface scaling setting to take effect."))
+
 /datum/client_preference/ambient_occlusion
 	description = "Toggle Ambient Occlusion"
 	key = "AMBIENT_OCCLUSION"
