@@ -31,6 +31,8 @@ nanoui is used to open and update nano browser uis
 	var/list/stylesheets = list()
 	// the list of javascript scripts to use for this ui
 	var/list/scripts = list()
+	// any additional html text that will be appended to the head contents as is, currently used for DPI scaling handling
+	var/additional_head_content
 	// a list of templates which can be used with this ui
 	var/templates[0]
 	// the layout key for this ui (this is used on the frontend, leave it as "default" unless you know what you're doing)
@@ -95,6 +97,7 @@ nanoui is used to open and update nano browser uis
 		ref = nref
 
 	add_common_assets()
+	handle_dpi_scaling()
 
 	if(user.client)
 		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
@@ -104,6 +107,26 @@ nanoui is used to open and update nano browser uis
 			to_chat(user, "Resources are still loading. Please wait.")
 			assets.send(user.client)
 			close()
+
+/datum/nanoui/proc/handle_dpi_scaling()
+	var/dpi_scaling_enabled = user?.client?.get_preference_value(/datum/client_preference/dpi_scaling) == GLOB.PREF_YES
+	var/dpi_scale = text2num(winget(user, null, "dpi"))
+	if(dpi_scaling_enabled)
+		// The contents will be scaled by the browser engine for us, but window size is passed in pixels
+		// and we have to adjust it manually to match the content scale.
+		width = floor(width * dpi_scale)
+		height = floor(height * dpi_scale)
+	else
+		// Otherwise, counter the automatic scaling using css zoom out.
+		// This is done to preserve the way things looked before BYOND switched to WebView2 in version 516.
+		// WebView2 respects system's scaling settings which wasn't the case for old IE-based internal browser.
+		add_head_content("<style>html {zoom: [1/dpi_scale];}</style>")
+		// Backgrounds are unaffected by the `zoom` CSS property. To prevent automatic scaling of the
+		// NanoUI background image, `background-size` is set to fixed 800x430 pixel dimensions, assuming
+		// the default `nano/images/uiBackground.png` is used.
+		// Fixed pixel size tells browser engine to not apply DPI scaling and keep it as is.
+		// Update this rule if the image dimensions change.
+		add_head_content("<style>body {background-size: 800px 430px;}</style>")
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
@@ -261,6 +284,20 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/add_script(file)
 	scripts.Add(file)
 
+/**
+  * Add plain html text to this UI's <head> tag contents
+  * Additional contents must be added before the UI has been opened, adding after that will have no effect
+  *
+  * @param html string The html text that will be appended to the contents of <head> tag of this UI
+  *
+  * @return nothing
+  */
+/datum/nanoui/proc/add_head_content(html)
+	if(!additional_head_content)
+		additional_head_content = html
+		return
+	additional_head_content += html
+
  /**
   * Add a template for this UI
   * Templates are combined with the data sent to the UI to create the rendered view
@@ -366,6 +403,9 @@ nanoui is used to open and update nano browser uis
 
 	for (var/filename in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'> "
+
+	if (additional_head_content)
+		head_content += additional_head_content
 
 	var/template_data_json = "{}" // An empty JSON object
 	if (templates.len > 0)
