@@ -451,3 +451,12 @@
 		SSgarbage.toggle_harddel(TRUE)
 		log_and_message_admins("stop hard deleting garbage queue.", usr)
 	return
+
+/client/proc/enable_browser_devtools()
+	set category = "Debug"
+	set name = "Enable Browser Devtools"
+	set desc = "Enable access to devtools on right-click on any browser UIs (plain browser, NanoUI, or TGUI windows)."
+	if (!check_rights(R_DEBUG))
+		return
+	winset(usr, null, "browser-options=devtools")
+	to_chat(src, "Enabled! Right click any browser UI and select \"Inspect\" to open devtools for that window.")

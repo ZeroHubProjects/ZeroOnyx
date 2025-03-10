@@ -212,6 +212,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/visualpower,
 	/client/proc/visualpower_remove,
 	/client/proc/hard_del,
+	/client/proc/enable_browser_devtools,
 	/client/proc/enable_profiler,
 	/client/proc/bluespace_tech
 	)
