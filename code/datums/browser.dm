@@ -105,7 +105,7 @@
 	if (title_image)
 		title_attributes = "class='uiTitle icon' style='background-image: url([title_image]);'"
 
-	return {"<!DOCTYPE html>
+	return {"
 <html>
 	<meta charset=\"utf-8\">
 	<head>

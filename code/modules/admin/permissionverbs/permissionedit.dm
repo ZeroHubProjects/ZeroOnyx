@@ -8,7 +8,7 @@
 /datum/admins/proc/edit_admin_permissions()
 	if(!check_rights(R_PERMISSIONS))	return
 
-	var/output = {"<!DOCTYPE html>
+	var/output = {"
 <html>
 <meta charset=\"utf-8\">
 <head>

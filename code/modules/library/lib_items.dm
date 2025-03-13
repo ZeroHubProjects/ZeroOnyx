@@ -346,7 +346,7 @@
 						<img src='wiki_paper.png' style='width: 32px; height: 32px;'/><img src='right_arrow.png' style='width: 32px; height: 32px;'/><img src='bookbinder.png' style='width: 32px; height: 32px;'/><img src='right_arrow.png' style='width: 32px; height: 32px;'/><img src='book1.png' style='width: 32px; height: 32px;'/>
 						</div><br>"}
 
-	return {"<!DOCTYPE html><html>
+	return {"<html>
 		<head><meta http-equiv=\"x-ua-compatible\" content=\"IE=edge\" charset=\"UTF-8\"></head>
 		<body>[preamble]<div id='status'>Turning on...</div></body>
 		<script>
