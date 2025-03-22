@@ -84,7 +84,8 @@
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/hud/standard/meson,
 		/obj/item/cartridge/engineering,
-		/obj/item/taperoll/engineering
+		/obj/item/taperoll/engineering,
+		/obj/item/storage/belt/utility
 	)
 
 /obj/structure/closet/secure_closet/atmos_personal
@@ -108,5 +109,6 @@
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/cartridge/atmos,
-		/obj/item/taperoll/atmos
+		/obj/item/taperoll/atmos,
+		/obj/item/storage/belt/utility
 	)
