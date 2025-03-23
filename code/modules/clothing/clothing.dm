@@ -337,10 +337,16 @@ BLIND     // can't see anything
 		species_restricted -= SPECIES_TAJARA
 	return
 
-/obj/item/clothing/gloves/mob_can_equip(mob/user)
+/obj/item/clothing/gloves/mob_can_equip(mob/user, slot)
 	var/mob/living/carbon/human/H = user
 
-	if(istype(H.gloves, /obj/item/clothing/ring))
+	// TODO(rufus): document and refactor the proc as it currently doesn't match the name,
+	//   the proc should just be checking if gloves can be equipped and return a bool but
+	//   does ring storing and chat messages on top of that.
+	// TODO(rufus): ring storing and unstoring should be separated out into semantic sub-procs
+	//   as this is a very unique code that breaks normal item slot limitations and is prone
+	//   to introducing bugs.
+	if(istype(H.gloves, /obj/item/clothing/ring) && slot == slot_gloves)
 		var/obj/item/clothing/ring/R = H.gloves
 		ring = weakref(R)
 		if(!R.undergloves)
