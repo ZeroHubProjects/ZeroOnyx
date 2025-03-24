@@ -479,8 +479,15 @@
       }
     };
 
-    // Signal tgui that we're ready to receive updates
-    Byond.sendMessage('ready');
+    // Signal tgui that we're ready to receive updates *after* the DOM has loaded.
+    // Since BYOND calls rely on setting `window.location` to a "byond://?[params]" style URL,
+    // the "ready" call has to happen after all the DOM was parsed.
+    // This is because modern browser engines like WebView2 (what BYOND >= 516 uses) or CEF will
+    // cancel loading the rest of the DOM if they detect a change in window location.
+    // As a result, the whole <body> will not load and the UI will not be able to render.
+    document.addEventListener('DOMContentLoaded', function (event) {
+      Byond.sendMessage('ready');
+    });
   </script>
 
   <style>
