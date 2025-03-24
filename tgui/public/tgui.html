@@ -342,17 +342,27 @@
           if (!sync) {
             node.media = 'only x';
           }
+          var removeNodeAndRetry = function () {
+            node.parentNode.removeChild(node);
+            node = null;
+            retry();
+          }
+          node.onerror = function () {
+            node.onerror = null;
+            removeNodeAndRetry();
+          }
           node.onload = function () {
             node.onload = null;
+            // The check and retry behavior is kept as backwards compatibility for clients that use
+            // BYOND <= 515, as IE-based web engine that was used in those versions didn't use onerror()
+            // for failed stylesheet loading attempts and relied on handling inside onload() specifically.
             if (isStyleSheetLoaded(node, url)) {
               // Render the stylesheet
               node.media = 'all';
               return;
             }
-            // Try again
-            node.parentNode.removeChild(node);
-            node = null;
-            retry();
+            // Try again if stylesheet failed to load
+            removeNodeAndRetry();
           };
           injectNode(node);
           return;
