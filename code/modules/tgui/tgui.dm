@@ -178,7 +178,8 @@
 			"key" = window_key,
 			"size" = window_size,
 			"fancy" = user.get_preference_value(/datum/client_preference/tgui_style) == GLOB.PREF_FANCY,
-			"locked" = user.get_preference_value(/datum/client_preference/tgui_monitor) == GLOB.PREF_PRIMARY
+			"locked" = user.get_preference_value(/datum/client_preference/tgui_monitor) == GLOB.PREF_PRIMARY,
+			"scaling" = user.get_preference_value(/datum/client_preference/dpi_scaling) == GLOB.PREF_YES
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,

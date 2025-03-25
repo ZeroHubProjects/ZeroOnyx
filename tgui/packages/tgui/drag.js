@@ -107,10 +107,23 @@ export const recallWindowGeometry = async (options = {}) => {
   // options.pos is assumed to already be in display-pixels
   let pos = geometry?.pos || options.pos;
   let size = options.size;
-  // Convert size from css-pixels to display-pixels
-  if (size) {
-    size = [size[0] * pixelRatio, size[1] * pixelRatio];
+  if (options.scaling) {
+    // Convert size from css-pixels to display-pixels if user
+    // preference is set to scale UIs according to system settings.
+    if (size) {
+      size = [size[0] * pixelRatio, size[1] * pixelRatio];
+    }
+    window.document.body.style['zoom'] = null;
+  } else {
+    // Otherwise, counter the automatic scaling using css zoom out.
+		// This is done to preserve the way things looked before BYOND
+    // switched to WebView2 in version 516.
+		// WebView2 respects system's scaling settings which wasn't the
+    // case for old IE-based internal browser.
+    window.document.body.style['zoom'] = 1 / window.devicePixelRatio;
   }
+
+
   // Wait until screen offset gets resolved
   await screenOffsetPromise;
   const areaAvailable = getScreenSize();
@@ -182,7 +195,7 @@ export const dragStartHandler = (event) => {
   dragging = true;
   let windowPosition = getWindowPosition();
   dragPointOffset = vecSubtract(
-    [event.screenX, event.screenY],
+    [event.screenX * pixelRatio, event.screenY * pixelRatio],
     getWindowPosition()
   );
   // Focus click target
@@ -207,7 +220,10 @@ const dragMoveHandler = (event) => {
   }
   event.preventDefault();
   setWindowPosition(
-    vecSubtract([event.screenX, event.screenY], dragPointOffset)
+    vecSubtract(
+      [event.screenX * pixelRatio, event.screenY * pixelRatio],
+      dragPointOffset,
+    )
   );
 };
 
@@ -216,7 +232,7 @@ export const resizeStartHandler = (x, y) => (event) => {
   logger.log("resize start", resizeMatrix);
   resizing = true;
   dragPointOffset = vecSubtract(
-    [event.screenX, event.screenY],
+    [event.screenX * pixelRatio, event.screenY * pixelRatio],
     getWindowPosition()
   );
   initialSize = getWindowSize();
@@ -242,7 +258,7 @@ const resizeMoveHandler = (event) => {
   }
   event.preventDefault();
   const currentOffset = vecSubtract(
-    [event.screenX, event.screenY],
+    [event.screenX * pixelRatio, event.screenY * pixelRatio],
     getWindowPosition()
   );
   const delta = vecSubtract(currentOffset, dragPointOffset);
