@@ -291,7 +291,7 @@
         var retry = function () {
           if (attempt >= RETRY_ATTEMPTS) {
             var errorMessage = "Error: Failed to load the asset "
-              + "'" + url + "' after several attempts.";
+              + "'" + url + "' after 30 seconds.";
             if (type === 'css') {
               errorMessage += " This might be caused by an invalid "
               + "or empty stylesheet.";
