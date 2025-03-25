@@ -293,9 +293,8 @@
             var errorMessage = "Error: Failed to load the asset "
               + "'" + url + "' after several attempts.";
             if (type === 'css') {
-              errorMessage += + "\nStylesheet was either not found, "
-                + "or you're trying to load an empty stylesheet "
-                + "that has no CSS rules in it.";
+              errorMessage += " This might be caused by an invalid "
+              + "or empty stylesheet.";
             }
             throw new Error(errorMessage);
           }
