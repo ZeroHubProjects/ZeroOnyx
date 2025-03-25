@@ -239,9 +239,9 @@
       // Asset loaders
       // ------------------------------------------------------
 
-      var RETRY_ATTEMPTS = 5;
-      var RETRY_WAIT_INITIAL = 500;
-      var RETRY_WAIT_INCREMENT = 500;
+      // 30 seconds in total to accomodate for users with slow connection
+      var RETRY_ATTEMPTS = 60;
+      var RETRY_WAIT = 500;
 
       var loadedAssetByUrl = {};
 
@@ -301,9 +301,9 @@
           }
           setTimeout(function () {
             loadedAssetByUrl[url] = null;
-            options.attempt += 1;
+            options.attempt = attempt + 1;
             loadAsset(options);
-          }, RETRY_WAIT_INITIAL + attempt * RETRY_WAIT_INCREMENT);
+          }, RETRY_WAIT);
         };
         // JS specific code
         if (type === 'js') {
