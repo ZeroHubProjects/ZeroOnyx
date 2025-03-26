@@ -126,12 +126,12 @@ NanoBaseHelpers = function ()
 				{
 					showText = '';
 				}
-				
+
 				if (typeof difClass == 'undefined' || !difClass)
 				{
 					difClass = ''
 				}
-				
+
 				if(typeof direction == 'undefined' || !direction)
 				{
 					direction = 'width'
@@ -140,9 +140,9 @@ NanoBaseHelpers = function ()
 				{
 					direction = 'height'
 				}
-				
+
 				var percentage = Math.round((value - rangeMin) / (rangeMax - rangeMin) * 100);
-				
+
 				return '<div class="displayBar' + difClass + ' ' + styleClass + '"><div class="displayBar' + difClass + 'Fill ' + styleClass + '" style="' + direction + ': ' + percentage + '%;"></div><div class="displayBar' + difClass + 'Text ' + styleClass + '">' + showText + '</div></div>';
 			},
 			// Display DNA Blocks (for the DNA Modifier UI)
@@ -200,7 +200,7 @@ NanoBaseHelpers = function ()
 				return html;
 			}
 		};
-		
+
 	return {
         addHelpers: function ()
 		{
@@ -214,14 +214,7 @@ NanoBaseHelpers = function ()
 				{
 					NanoTemplate.removeHelper(helperKey);
 				}
-			}            
+			}
         }
 	};
 } ();
- 
-
-
-
-
-
-
