@@ -43,3 +43,8 @@ body {
 	background-color: #272727;
 	color: #efefef;
 }
+
+img {
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: pixelated;
+}

@@ -137,6 +137,8 @@ li {
 img,
 a img {
   border-style: none;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
 }
 
 h1,

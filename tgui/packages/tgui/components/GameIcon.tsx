@@ -16,7 +16,7 @@ export const GameIcon = (props: GameIconProps) => {
       {...props}
       className={`game-icon ${className || ""}`}
       src={iconSrc}
-      style={{ "-ms-interpolation-mode": "nearest-neighbor", ...style }}
+      style={{ "-ms-interpolation-mode": "nearest-neighbor", "image-rendering" : "pixelated", ...style }}
     />
   );
 };
