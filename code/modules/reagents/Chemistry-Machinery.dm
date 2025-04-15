@@ -244,14 +244,14 @@
 			#define MAX_PILL_SPRITE 25 //max icon state of the pill sprites
 			var/dat = "<meta charset=\"utf-8\"><table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='?src=\ref[src]&pill_sprite=[i]'><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			show_browser(usr, dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<meta charset=\"utf-8\"><table>"
 			for(var/sprite in BOTTLE_SPRITES)
-				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[sprite]\"><img src=\"[sprite].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='?src=\ref[src]&bottle_sprite=[sprite]'><img src=\"[sprite].png\" /></a></td></tr>"
 			dat += "</table>"
 			show_browser(usr, dat, "window=chem_master")
 			return
@@ -347,7 +347,7 @@
 			dat += "Empty<BR>"
 		dat += "<HR>Stored glass amount: [matter_storage]/[matter_storage_max]<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (30 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (30 units max)</A><a href='?src=\ref[src]&change_pill=1'><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat +=  "<A href='?src=\ref[src];createbottle_small=1'>Create small bottle  | 30 units max | Glass: 1000</A><BR>"
 			dat +=        "<A href='?src=\ref[src];createbottle=1'>Create normal bottle | 60 units max | Glass: 2000</A><BR>"

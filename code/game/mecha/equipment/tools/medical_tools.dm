@@ -169,7 +169,7 @@
 	if(SG && SG.reagents && islist(SG.reagents.reagent_list))
 		for(var/datum/reagent/R in SG.reagents.reagent_list)
 			if(R.volume > 0)
-				output += "<a href=\"?src=\ref[src];inject=\ref[R];source=\ref[SG]\">Inject [R.name]</a><br />"
+				output += "<a href='?src=\ref[src];inject=\ref[R];source=\ref[SG]'>Inject [R.name]</a><br />"
 	return output
 
 
@@ -259,7 +259,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
+		return "[output] \[<a href='?src=\ref[src];toggle_mode=1'>[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/action(atom/movable/target)
@@ -415,9 +415,9 @@
 	var/output
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.volume > 0)
-			output += "[R]: [round(R.volume,0.001)] - <a href=\"?src=\ref[src];purge_reagent=\ref[R]\">Purge Reagent</a><br />"
+			output += "[R]: [round(R.volume,0.001)] - <a href='?src=\ref[src];purge_reagent=\ref[R]'>Purge Reagent</a><br />"
 	if(output)
-		output += "Total: [round(reagents.total_volume,0.001)]/[reagents.maximum_volume] - <a href=\"?src=\ref[src];purge_all=1\">Purge All</a>"
+		output += "Total: [round(reagents.total_volume,0.001)]/[reagents.maximum_volume] - <a href='?src=\ref[src];purge_all=1'>Purge All</a>"
 	return output || "None"
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/load_syringe(obj/item/reagent_containers/syringe/S)

@@ -532,7 +532,7 @@
 					if("PERMABAN")
 						typedesc = "<font color='red'><b>PERMABAN</b></font>"
 					if("TEMPBAN")
-						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires at [expiration] UTC</font>"
+						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href='byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]'>Edit</a>)"]<br>Expires at [expiration] UTC</font>"
 					if("JOB_PERMABAN")
 						typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
 					if("JOB_TEMPBAN")
@@ -543,7 +543,7 @@
 				output += "<td align='center'><b>[ckey]</b></td>"
 				output += "<td align='center'>[bantime] UTC</td>"
 				output += "<td align='center'><b>[ackey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href='byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]'>Unban</a></b>"]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
@@ -553,9 +553,9 @@
 				output += "</tr>"
 				output += "<tr bgcolor='[lcolor]'>"
 				if(!isnull(server_id))
-					output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid];dbserverid=[server_id]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
+					output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href='byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid];dbserverid=[server_id]'>Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 				else
-					output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
+					output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href='byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]'>Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 
 				output += "</tr>"
 				if(edits)
