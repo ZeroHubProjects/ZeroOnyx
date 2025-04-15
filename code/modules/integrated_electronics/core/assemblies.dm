@@ -138,7 +138,7 @@
 		return
 	var/datum/browser/popup = new(user, "scannerpanel", name, 600, 330) // Set up the popup browser window
 	popup.add_stylesheet("scannerpanel", 'html/browser/assembly_ui.css')
-	var/HTML = "<html><body><a href=?src=\ref[src];refresh=1>Refresh</a><br><br>"
+	var/HTML = "<html><body><a href='?src=\ref[src];refresh=1'>Refresh</a><br><br>"
 
 	var/listed_components = FALSE
 	for(var/obj/item/integrated_circuit/circuit in contents)
@@ -151,7 +151,7 @@
 			for(var/entry in topic_data)
 				var/href = topic_data[entry]
 				if(href)
-					HTML += "<a href=?src=\ref[circuit];ic_window=1;[href]>[entry]</a>"
+					HTML += "<a href='?src=\ref[circuit];ic_window=1;[href]'>[entry]</a>"
 				else
 					HTML += entry
 				HTML += "<br>"
