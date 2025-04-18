@@ -49,7 +49,7 @@
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
+							<a href='byond://?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
 							<form>
 								<select name='file'
 								        size='1'
@@ -59,8 +59,8 @@
 								        style='background-color:#ffffff'>
 									<option>Select option</option>
 									<option />
-									<option value='?_src_=vars;mark_object=\ref[D]'>Mark Object</option>
-									<option value='?_src_=vars;call_proc=\ref[D]'>Call Proc</option>
+									<option value='byond://?_src_=vars;mark_object=\ref[D]'>Mark Object</option>
+									<option value='byond://?_src_=vars;call_proc=\ref[D]'>Call Proc</option>
 									[D.get_view_variables_options()]
 								</select>
 							</form>
@@ -122,12 +122,12 @@
 	else if(istype(value, /datum))
 		var/datum/DA = value
 		if("[DA]" == "[DA.type]" || !"[DA]")
-			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
+			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
 		else
-			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
+			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
 	else if(istype(value, /client))
 		var/client/C = value
-		vtext = "<a href='?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
+		vtext = "<a href='byond://?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
 	else if(islist(value))
 		var/list/L = value
 		vtext = "/list ([L.len])"

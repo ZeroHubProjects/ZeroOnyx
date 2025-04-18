@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(music_players)
 
 	mode = PLAYER_STATE_PLAY
 	set_next_think(world.time)
-	log_and_message_admins("launched <a href='?_src_=holder;adminplayerobservefollow=\ref[src]'>[src]</a> with the song \"[tape.track.title]\".")
+	log_and_message_admins("launched <a href='byond://?_src_=holder;adminplayerobservefollow=\ref[src]'>[src]</a> with the song \"[tape.track.title]\".")
 
 	if(prob(break_chance))
 		break_act()

@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 		return
 	ASSERT(status == IAA_STATUS_PENDING)
 	var/action = approved ? IAA_STATUS_APPROVED : IAA_STATUS_DENIED
-	message_admins("IAA jobban <a href='?_src_=holder;iaaj_inspect=[id]'>[id] ([fakeid])</a> was [IAAJ_status_colorize(action, action)] by [ckey] ([comment])")
+	message_admins("IAA jobban <a href='byond://?_src_=holder;iaaj_inspect=[id]'>[id] ([fakeid])</a> was [IAAJ_status_colorize(action, action)] by [ckey] ([comment])")
 	log_admin("IAA jobban [id] ([fakeid]) was [action] by [ckey] ([comment])")
 	var/DBQuery/query
 	if (approved)
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 	ASSERT(query.item[1] == IAA_STATUS_APPROVED)
 	var/fakeid = query.item[2]
 	var/action = IAA_STATUS_CANCELLED
-	message_admins("IAA jobban <a href='?_src_=holder;iaaj_inspect=[id]'>[id] ([fakeid])</a> was [IAAJ_status_colorize(action, action)] by [ckey] ([comment])")
+	message_admins("IAA jobban <a href='byond://?_src_=holder;iaaj_inspect=[id]'>[id] ([fakeid])</a> was [IAAJ_status_colorize(action, action)] by [ckey] ([comment])")
 	log_admin("IAA jobban [id] ([fakeid]) was [action] by [ckey] ([comment])")
 	query = sql_query({"
 		UPDATE
@@ -306,10 +306,10 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 	JB.id = query.item[1]
 	JB.expiration_time = query.item[2]
 	GLOB.IAA_active_jobbans_list.Add(JB)
-	message_admins("Complaint <a href='?_src_=holder;iaaj_inspect=[JB.id]'>#[JB.id] ([JB.fakeid])</a> added into database.")
+	message_admins("Complaint <a href='byond://?_src_=holder;iaaj_inspect=[JB.id]'>#[JB.id] ([JB.fakeid])</a> added into database.")
 	log_admin("Complaint #[JB.id] ([JB.fakeid]) added into database.")
 	if (IAA_is_trustworthy(iaa_ckey))
-		message_admins("[iaa_ckey] is thrustworthy, complaint <a href='?_src_=holder;iaaj_inspect=[JB.id]'>#[JB.id] ([JB.fakeid])</a> was automatically approved.")
+		message_admins("[iaa_ckey] is thrustworthy, complaint <a href='byond://?_src_=holder;iaaj_inspect=[JB.id]'>#[JB.id] ([JB.fakeid])</a> was automatically approved.")
 		JB.resolve()
 
 /proc/IAAJ_status_colorize(status, text)

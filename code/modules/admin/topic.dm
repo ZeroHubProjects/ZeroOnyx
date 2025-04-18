@@ -351,9 +351,9 @@
 
 		// Chats (by Error_777)
 		jobs +={"
-			<A href='?_src_=holder;jobban3=OOC;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "OOC"))?"red":"blue"]>OOC</font></A> |
-			<A href='?_src_=holder;jobban3=LOOC;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "LOOC"))?"red":"blue"]>LOOC</font></A> |
-			<A href='?_src_=holder;jobban3=AHELP;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "AHELP"))?"red":"blue"]>AHelp</font></A>"}
+			<A href='byond://?_src_=holder;jobban3=OOC;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "OOC"))?"red":"blue"]>OOC</font></A> |
+			<A href='byond://?_src_=holder;jobban3=LOOC;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "LOOC"))?"red":"blue"]>LOOC</font></A> |
+			<A href='byond://?_src_=holder;jobban3=AHELP;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "AHELP"))?"red":"blue"]>AHelp</font></A>"}
 
 		jobs += "</td>"
 
@@ -361,11 +361,11 @@
 
 		// Species
 		jobs += "<tr>"
-		jobs += "<td><A href='?_src_=holder;jobban3=SPECIES;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "SPECIES"))?"red":"blue"]>Species</font></A> | "
-		jobs += "<A href='?_src_=holder;jobban3=MALE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "MALE"))?"red":"blue"]>Male</font></A> | "
-		jobs += "<A href='?_src_=holder;jobban3=FEMALE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "FEMALE"))?"red":"blue"]>Female</font></A> | "
-		jobs += "<A href='?_src_=holder;jobban3=APPEARANCE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "APPEARANCE"))?"red":"blue"]>Appearance</font></A> | "
-		jobs += "<A href='?_src_=holder;jobban3=NAME;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "NAME"))?"red":"blue"]>Name</font></A></td>"
+		jobs += "<td><A href='byond://?_src_=holder;jobban3=SPECIES;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "SPECIES"))?"red":"blue"]>Species</font></A> | "
+		jobs += "<A href='byond://?_src_=holder;jobban3=MALE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "MALE"))?"red":"blue"]>Male</font></A> | "
+		jobs += "<A href='byond://?_src_=holder;jobban3=FEMALE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "FEMALE"))?"red":"blue"]>Female</font></A> | "
+		jobs += "<A href='byond://?_src_=holder;jobban3=APPEARANCE;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "APPEARANCE"))?"red":"blue"]>Appearance</font></A> | "
+		jobs += "<A href='byond://?_src_=holder;jobban3=NAME;jobban4=\ref[M]'><font color=[(jobban_isbanned(M, "NAME"))?"red":"blue"]>Name</font></A></td>"
 
 		jobs += "</tr>"
 
@@ -1417,7 +1417,7 @@
 		to_chat(src.owner, "Location = [location_description];")
 		to_chat(src.owner, "[special_role_description]")
 		to_chat(src.owner, "IP address = [M.lastKnownIP]; CID = [M.computer_id];")
-		to_chat(src.owner, "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)")
+		to_chat(src.owner, "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='byond://?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)")
 
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
@@ -2023,7 +2023,7 @@
 
 		S.channel = 703
 		sound_to(usr, S)
-		to_chat(usr, "<B><A HREF='?_src_=holder;stop_tape_sound=1'>Stop listening</A></B>")
+		to_chat(usr, "<B><A HREF='byond://?_src_=holder;stop_tape_sound=1'>Stop listening</A></B>")
 
 	else if(href_list["stop_tape_sound"])
 		var/sound/S = sound(null)

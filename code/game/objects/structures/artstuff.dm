@@ -170,7 +170,7 @@
 	var/turf/epicenter = get_turf(src)
 	if(!epicenter && !author_ckey)
 		return
-	message_admins("The [is_copy ? "copy of" : "new"] art has been created by [author_ckey] in <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>(x:[epicenter.x], y:[epicenter.y], z:[epicenter.z])</a>")
+	message_admins("The [is_copy ? "copy of" : "new"] art has been created by [author_ckey] in <A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>(x:[epicenter.x], y:[epicenter.y], z:[epicenter.z])</a>")
 
 /obj/item/canvas/proc/copy()
 	if(!finalized)
