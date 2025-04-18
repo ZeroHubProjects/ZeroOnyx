@@ -128,4 +128,3 @@
 /obj/effect/landmark/costume/sexymime/New()
 	new /obj/item/clothing/mask/gas/sexymime(loc)
 	new /obj/item/clothing/under/sexymime(loc)
-

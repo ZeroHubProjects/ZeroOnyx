@@ -22,7 +22,7 @@
 #define GAS_CRITICAL_TEMPERATURE     (132.65 KELVIN)
 
 /// (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
-#define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 
+#define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04
 /// m^2, surface area of 1.7m (H) x 0.46m (D) cylinder
 #define HUMAN_EXPOSED_SURFACE_AREA 5.2
 #define AVERAGE_HUMAN_WEIGHT (60 KILO GRAMS)

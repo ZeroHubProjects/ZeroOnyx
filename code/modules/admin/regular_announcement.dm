@@ -24,4 +24,3 @@ var/join_regular_announcement = null
 
 	if(join_regular_announcement)
 		to_chat(src, "[join_regular_announcement]")
-

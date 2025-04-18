@@ -140,5 +140,5 @@
 		explosion(src.loc, 4,8,16,32)
 		qdel(src)
 		return
-	
+
 	set_next_think(world.time + 1 SECOND)

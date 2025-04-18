@@ -4,4 +4,3 @@
 	icon_state = "piano"
 	path = /datum/instrument/piano
 	pull_slowdown = PULL_SLOWDOWN_HEAVY
-

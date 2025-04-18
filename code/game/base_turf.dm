@@ -4,5 +4,5 @@
 
 	if(A.base_turf)
 		return A.base_turf
-	
+
 	return GLOB.using_map.map_levels[T.z]?.base_turf || world.turf

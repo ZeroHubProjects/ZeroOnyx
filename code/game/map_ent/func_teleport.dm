@@ -11,11 +11,11 @@
 	if(!istype(M))
 		util_crash_with("ev_tag is invalid")
 		return
-	
+
 	var/atom/A = locate(ev_dest_tag)
 
 	if(!istype(A))
 		util_crash_with("ev_dest_tag is invalid")
 		return
-	
+
 	M.forceMove(get_turf(A))

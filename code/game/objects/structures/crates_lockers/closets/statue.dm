@@ -59,7 +59,7 @@
 		dump_contents()
 		qdel(src)
 		return
-	
+
 	set_next_think(world.time + 1 SECOND)
 
 /obj/structure/closet/statue/dump_contents()

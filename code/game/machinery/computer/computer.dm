@@ -30,7 +30,7 @@
 
 /obj/machinery/computer/Destroy()
 	GLOB.computer_list -= src
-	
+
 	return ..()
 
 /obj/machinery/computer/emp_act(severity)

@@ -528,7 +528,3 @@ Rate: [volume_rate] L/sec<BR>"}
 		)
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
-
-
-
-

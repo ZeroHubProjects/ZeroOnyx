@@ -96,4 +96,3 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/reagent_containers/vessel/bottle/chemical/stoxin,
 		/obj/item/storage/box/syringes,
 		/obj/item/storage/box/autoinjectors)
-

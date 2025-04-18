@@ -138,28 +138,3 @@
 		//var/obj/mecha/M = target_mob
 		//M.attack_animal(src)
 		//return M
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

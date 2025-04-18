@@ -7,7 +7,7 @@
 
 /obj/structure/blob/core/New(loc, ...)
 	. = ..()
-	
+
 	core = src
 
 /obj/structure/blob/core/can_expand()

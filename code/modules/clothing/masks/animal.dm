@@ -96,4 +96,3 @@
 	// The horse mask doesn't cause voice changes by default, the wizard spell changes the flag as necessary
 	say_messages = list("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
 	say_verbs = list("whinnies", "neighs", "says")
-

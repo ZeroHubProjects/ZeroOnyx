@@ -9,7 +9,7 @@
 
 	for(var/T in traits)
 		traits_map += list("[T]" = TRUE)
-	
+
 	traits = traits_map
 
 /datum/space_level/proc/remove_trait(trait)

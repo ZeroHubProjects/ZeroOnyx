@@ -21,5 +21,5 @@
 /datum/think_context/Destroy()
 	stop()
 	qdel(callback)
-	
+
 	. = ..()

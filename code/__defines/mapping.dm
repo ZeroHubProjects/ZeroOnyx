@@ -15,7 +15,7 @@
 // That's station level.
 #define ZTRAIT_STATION  "Station"
 // The main level of the map
-#define ZTRAIT_MAIN "Main" 
+#define ZTRAIT_MAIN "Main"
 // This level can't be reached by an map edge crossing, teleporting and etc.
 #define ZTRAIT_SEALED   "Sealed"
 // This level is empty (just space or something).

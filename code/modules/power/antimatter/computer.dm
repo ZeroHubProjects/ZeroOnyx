@@ -91,4 +91,3 @@
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
 	show_browser(user, dat, "window=communications;size=400x500")
 	onclose(user, "communications")
-

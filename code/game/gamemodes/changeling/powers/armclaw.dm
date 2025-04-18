@@ -23,4 +23,3 @@
 		power_item_type = /obj/item/melee/changeling/claw/greater
 	else
 		power_item_type = /obj/item/melee/changeling/claw
-

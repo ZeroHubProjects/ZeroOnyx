@@ -36,19 +36,19 @@
 			return
 
 		write_table = write_atom.vars
-	
+
 	if(!read_table)
 		for(var/var_name in ev_table)
 			write_table[var_name] = ev_table[var_name]
 	else
 		for(var/var_name in ev_table)
 			write_table[var_name] = read_table[ev_table[var_name]]
-	
+
 	if(ev_activate_writer)
 		var/obj/map_ent/E = write_atom
 
 		if(!istype(E))
 			util_crash_with("ev_write_tag is not an entity")
 			return
-		
+
 		E.activate()

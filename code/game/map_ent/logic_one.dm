@@ -10,6 +10,6 @@
 	if(!istype(E))
 		util_crash_with("ev_tag is invalid")
 		return
-	
+
 	E.activate()
 	qdel(src)

@@ -11,5 +11,5 @@
 		if(!istype(E))
 			util_crash_with("tag `[tag]` is invalid")
 			continue
-		
+
 		E.activate()

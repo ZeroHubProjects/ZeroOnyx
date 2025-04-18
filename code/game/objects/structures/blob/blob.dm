@@ -150,13 +150,13 @@
 /obj/structure/blob/proc/expand_think()
 	if(prob(BLOB_EXPAND_CHANCE))
 		expand()
-	
+
 	set_next_think_ctx("expand", world.time + BLOB_EXPAND_COOLODNW)
 
 /obj/structure/blob/proc/upgrade_think()
 	if(prob(BLOB_UPGRADE_CHANCE) && upgrade())
-		return 
-	
+		return
+
 	set_next_think_ctx("upgrade", world.time + BLOB_UPGRADE_COOLDOWN)
 
 /obj/structure/blob/update_icon()

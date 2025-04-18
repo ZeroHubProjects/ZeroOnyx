@@ -76,7 +76,7 @@
 							  SPAN("danger", "[src] ignites \the [H.head] on your head. You are on fire!"))
 			H.adjust_fire_stacks(1)
 			H.IgniteMob()
-	
+
 	set_next_think(world.time + 1 SECOND)
 
 /obj/item/clothing/mask/smokable/update_icon()

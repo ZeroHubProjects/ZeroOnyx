@@ -17,7 +17,7 @@
 	set desc = "Opens help window with overview of available powers and other important information."
 	var/mob/living/carbon/human/user = usr
 
-	var/helpfile_path = "html/ingame_manuals/vampire.html" 
+	var/helpfile_path = "html/ingame_manuals/vampire.html"
 	var/help = file2text(helpfile_path)
 	if(!help)
 		help = "Error loading help (file [helpfile_path] is probably missing). Please report this to server administration staff."

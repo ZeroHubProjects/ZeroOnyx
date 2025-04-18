@@ -8,4 +8,3 @@
 	end_on_antag_death = 0
 	antag_tags = list(MODE_CULTIST)
 	probability = 0
-

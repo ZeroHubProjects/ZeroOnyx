@@ -30,7 +30,7 @@
 	var/atom/A = _instance?.resolve()
 	if(!QDELETED(A))
 		QDEL_NULL(A)
-	
+
 	A = new ev_target(arglist(new_args))
 	ev_spawned = "\ref[A]"
 

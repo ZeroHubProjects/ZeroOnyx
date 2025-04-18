@@ -147,4 +147,3 @@
 
 	else // No colors, so remove the client's color.
 		animate(client, color = null, time = 10)
-

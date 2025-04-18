@@ -242,7 +242,7 @@ GLOBAL_DATUM_INIT(temp_reagents_holder, /obj, new)
 	for(var/datum/reagent/R in reagent_list)
 		if(!R.radiation)
 			continue
-		
+
 		info += R.radiation
 
 	return info

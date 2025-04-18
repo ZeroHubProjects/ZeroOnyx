@@ -24,4 +24,3 @@
 		return FALSE
 
 	return TRUE
-

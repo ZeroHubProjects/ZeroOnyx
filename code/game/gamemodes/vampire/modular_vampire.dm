@@ -42,7 +42,7 @@ var/list/datum/power/vampire/vampirepowers = list()
 /datum/power/vampire/revitalise
 	name = "Revitalise"
 	desc = "Allows you to hide among your prey."
-	helptext = "Makes the vampire appear alive."	
+	helptext = "Makes the vampire appear alive."
 	verbpath = /datum/vampire/proc/vampire_revitalise
 
 /datum/power/vampire/touch_of_life

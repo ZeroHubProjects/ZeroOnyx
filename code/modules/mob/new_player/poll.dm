@@ -369,7 +369,7 @@
 				WHERE
 					pollid = $pollid
 				"}, dbcon, list(pollid = pollid))
-			
+
 			while(options_query.NextRow())
 				var/datum/polloption/PO = new()
 				PO.optionid = text2num(options_query.item[1])
@@ -660,13 +660,13 @@
 		return
 
 	var/DBQuery/select_query2 = sql_query({"
-		SELECT 
-			id 
-		FROM 
-			poll_option 
-		WHERE 
-			id = $optionid 
-			AND 
+		SELECT
+			id
+		FROM
+			poll_option
+		WHERE
+			id = $optionid
+			AND
 			pollid = $pollid
 		"}, dbcon, list(optionid = optionid, pollid = pollid))
 
@@ -722,9 +722,9 @@
 			Now(),
 			$pollid,
 			$optionid,
-			$ckey, 
-			$address, 
-			$adminrank, 
+			$ckey,
+			$address,
+			$adminrank,
 			[(isnull(rating)) ? "null" : "$rating"])
 		"}, dbcon, list(pollid = pollid, optionid = optionid, ckey = usr.ckey, address = usr.client.address || "127.0.0.1", adminrank = adminrank, rating = rating))
 

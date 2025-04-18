@@ -33,7 +33,7 @@
 			if(!P.blood_cost)
 				mind.vampire.add_power(mind, P, 0)
 		else if(P.is_active && P.verbpath)
-			verbs += P.verbpath	
+			verbs += P.verbpath
 	return TRUE
 
 /mob/living/carbon/human/proc/replace_vampiric_organs()
@@ -261,7 +261,7 @@
 /mob/living/carbon/human/proc/handle_vampire()
 	// Apply frenzy while in the holy location.
 	if (get_area(loc)?.holy)
-		mind.vampire.frenzy += 3		
+		mind.vampire.frenzy += 3
 		if(prob(20))
 			to_chat(src, "You feel like you`re burning!")
 

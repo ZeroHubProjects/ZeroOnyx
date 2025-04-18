@@ -62,7 +62,7 @@
 			light.update(.)
 		else
 			light = new /datum/light_source(src, .)
-	
+
 	SEND_SIGNAL(src, SIGNAL_LIGHT_UPDATED, src)
 	SEND_GLOBAL_SIGNAL(SIGNAL_LIGHT_UPDATED, src)
 

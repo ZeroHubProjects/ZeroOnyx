@@ -103,5 +103,3 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	material_amount = 5
-
-

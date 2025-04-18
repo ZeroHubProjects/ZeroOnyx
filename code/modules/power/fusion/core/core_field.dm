@@ -143,7 +143,7 @@
 
 	check_instability()
 	Radiate()
-	
+
 	set_next_think(world.time + 1 SECOND)
 
 /obj/effect/fusion_em_field/proc/check_instability()

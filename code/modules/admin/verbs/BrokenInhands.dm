@@ -32,6 +32,3 @@
 		fdel(F)
 		to_file(F, text)
 		log_debug("Completeled successfully and written to [F]")
-
-
-

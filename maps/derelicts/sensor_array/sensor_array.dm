@@ -63,7 +63,7 @@
 
 /obj/machinery/computer/sensor_array/Initialize()
 	. = ..()
-	
+
 	title = "Sensor Array - \"<em>Oerlikon</em>\" serial no. [rand(1, 1000)]"
 	hello_text += "<h3>Welcome, [random_name(pick(list(FEMALE, MALE)))]!</h3>"
 	hello_text += "<em>You are was inactive for [rand(60, 300)] days.</em><br><br>"
@@ -82,21 +82,21 @@
 		for(var/i = max(1, length(S.log_entries) - 10); i <= length(S.log_entries); i++)
 			if(length(logs) >= 60)
 				return logs
-			
+
 			var/datum/comm_log_entry/E = S.log_entries[i]
 			var/sender = E.parameters["realname"] || E.parameters["name"]
 			var/msg = E.parameters["message"]
 
 			if(!length(msg) || !length(sender))
 				continue
-			
+
 			logs += "[sender]: [msg]"
 
 	return logs
 
 /obj/machinery/computer/sensor_array/proc/_get_content()
 	var/content = ""
-	
+
 	if(emagged)
 		content += "<h2>PWNED by \"__S33nD1cK@__\"</h2>"
 		content += "<em>THE NAN07RAS3N 1S <strike>WATCHING</strike> HEARING YOU</em><br><br>"
@@ -115,10 +115,10 @@
 /obj/machinery/computer/sensor_array/Topic(href, href_list, datum/topic_state/state)
 	if(..())
 		return TRUE
-	
+
 	if(isghost(usr))
 		return TRUE
-	
+
 	if(stat & (BROKEN|NOPOWER))
 		return TRUE
 
@@ -131,7 +131,7 @@
 		if(used && !emagged)
 			playsound(src, 'sound/signals/error2.ogg', 50, FALSE)
 			return TRUE
-		
+
 		used = TRUE
 
 		var/obj/item/paper/P = new(get_turf(src))
@@ -139,7 +139,7 @@
 
 		for(var/line in _get_comm_logs())
 			text += "[line]<br>"
-		
+
 		text += "</code>"
 
 		P.info = text
@@ -152,7 +152,7 @@
 /obj/machinery/computer/sensor_array/emag_act(remaining_charges, mob/user, emag_source)
 	if(emagged)
 		return 0
-	
+
 	if (do_after(user, 6, src))
 		playsound(src.loc, 'sound/effects/computer_emag.ogg', 25)
 		emagged = TRUE
@@ -164,7 +164,7 @@
 
 /obj/machinery/computer/sensor_array/attack_hand(mob/user)
 	..()
-	
+
 	if(stat & (BROKEN|NOPOWER))
 		return
 

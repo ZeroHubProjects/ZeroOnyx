@@ -1,5 +1,5 @@
 /// Formats a number to human readable form with the appropriate SI unit.
-/// 
+///
 /// Supports SI exponents between 1e-15 to 1e15, but properly handles numbers outside that range as well.
 /// Examples:
 /// * `fmt_siunit(1234, "Pa", 1)` -> `"1.2 kPa"`

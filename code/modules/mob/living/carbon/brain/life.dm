@@ -4,7 +4,7 @@
 /mob/living/carbon/brain/handle_mutations_and_radiation()
 	radiation -= (0.001 SIEVERT)
 	radiation = Clamp(radiation, SPACE_RADIATION, (3 SIEVERT))
-	
+
 	if(radiation <= SAFE_RADIATION_DOSE)
 		return
 
@@ -19,7 +19,7 @@
 	if(damage)
 		adjustToxLoss(damage)
 		updatehealth()
-	
+
 		if(prob(5))
 			if(!container)
 				to_chat(src, SPAN("warning", "You feel weak."))

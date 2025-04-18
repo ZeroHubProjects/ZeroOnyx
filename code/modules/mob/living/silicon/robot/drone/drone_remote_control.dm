@@ -16,7 +16,7 @@
 	if(health < -35 || emagged)
 		to_chat(user, SPAN("notice", "<b>WARNING:</b> connection timed out."))
 		return
-	
+
 	assume_control(user)
 
 /mob/living/silicon/robot/drone/proc/assume_control(mob/living/silicon/ai/user)
@@ -27,7 +27,7 @@
 	local_transmit = FALSE
 	languages = controlling_ai.languages.Copy()
 	add_language("Robot Talk", 1)
-	
+
 	default_language = all_languages[LANGUAGE_GALCOM]
 
 	stat = CONSCIOUS
