@@ -22,11 +22,11 @@ var parseHead = function (response) {
 	html.innerHTML = response.parse.headhtml["*"];
 	title = response.parse.title;
 	html.getElementsByTagName("title")[0].innerHTML = title;
-	
+
 	// Fixing relative paths for styles
 	var links = html.getElementsByTagName("link");
 	for (var i=0;i<links.length;i++) links[i].href = mainPage + links[i].getAttribute("href");
-	
+
 	head_loading_complete = true;
 };
 
@@ -34,7 +34,7 @@ var parseBody = function (response) {
 	if (response.error) throw new Error(response.error.info ? response.error.info : "Unidentified API Error");
 	if (status_tag) status_tag.innerHTML += "<br>Loading content...";
 	body.innerHTML = response.parse.text["*"];
-	
+
 	// Searching for scpecific {{Ingame}} template and removing everything BEFORE it, and itself
 	var ingame = body.querySelector("#allowed_ingame");
 	if (ingame) {
@@ -48,7 +48,7 @@ var parseBody = function (response) {
 		ingame.parentElement.removeChild(ingame);
 	}
 	else throw new Error("Information is blocked!");
-	
+
 	// Searching for scpecific {{NT_Censorship}} template and removing everything INSIDE it
 	if (censorship !== 0) {
 		var forbidden = body.getElementsByClassName("NT_Censorship");
@@ -65,11 +65,11 @@ var parseBody = function (response) {
 			i++;
 		lnk = body.getElementsByTagName("a")[i];
 	}
-	
+
 	// Fixing relative paths for images
 	var images = body.getElementsByTagName("img");
 	for (var i=0;i<images.length;i++) images[i].src = mainPage + images[i].getAttribute("src");
-	
+
 	// Cutting footer (if any)
 	var guidemenu = body.querySelector("#guidemenu");
 	if (guidemenu) guidemenu.parentElement.removeChild(guidemenu);
@@ -77,7 +77,7 @@ var parseBody = function (response) {
 	if (jobmenu) jobmenu.parentElement.removeChild(jobmenu);
 	var racemenu = body.querySelector("#racemenu");
 	if (racemenu) racemenu.parentElement.removeChild(racemenu);
-	
+
 	html.getElementsByTagName("body")[0].innerHTML = body.innerHTML;
 	body_loading_complete = true;
 };

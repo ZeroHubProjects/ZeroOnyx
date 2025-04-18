@@ -16,9 +16,9 @@ var parseBody = function (response) {
 	if (response.error) throw new Error(response.error.info ? response.error.info : "Unidentified API Error");
 	if (status_tag) status_tag.innerHTML += "<br>Loading content...";
 	body.innerHTML = response.parse.wikitext;
-	
+
 	title = response.parse.title
-	
+
 	// Searching for scpecific {{Ingame}} template and removing everything before it, and itself
 	var ingame_index = body.innerHTML.indexOf("{{Ingame");
 	if (ingame_index !== -1) {
@@ -29,12 +29,12 @@ var parseBody = function (response) {
 		body.innerHTML = body.innerHTML.slice(ingame_index + 2);
 	}
 	else throw new Error("Information is blocked!");
-	
+
 	document.title = title;
 
 	// Replace every wiki tag with gibberish
 	body.innerHTML = body.innerHTML.replace(/(\[+|\{+)[^\]\}]*(\]+|\}+)/g, "<i>DATA_ERROR</i>"); // Regex is better gibberish than actual gibberish
-	
+
 	body_loading_complete = true;
 };
 
