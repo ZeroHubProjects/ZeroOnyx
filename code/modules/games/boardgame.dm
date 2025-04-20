@@ -91,13 +91,13 @@
 		else
 			dat+= ">"
 		if(!isobserver(user))
-			dat += "<a href='?src=\ref[src];select=[i];person=\ref[user]'></a>"
+			dat += "<a href='byond://?src=\ref[src];select=[i];person=\ref[user]'></a>"
 		dat += "</td>"
 
 	dat += "</table>"
 
 	if(selected >= 0 && !isobserver(user))
-		dat += "<br><A href='?src=\ref[src];remove=0'>Remove Selected Piece</A>"
+		dat += "<br><A href='byond://?src=\ref[src];remove=0'>Remove Selected Piece</A>"
 	show_browser(user, jointext(dat, null),"window=boardgame;size=430x500") // 50px * 8 squares + 30 margin
 	onclose(usr, "boardgame")
 
@@ -277,7 +277,7 @@ THAT STUPID GAME KIT
 	ASSERT(usr.client)
 	assets.send(usr.client)
 
-	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='?src=\ref[];mode=hia'>[]</a> <a href='?src=\ref[];mode=remove'> Chess Removal</a><HR><table width=256  border= 0  height=256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)
+	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='byond://?src=\ref[];mode=hia'>[]</a> <a href='byond://?src=\ref[];mode=remove'> Chess Removal</a><HR><table width=256  border= 0  height=256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)
 	for (var/y = 1 to 8)
 		dat += "<tr>"
 
@@ -288,19 +288,19 @@ THAT STUPID GAME KIT
 			dat += "<td>"
 			dat += "<td style='background-color:[color]' width=64 height=64>"
 			if (piece != "BB")
-				dat += "<a href='?src=\ref[src];s_board=[x] [y]'><img src='board_[piece].png' width=64 height=64 border=0>"
+				dat += "<a href='byond://?src=\ref[src];s_board=[x] [y]'><img src='board_[piece].png' width=64 height=64 border=0>"
 			else
-				dat += "<a href='?src=\ref[src];s_board=[x] [y]'><img src='board_none.png' width=64 height=64 border=0>"
+				dat += "<a href='byond://?src=\ref[src];s_board=[x] [y]'><img src='board_none.png' width=64 height=64 border=0>"
 			dat += "</td>"
 
 		dat += "</tr>"
 
 	dat += "</table><HR><B>Chess pieces:</B><BR>"
 	for (var/piece in list("WP", "WK", "WQ", "WI", "WN", "WR"))
-		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='board_[piece].png' width=32 height=32 border=0></a>"
+		dat += "<a href='byond://?src=\ref[src];s_piece=[piece]'><img src='board_[piece].png' width=32 height=32 border=0></a>"
 	dat += "<br>"
 	for (var/piece in list("BP", "BK", "BQ", "BI", "BN", "BR"))
-		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='board_[piece].png' width=32 height=32 border=0></a>"
+		dat += "<a href='byond://?src=\ref[src];s_piece=[piece]'><img src='board_[piece].png' width=32 height=32 border=0></a>"
 	src.data = dat
 
 /obj/item/game_kit/attack_ai(mob/user, unused, flag)

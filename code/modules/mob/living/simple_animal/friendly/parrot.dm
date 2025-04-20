@@ -157,13 +157,13 @@
 
 	var/dat = 	"<meta charset=\"utf-8\"><div align='center'><b>Inventory of [name]</b></div><p>"
 	if(ears)
-		dat +=	"<br><b>Headset:</b> [ears] (<a href='?src=\ref[src];remove_inv=ears'>Remove</a>)"
+		dat +=	"<br><b>Headset:</b> [ears] (<a href='byond://?src=\ref[src];remove_inv=ears'>Remove</a>)"
 	else
-		dat +=	"<br><b>Headset:</b> <a href='?src=\ref[src];add_inv=ears'>Nothing</a>"
+		dat +=	"<br><b>Headset:</b> <a href='byond://?src=\ref[src];add_inv=ears'>Nothing</a>"
 	if(held_item)
-		dat +=	"<br><b>Claws:</b> [held_item] <a href='?src=\ref[src];remove_inv=claws'>Remove</a>"
+		dat +=	"<br><b>Claws:</b> [held_item] <a href='byond://?src=\ref[src];remove_inv=claws'>Remove</a>"
 	else
-		dat +=	"<br><b>Claws:</b> <a href='?src=\ref[src];add_inv=claws'>Nothing</a>"
+		dat +=	"<br><b>Claws:</b> <a href='byond://?src=\ref[src];add_inv=claws'>Nothing</a>"
 
 
 	show_browser(user, dat, text("window=mob[];size=325x500", name))

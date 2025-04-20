@@ -29,7 +29,7 @@
 	var/output = {"[internal_damage&MECHA_INT_FIRE?"<font color='red'><b>INTERNAL FIRE</b></font><br>":null]
 						[internal_damage&MECHA_INT_TEMP_CONTROL?"<font color='red'><b>CLOWN SUPPORT SYSTEM MALFUNCTION</b></font><br>":null]
 						[internal_damage&MECHA_INT_TANK_BREACH?"<font color='red'><b>GAS TANK HONK</b></font><br>":null]
-						[internal_damage&MECHA_INT_CONTROL_LOST?"<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>":null]
+						[internal_damage&MECHA_INT_CONTROL_LOST?"<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>":null]
 						<b>IntegriHONK: </b> [health/initial(health)*100] %) <br>
 						<b>PowerHONK charge: </b>[isnull(cell_charge)?"Someone HONKed powerHonk!!!":"[cell.percent()]%"])<br>
 						<b>Air source: </b>[use_internal_tank?"Internal AirHONK":"EnvironHONK"]<br>
@@ -94,7 +94,7 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Sounds of HONK:</div>
 						<div class='links'>
-						<a href='?src=\ref[src];play_sound=sadtrombone'>Sad Trombone</a>
+						<a href='byond://?src=\ref[src];play_sound=sadtrombone'>Sad Trombone</a>
 						</div>
 						</div>
 						"}
@@ -106,7 +106,7 @@
 		return
 	var/output = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
-		output += "[selected==MT?"<b id='\ref[MT]'>":"<a id='\ref[MT]' href='?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected==MT?"</b>":"</a>"]<br>"
+		output += "[selected==MT?"<b id='\ref[MT]'>":"<a id='\ref[MT]' href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected==MT?"</b>":"</a>"]<br>"
 	output += "</div>"
 	return output
 

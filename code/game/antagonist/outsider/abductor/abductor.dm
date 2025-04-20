@@ -52,10 +52,10 @@ GLOBAL_DATUM_INIT(abductor, /datum/antagonist/abductor, new)
 	player.abductor.scientist = scientist
 
 /datum/antagonist/abductor/get_extra_panel_options(datum/mind/player)
-	return "<a href='?src=\ref[src];make_scientist=\ref[player.current]'>\[Abductor Scientist\].</a>\
-	<a href='?src=\ref[src];make_agent=\ref[player.current]'>\[Abductor Agent\].</a>\
-	<a href='?src=\ref[src];make_solo=\ref[player.current]'>\[Abductor Solo\].</a>\
-	<a href='?src=\ref[src];select_team=\ref[player.current]'>\[Select Team\].</a>"
+	return "<a href='byond://?src=\ref[src];make_scientist=\ref[player.current]'>\[Abductor Scientist\].</a>\
+	<a href='byond://?src=\ref[src];make_agent=\ref[player.current]'>\[Abductor Agent\].</a>\
+	<a href='byond://?src=\ref[src];make_solo=\ref[player.current]'>\[Abductor Solo\].</a>\
+	<a href='byond://?src=\ref[src];select_team=\ref[player.current]'>\[Select Team\].</a>"
 
 /datum/antagonist/abductor/Topic(href, href_list)
 	if (..())

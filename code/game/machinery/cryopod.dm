@@ -59,11 +59,11 @@
 			dat += "<meta charset=\"utf-8\">"
 			dat += "<hr><br><b>[storage_name]</b><br>"
 			dat += "<i>Welcome, [user.real_name].</i><br><br><hr>"
-			dat += "<a href='?src=\ref[src];log=1'>View storage log</a><br>"
+			dat += "<a href='byond://?src=\ref[src];log=1'>View storage log</a><br>"
 			if(allow_items)
-				dat += "<a href='?src=\ref[src];view=1'>View objects</a><br>"
-				dat += "<a href='?src=\ref[src];item=1'>Recover object</a><br>"
-				dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a><br>"
+				dat += "<a href='byond://?src=\ref[src];view=1'>View objects</a><br>"
+				dat += "<a href='byond://?src=\ref[src];item=1'>Recover object</a><br>"
+				dat += "<a href='byond://?src=\ref[src];allitems=1'>Recover all objects</a><br>"
 		if(LOG)
 			dat += "<b>Recently stored [storage_type]</b><br><hr><br>"
 			if(length(frozen_crew))
@@ -72,7 +72,7 @@
 			else
 				dat += "<i>Log is empty</i><br>"
 			dat += "<hr>"
-			dat += "<a href='?src=\ref[src];return=1'>Return to main menu</a><br>"
+			dat += "<a href='byond://?src=\ref[src];return=1'>Return to main menu</a><br>"
 		if(ITEMS)
 			dat += "<b>Recently stored objects</b><br><hr><br>"
 			if(length(frozen_items))
@@ -81,7 +81,7 @@
 			else
 				dat += "<i>Log is empty</i><br>"
 			dat += "<hr>"
-			dat += "<a href='?src=\ref[src];return=1'>Return to main menu</a><br>"
+			dat += "<a href='byond://?src=\ref[src];return=1'>Return to main menu</a><br>"
 
 	if(!browser || browser.user != user)
 		browser = new(user, "cryopod_console", "[storage_name]", 400, 500)

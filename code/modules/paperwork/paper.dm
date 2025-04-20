@@ -477,9 +477,9 @@
 
 /obj/item/paper/proc/addtofield(id, text, terminate = FALSE)
 	var/token = "<!--paper_field_[id]-->"
-	var/token_link = "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]'>write</A></font>"
-	var/text_with_links = field_regex.Replace(text, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=$1'>write</A></font>")
-	text_with_links = sign_field_regex.Replace(text_with_links, " <I><A href='?src=\ref[src];signfield=$1'>sign here</A></I> ")
+	var/token_link = "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=[id]'>write</A></font>"
+	var/text_with_links = field_regex.Replace(text, "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=$1'>write</A></font>")
+	text_with_links = sign_field_regex.Replace(text_with_links, " <I><A href='byond://?src=\ref[src];signfield=$1'>sign here</A></I> ")
 	info = replacetext(info, token, "[text][terminate ? "" : token]")
 	info_links = replacetext(info_links, token_link, "[text_with_links][terminate ? "" : token_link]")
 
@@ -489,12 +489,12 @@
 	if (readonly)
 		return
 
-	info_links = field_regex.Replace(info_links, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=$1'>write</A></font>")
-	info_links = sign_field_regex.Replace(info_links, " <I><A href='?src=\ref[src];signfield=$1'>sign here</A></I> ")
+	info_links = field_regex.Replace(info_links, "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=$1'>write</A></font>")
+	info_links = sign_field_regex.Replace(info_links, " <I><A href='byond://?src=\ref[src];signfield=$1'>sign here</A></I> ")
 
 	if (appendable)
 		info += "<!--paper_field_end-->"
-		info_links += "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
+		info_links += "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=end'>write</A></font>"
 
 /obj/item/paper/proc/migrateinfolinks(from)
 	info_links = replacetext(info_links, "\ref[from]", "\ref[src]")
@@ -646,7 +646,7 @@
 		if(istype(P, /obj/item/pen/crayon))
 			signature = "<b>[signature]</b>"
 		info = replacetext(info, "<I>[SPAN("sign_field_[signfield]", "sign here")]</I>", "<font face=\"[signfont]\" color=[P.colour]><i>[signature]</i></font>")
-		info_links = replacetext(info_links, "<I><A href='?src=\ref[src];signfield=[signfield]'>sign here</A></I>", "<font face=\"[signfont]\" color=[P.colour]><i>[signature]</i></font>")
+		info_links = replacetext(info_links, "<I><A href='byond://?src=\ref[src];signfield=[signfield]'>sign here</A></I>", "<font face=\"[signfont]\" color=[P.colour]><i>[signature]</i></font>")
 		update_space()
 		var/content = {"
 <html>

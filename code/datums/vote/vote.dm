@@ -66,7 +66,7 @@
 	var/text = get_start_text()
 
 	log_vote(text)
-	to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[SSvote];vote_panel=1'>here</a> to place your votes.\nYou have [config.vote.period/10] seconds to vote.</font>")
+	to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://?src=\ref[SSvote];vote_panel=1'>here</a> to place your votes.\nYou have [config.vote.period/10] seconds to vote.</font>")
 	sound_to(world, sound('sound/misc/vote.ogg', repeat = 0, wait = 0, volume = 50, channel = 3))
 
 /datum/vote/proc/get_start_text()
@@ -182,9 +182,9 @@
 		for(var/i = 1, i <= length(priorities), i++)
 			. += "<td align = 'center'>"
 			if(voted[user.ckey] && (voted[user.ckey][i] == j)) //We have this jth choice chosen at priority i.
-				. += "<b><a href='?src=\ref[src];choice=[j];priority=[i]'>[priorities[i]]</a></b>"
+				. += "<b><a href='byond://?src=\ref[src];choice=[j];priority=[i]'>[priorities[i]]</a></b>"
 			else
-				. += "<a href='?src=\ref[src];choice=[j];priority=[i]'>[priorities[i]]</a>"
+				. += "<a href='byond://?src=\ref[src];choice=[j];priority=[i]'>[priorities[i]]</a>"
 			. += "</td>"
 		if(check_rights(R_INVESTIGATE, FALSE, user))
 			. += "</td><td align = 'center'>[number_of_votes]</td>"

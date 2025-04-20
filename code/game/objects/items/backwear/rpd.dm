@@ -82,7 +82,7 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	t = "Available products: [t]."
 	to_chat(user, t)
 
@@ -208,9 +208,9 @@
 
 /obj/item/rpd/attack_self(mob/user)
 	var/t = "RPD Mode: "
-	t += "<a href='?src=\ref[src];rpd_mode=[RPD_DISPENSE]'>[RPD_DISPENSE]</a>, "
-	t += "<a href='?src=\ref[src];rpd_mode=[RPD_WRENCH]'>[RPD_WRENCH]</a>, "
-	t += "<a href='?src=\ref[src];rpd_mode=[RPD_RECYCLE]'>[RPD_RECYCLE]</a>"
+	t += "<a href='byond://?src=\ref[src];rpd_mode=[RPD_DISPENSE]'>[RPD_DISPENSE]</a>, "
+	t += "<a href='byond://?src=\ref[src];rpd_mode=[RPD_WRENCH]'>[RPD_WRENCH]</a>, "
+	t += "<a href='byond://?src=\ref[src];rpd_mode=[RPD_RECYCLE]'>[RPD_RECYCLE]</a>"
 	to_chat(user, t)
 	t = "Available products:\nRegular pipes: "
 	for(var/i = 1 , i < 6, i++)
@@ -219,7 +219,7 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	to_chat(user, t)
 	t = "Supply pipes: "
 	for(var/i = 6 , i < 11, i++)
@@ -228,7 +228,7 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	to_chat(user, t)
 	t = "Scrubber pipes: "
 	for(var/i = 11 , i < 16, i++)
@@ -237,7 +237,7 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	to_chat(user, t)
 	t = "Pipe devices: "
 	for(var/i = 16 , i < 23, i++)
@@ -246,7 +246,7 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	to_chat(user, t)
 	t = "Disposal Pipes and devices: "
 	for(var/i = 23 , i < 31, i++)
@@ -255,5 +255,5 @@
 		if(mode == i)
 			t += "<b>[item_types[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];product_index=[i]'>[item_types[i]]</a>"
 	to_chat(user, t)

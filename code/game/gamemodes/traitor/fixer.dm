@@ -100,8 +100,8 @@
 			out += "(<font color='green'>completed</font>)"
 		else
 			out += "(<font color='red'>incompleted</font>)"
-		out += " <a href='?src=\ref[src];obj_remove=\ref[contract];contract_action=1'>\[remove contract]</a>"
-	out += "<hr><a href='?src=\ref[src];obj_add=1;contract_action=1'>\[add contract]</a><br><br>"
+		out += " <a href='byond://?src=\ref[src];obj_remove=\ref[contract];contract_action=1'>\[remove contract]</a>"
+	out += "<hr><a href='byond://?src=\ref[src];obj_add=1;contract_action=1'>\[add contract]</a><br><br>"
 	show_browser(usr, out, "window=edit_contracts[src]")
 
 /datum/contract_organization/syndicate/tti

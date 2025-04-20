@@ -59,7 +59,7 @@ GLOBAL_DATUM_INIT(godcult, /datum/antagonist/godcultist, new)
 	return 1
 
 /datum/antagonist/godcultist/get_extra_panel_options(datum/mind/player)
-	return "<a href='?src=\ref[src];selectgod=\ref[player]'>\[Select Deity\]</a>"
+	return "<a href='byond://?src=\ref[src];selectgod=\ref[player]'>\[Select Deity\]</a>"
 
 /datum/antagonist/godcultist/Topic(href, href_list)
 	if(..())
@@ -113,5 +113,5 @@ GLOBAL_DATUM_INIT(godcult, /datum/antagonist/godcultist, new)
 
 	//Make em wait a few seconds.
 	src.visible_message("\The [src] bows their head down, muttering something.", SPAN("notice", "You send the message \"[msg]\" to your master."))
-	to_chat(D, SPAN("notice", "\The [src] (<A href='?src=\ref[D];jump=\ref[src];'>J</A>) prays, \"[msg]\""))
+	to_chat(D, SPAN("notice", "\The [src] (<A href='byond://?src=\ref[D];jump=\ref[src];'>J</A>) prays, \"[msg]\""))
 	log_and_message_admins("dprayed, \"[msg]\" to \the [key_name(D)]")

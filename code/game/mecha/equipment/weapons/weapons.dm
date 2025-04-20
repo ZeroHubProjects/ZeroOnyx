@@ -176,7 +176,7 @@
 	var/projectile_energy_cost
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
-	return "[..()]\[[src.projectiles]\][(projectiles < initial(projectiles))?" - <a href='?src=\ref[src];rearm=1'>Rearm</a>":null]"
+	return "[..()]\[[src.projectiles]\][(projectiles < initial(projectiles))?" - <a href='byond://?src=\ref[src];rearm=1'>Rearm</a>":null]"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles < initial(projectiles))
@@ -311,7 +311,7 @@
 	projectile = /obj/item/grenade/flashbang/clusterbang
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
-	return "[SPAN("", "<font style='color:[equip_ready?"#0f0":"#f00"];'>*</font>")]&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]\[[src.projectiles]\]"
+	return "[SPAN("", "<font style='color:[equip_ready?"#0f0":"#f00"];'>*</font>")]&nbsp;[chassis.selected==src?"<b>":"<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]\[[src.projectiles]\]"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security

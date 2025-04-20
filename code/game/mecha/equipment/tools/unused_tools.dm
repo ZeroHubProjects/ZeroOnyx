@@ -91,7 +91,7 @@
 
 	get_equip_info()
 		if(!chassis) return
-		return "[SPAN("", "<font style='color:[equip_ready?"#0f0":"#f00"];'>*</font>")]&nbsp;[src.name] \[<a href='?src=\ref[src];toggle=1'>Toggle</a>\]"
+		return "[SPAN("", "<font style='color:[equip_ready?"#0f0":"#f00"];'>*</font>")]&nbsp;[src.name] \[<a href='byond://?src=\ref[src];toggle=1'>Toggle</a>\]"
 
 
 	Topic(href,href_list)

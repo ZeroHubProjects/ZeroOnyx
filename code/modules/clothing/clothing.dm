@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(clothing_blood_icons)
 		if(ties.len)
 			.+= " with [english_list(ties)] attached"
 		if(accessories.len > ties.len)
-			.+= ". <a href='?src=\ref[src];list_ungabunga=1'>\[See accessories\]</a>"
+			.+= ". <a href='byond://?src=\ref[src];list_ungabunga=1'>\[See accessories\]</a>"
 
 /obj/item/clothing/CanUseTopic(mob/user, datum/topic_state/state, href_list)
 	if(href_list && href_list["list_ungabunga"] && (user in view(get_turf(src)))) //))))))

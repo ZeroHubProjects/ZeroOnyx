@@ -136,7 +136,7 @@ var/list/hash_to_gear = list()
 	. += "<table style='width: 100%;'><tr>"
 
 	. += "<td>"
-	. += "<b>Loadout Set <a href='?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font></b><a href='?src=\ref[src];next_slot=1'>\>\></a></b><br>"
+	. += "<b>Loadout Set <a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font></b><a href='byond://?src=\ref[src];next_slot=1'>\>\></a></b><br>"
 
 	. += "<table style='white-space: nowrap;'><tr>"
 	. += "<td><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></td>"
@@ -144,9 +144,9 @@ var/list/hash_to_gear = list()
 	. += "<td style=\"vertical-align: top;\">"
 	if(max_loadout_points < INFINITY)
 		. += "<font color = '[fcolor]'>[total_cost]/[max_loadout_points]</font> loadout points spent.<br>"
-	. += "<a href='?src=\ref[src];clear_loadout=1'>Clear Loadout</a><br>"
-	. += "<a href='?src=\ref[src];random_loadout=1'>Random Loadout</a><br>"
-	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show unavailable for your jobs and species" : "Hide unavailable for your jobs and species"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a><br>"
+	. += "<a href='byond://?src=\ref[src];random_loadout=1'>Random Loadout</a><br>"
+	. += "<a href='byond://?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show unavailable for your jobs and species" : "Hide unavailable for your jobs and species"]</a><br>"
 	. += "</td>"
 
 	. += "</tr></table>"
@@ -180,9 +180,9 @@ var/list/hash_to_gear = list()
 			. += " [SPAN("linkOn", "[category] - [category_cost]")] "
 		else
 			if(category_cost)
-				. += " <a class='white' href='?src=\ref[src];select_category=[category]'>[category] - [category_cost]</a> "
+				. += " <a class='white' href='byond://?src=\ref[src];select_category=[category]'>[category] - [category_cost]</a> "
 			else
-				. += " <a href='?src=\ref[src];select_category=[category]'>[category] - 0</a> "
+				. += " <a href='byond://?src=\ref[src];select_category=[category]'>[category] - 0</a> "
 		. += "<br>"
 
 	. += "</b></td>"
@@ -230,7 +230,7 @@ var/list/hash_to_gear = list()
 			display_class = "linkOn"
 
 		entry += "<tr>"
-		entry += "<td width=25%><a [display_class ? "class='[display_class]' " : ""]href='?src=\ref[src];select_gear=[html_encode(G.gear_hash)]'>[G.display_name]</a></td>"
+		entry += "<td width=25%><a [display_class ? "class='[display_class]' " : ""]href='byond://?src=\ref[src];select_gear=[html_encode(G.gear_hash)]'>[G.display_name]</a></td>"
 		entry += "</td></tr>"
 
 		gear_entries += entry
@@ -325,18 +325,18 @@ var/list/hash_to_gear = list()
 				var/tweak_contents = tweak.get_contents(selected_tweaks["[tweak]"])
 				if(islist(tweak_contents))
 					for(var/name in tweak_contents)
-						. += " <a href='?src=\ref[src];tweak=\ref[tweak];subtype=[tweak_contents[name]]'>[name]</a>"
+						. += " <a href='byond://?src=\ref[src];tweak=\ref[tweak];subtype=[tweak_contents[name]]'>[name]</a>"
 						. += "<br>"
 					continue
 				if(tweak_contents)
-					. += " <a href='?src=\ref[src];tweak=\ref[tweak]'>[tweak_contents]</a>"
+					. += " <a href='byond://?src=\ref[src];tweak=\ref[tweak]'>[tweak_contents]</a>"
 					. += "<br>"
 
 		. += "<br>"
 
 		var/not_available_message = SPAN_NOTICE("This item will never spawn with you, using your current preferences.")
 		if(gear_allowed_to_equip(selected_gear, user))
-			. += "<a [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(selected_gear.gear_hash)]'>[ticked ? "Drop" : "Take"]</a>"
+			. += "<a [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(selected_gear.gear_hash)]'>[ticked ? "Drop" : "Take"]</a>"
 		else
 			. += not_available_message
 

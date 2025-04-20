@@ -71,30 +71,30 @@
 
 /datum/category_item/player_setup_item/general/background/content(mob/user)
 	. += "<b>Background Information</b><br>"
-	. += "[GLOB.using_map.company_name] Relation: <a href='?src=\ref[src];nt_relation=1'>[pref.nanotrasen_relation]</a><br/>"
-	. += "Home System: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
-	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
-	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
-	. += "Religion: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
+	. += "[GLOB.using_map.company_name] Relation: <a href='byond://?src=\ref[src];nt_relation=1'>[pref.nanotrasen_relation]</a><br/>"
+	. += "Home System: <a href='byond://?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
+	. += "Citizenship: <a href='byond://?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
+	. += "Faction: <a href='byond://?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
+	. += "Religion: <a href='byond://?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
 
 	. += "<br/><b>Bank Account</b>:<br/>"
-	. += "Security Level: <a href='?src=\ref[src];bank_security=1'>[pref.bank_security ? pref.bank_security == 2 ? "Maximum" : "Moderate" : "Minimum" ]</a><br>"
-	. += "PIN: <a href='?src=\ref[src];bank_pin=1'>[pref.bank_pin ? pref.bank_pin : "Random"]</a><br>"
+	. += "Security Level: <a href='byond://?src=\ref[src];bank_security=1'>[pref.bank_security ? pref.bank_security == 2 ? "Maximum" : "Moderate" : "Minimum" ]</a><br>"
+	. += "PIN: <a href='byond://?src=\ref[src];bank_pin=1'>[pref.bank_pin ? pref.bank_pin : "Random"]</a><br>"
 
 	. += "<br/><b>Records</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
 		. += "[SPAN("danger", "You are banned from using character records.")]<br>"
 	else
 		. += "Medical Records:<br>"
-		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br><br>"
+		. += "<a href='byond://?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br><br>"
 		. += "Employment Records:<br>"
-		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br><br>"
+		. += "<a href='byond://?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br><br>"
 		. += "Security Records:<br>"
-		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br><br>"
+		. += "<a href='byond://?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br><br>"
 		. += "Exploitable information:<br>"
-		. += "<a href='?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br><br>"
+		. += "<a href='byond://?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br><br>"
 		. += "Memory:<br>"
-		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
 
 /datum/category_item/player_setup_item/general/background/OnTopic(href,list/href_list, mob/user)
 	if(href_list["nt_relation"])

@@ -71,10 +71,10 @@
 		dat += "<hr><b>Info:</b> [tt.type_desc]"
 		dat += "<hr>"
 		dat += "<h3><b>Customisation:</b></h3>"
-		dat += "<A href='?src=\ref[src];select_model=1'>\[reassemble\]</a>"
-		dat += "<A href='?src=\ref[src];reset_owner=1'><br>\[reset owner\]</a>"
-		dat += "<A href='?src=\ref[src];set_owner=1'><br>\[set owner\]</a>"
-		dat += "<A href='?src=\ref[src];eject_taser=1'><br>\[eject\]</a>"
+		dat += "<A href='byond://?src=\ref[src];select_model=1'>\[reassemble\]</a>"
+		dat += "<A href='byond://?src=\ref[src];reset_owner=1'><br>\[reset owner\]</a>"
+		dat += "<A href='byond://?src=\ref[src];set_owner=1'><br>\[set owner\]</a>"
+		dat += "<A href='byond://?src=\ref[src];eject_taser=1'><br>\[eject\]</a>"
 
 	show_browser(user, dat, "window=secsmith")
 	onclose(user, "secsmith")

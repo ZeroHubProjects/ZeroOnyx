@@ -144,7 +144,7 @@
 		dat += "Be careful! Once you chose your weapon and unlock the gun case, you won't be able to change it."
 		dat += "<hr>"
 		for(var/datum/guncase_spawn_option/option in spawn_options)
-			dat += "<a href='?src=\ref[src];type=[option.codename]'>[option.name]</a>"
+			dat += "<a href='byond://?src=\ref[src];type=[option.codename]'>[option.name]</a>"
 			dat += "<br>"
 
 	if(!choice_interface || choice_interface.user != user)

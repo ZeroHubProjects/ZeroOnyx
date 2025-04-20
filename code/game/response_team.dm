@@ -63,16 +63,16 @@ var/can_call_ert
 				out += "(<font color='green'>complete</font>)"
 			else
 				out += "(<font color='red'>incomplete</font>)"
-			out += " <a href='?src=\ref[src];obj_completed=\ref[O];ert_action=1'>\[toggle\]</a>"
-			out += " <a href='?src=\ref[src];obj_delete=\ref[O];ert_action=1'>\[remove\]</a><br>"
+			out += " <a href='byond://?src=\ref[src];obj_completed=\ref[O];ert_action=1'>\[toggle\]</a>"
+			out += " <a href='byond://?src=\ref[src];obj_delete=\ref[O];ert_action=1'>\[remove\]</a><br>"
 			num++
-		out += "<br><a href='?src=\ref[src];obj_announce=1;ert_action=1'>\[announce objectives\]</a>"
+		out += "<br><a href='byond://?src=\ref[src];obj_announce=1;ert_action=1'>\[announce objectives\]</a>"
 	else
 		out += "Emergency Response Teams haven't received any tasks yet!"
-	out += "<br><a href='?src=\ref[src];obj_add=1;ert_action=1'>\[add objective\]</a><br><br>"
+	out += "<br><a href='byond://?src=\ref[src];obj_add=1;ert_action=1'>\[add objective\]</a><br><br>"
 	out += "<hr>"
 	out += "<b>Maximum avaliable players in ERT squad:</b> [GLOB.ert.hard_cap] "
-	out += "<a href='?src=\ref[src];max_cap_change=1;ert_action=1'>\[Change\]</a>"
+	out += "<a href='byond://?src=\ref[src];max_cap_change=1;ert_action=1'>\[Change\]</a>"
 	show_browser(usr, out, "window=edit_mission[src]")
 
 /mob/proc/join_response_team()

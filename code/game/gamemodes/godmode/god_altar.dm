@@ -49,7 +49,7 @@
 		if(1)
 			text = "Can't... resist. ... anymore."
 			to_chat(linked_god, SPAN("warning", "\The [target] is getting close to conversion!"))
-	to_chat(target, SPAN("cult", "[text]. <a href='?src=\ref[src];resist=\ref[target]'>Resist Conversion</a>"))
+	to_chat(target, SPAN("cult", "[text]. <a href='byond://?src=\ref[src];resist=\ref[target]'>Resist Conversion</a>"))
 	set_next_think(world.time + 10 SECONDS)
 
 //Used for force conversion.

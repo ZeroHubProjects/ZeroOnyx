@@ -332,7 +332,7 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 	var/dat = "<meta charset=\"utf-8\"><B>IAA active Jobans!</B><HR><table border>"
 	dat += "<tr style=\"font-weight:bold\"> <td> ID </td> <td> Who from who by who </td> <td> Expiration date </td> <td> Status </td> </tr>"
 	for (var/datum/IAA_brief_jobban_info/JB in GLOB.IAA_active_jobbans_list)
-		dat += text("<tr><td><a href='?src=\ref[src];iaaj_inspect=[JB.id]'>[JB.id] ([JB.fakeid])</a></td> \
+		dat += text("<tr><td><a href='byond://?src=\ref[src];iaaj_inspect=[JB.id]'>[JB.id] ([JB.fakeid])</a></td> \
 			<td>[JB.ckey] banned from [JB.job] by [JB.iaa_ckey]</td> \
 			<td> [JB.expiration_time] </td> \
 			<td> [IAAJ_status_colorize(JB.status, JB.status)] </td> \
@@ -351,10 +351,10 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 		startfrom = 0
 	var/dat = "<meta charset=\"utf-8\"><B>IAA Jobans!</B><HR>"
 	if (!isnull(startfrom))
-		dat += "<a href = '?src=\ref[src];iaaj_page=[startfrom - 10]'> Previous page</a>"
+		dat += "<a href = 'byond://?src=\ref[src];iaaj_page=[startfrom - 10]'> Previous page</a>"
 	else
 		dat += " Previous page"
-	dat += "<a href = '?src=\ref[src];iaaj_page=[startfrom + 10]'> Next page</a><hr>"
+	dat += "<a href = 'byond://?src=\ref[src];iaaj_page=[startfrom + 10]'> Next page</a><hr>"
 	dat += "<table border>"
 	dat += "<tr style=\"font-weight:bold\"> <td> ID </td> <td> Who from who by who </td> <td> Expiration date </td> <td> Status </td> </tr>"
 	var/DBQuery/query
@@ -382,7 +382,7 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 		JB.job             = query.item[5]
 		JB.status          = query.item[6]
 		JB.expiration_time = query.item[7]
-		dat += text("<tr><td><a href='?src=\ref[src];iaaj_inspect=[JB.id]'>[JB.id] ([JB.fakeid])</a></td> \
+		dat += text("<tr><td><a href='byond://?src=\ref[src];iaaj_inspect=[JB.id]'>[JB.id] ([JB.fakeid])</a></td> \
 			<td>[JB.ckey] banned from [JB.job] by [JB.iaa_ckey]</td> \
 			<td> [JB.expiration_time] </td> \
 			<td> [IAAJ_status_colorize(JB.status, JB.status)] </td> \
@@ -442,9 +442,9 @@ GLOBAL_LIST_EMPTY(IAA_approved_list)
 	dat += "Status: [IAAJ_status_colorize(status, status)]"
 	switch (status)
 		if (IAA_STATUS_PENDING)
-			dat += "<a href='?src=\ref[src];iaaj_resolve=[id]'> resolve </a>"
+			dat += "<a href='byond://?src=\ref[src];iaaj_resolve=[id]'> resolve </a>"
 		if (IAA_STATUS_APPROVED)
-			dat += "<a href='?src=\ref[src];iaaj_close=[id]'> close </a>"
+			dat += "<a href='byond://?src=\ref[src];iaaj_close=[id]'> close </a>"
 	dat += "<HR>"
 	dat += "Created at [creation_time] <BR>"
 	if (resolve_time)

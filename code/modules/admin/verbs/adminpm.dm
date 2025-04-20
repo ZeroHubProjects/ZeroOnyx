@@ -106,7 +106,7 @@
 
 	var/sender_message = create_text_tag("pm_out_alt", "PM") + " to [SPAN("name", "[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]")]"
 	if(holder)
-		sender_message += " (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>)"
+		sender_message += " (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='byond://?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>)"
 		sender_message += ": [SPAN("message linkify", "[generate_ahelp_key_words(mob, msg)]")]"
 	else
 		sender_message += ": [SPAN("message linkify", "[msg]")]"
@@ -114,7 +114,7 @@
 
 	var/receiver_message = create_text_tag("pm_in", "") + " <b>\[Ahelp PM\]</b> [SPAN("name", "[get_options_bar(src, C.holder ? 1 : 0, C.holder ? 1 : 0, 1)]")]"
 	if(C.holder)
-		receiver_message += " (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>)"
+		receiver_message += " (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='byond://?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>)"
 		receiver_message += ": [SPAN("message linkify", "[generate_ahelp_key_words(C.mob, msg)]")]"
 	else
 		receiver_message += ": [SPAN("message linkify", "[msg]")]"
@@ -136,4 +136,4 @@
 		if(X == C || X == src)
 			continue
 		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN|R_MOD|R_MENTOR))
-			to_chat(X, SPAN("pm", "[SPAN("other", "" + create_text_tag("pm_other", "PM") + " [SPAN("name", "[key_name(src, X, 0, ticket)]")] to [SPAN("name", "[key_name(C, X, 0, ticket)]")] (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>): [SPAN("message linkify", "[msg]")]")]"))
+			to_chat(X, SPAN("pm", "[SPAN("other", "" + create_text_tag("pm_other", "PM") + " [SPAN("name", "[key_name(src, X, 0, ticket)]")] to [SPAN("name", "[key_name(C, X, 0, ticket)]")] (<a href='byond://?_src_=holder;take_ticket=\ref[ticket]'>[(ticket.status == TICKET_OPEN) ? "TAKE" : "JOIN"]</a>) (<a href='byond://?src=\ref[usr];close_ticket=\ref[ticket]'>CLOSE</a>): [SPAN("message linkify", "[msg]")]")]"))

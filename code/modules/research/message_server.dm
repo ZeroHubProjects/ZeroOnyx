@@ -133,12 +133,12 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			if(priority > 1)
 				playsound(Console.loc, 'sound/signals/warning7.ogg', 75, 0)
 				Console.audible_message("\icon[Console][SPAN("warning", "\The [Console] announces: 'High priority message received from [sender]!'")]", hearing_distance = 8, runechat_message = "High priority message received from [sender]!")
-				Console.message_log += "<FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT><BR>[authmsg]"
+				Console.message_log += "<FONT color='red'>High Priority message from <A href='byond://?src=\ref[Console];write=[sender]'>[sender]</A></FONT><BR>[authmsg]"
 			else
 				if(!Console.silent)
 					playsound(Console.loc, 'sound/signals/ping8.ogg', 75, 0)
 					Console.audible_message("\icon[Console][SPAN("notice", "\The [Console] announces: 'Message received from [sender].'")]", hearing_distance = 5, runechat_message = "Message received from [sender].")
-				Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
+				Console.message_log += "<B>Message from <A href='byond://?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
 		Console.set_light(0.3, 0.1, 2)
 
 

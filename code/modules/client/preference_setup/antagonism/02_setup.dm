@@ -39,10 +39,10 @@
 
 /datum/category_item/player_setup_item/antagonism/basic/content(mob/user)
 	. +="<b>Antag Setup:</b><br>"
-	. +="Uplink Source Priority: <a href='?src=\ref[src];add_source=1'>Add</a><br>"
+	. +="Uplink Source Priority: <a href='byond://?src=\ref[src];add_source=1'>Add</a><br>"
 	for(var/entry in pref.uplink_sources)
 		var/decl/uplink_source/US = entry
-		. +="[US.name] <a href='?src=\ref[src];move_source_up=\ref[US]'>Move Up</a> <a href='?src=\ref[src];move_source_down=\ref[US]'>Move Down</a> <a href='?src=\ref[src];remove_source=\ref[US]'>Remove</a><br>"
+		. +="[US.name] <a href='byond://?src=\ref[src];move_source_up=\ref[US]'>Move Up</a> <a href='byond://?src=\ref[src];move_source_down=\ref[US]'>Move Down</a> <a href='byond://?src=\ref[src];remove_source=\ref[US]'>Remove</a><br>"
 		if(US.desc)
 			. += "[US.desc]<br>"
 	if(!pref.uplink_sources.len)

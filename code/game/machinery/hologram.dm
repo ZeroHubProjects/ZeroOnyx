@@ -84,7 +84,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 				var/area/area = get_area(src)
 				for(var/mob/living/silicon/ai/AI in GLOB.living_mob_list_)
 					if(!AI.client)	continue
-					to_chat(AI, SPAN("info", "Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
+					to_chat(AI, SPAN("info", "Your presence is requested at <a href='byond://?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
 			else
 				to_chat(user, SPAN("notice", "A request for AI presence was already sent recently."))
 		if("Holocomms")

@@ -29,14 +29,14 @@
 
 	//Snapshot is crazy and likes putting each topic hyperlink on a seperate line from any other tags so it's nice and clean.
 	interactions += "<HR><center><font size= \"1\">The fax will transmit everything above this line</font><br>"
-	interactions += "<A href='?src=\ref[src];confirm=1'>Send fax</A> "
-	interactions += "<A href='?src=\ref[src];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
-	interactions += "<A href='?src=\ref[src];cancel=1'>Cancel fax</A> "
+	interactions += "<A href='byond://?src=\ref[src];confirm=1'>Send fax</A> "
+	interactions += "<A href='byond://?src=\ref[src];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
+	interactions += "<A href='byond://?src=\ref[src];cancel=1'>Cancel fax</A> "
 	interactions += "<BR>"
-	interactions += "<A href='?src=\ref[src];changelogo=1'>Change logo</A> "
-	interactions += "<A href='?src=\ref[src];toggleheader=1'>Toggle Header</A> "
-	interactions += "<A href='?src=\ref[src];togglefooter=1'>Toggle Footer</A> "
-	interactions += "<A href='?src=\ref[src];clear=1'>Clear page</A> "
+	interactions += "<A href='byond://?src=\ref[src];changelogo=1'>Change logo</A> "
+	interactions += "<A href='byond://?src=\ref[src];toggleheader=1'>Toggle Header</A> "
+	interactions += "<A href='byond://?src=\ref[src];togglefooter=1'>Toggle Footer</A> "
+	interactions += "<A href='byond://?src=\ref[src];clear=1'>Clear page</A> "
 	interactions += "</center>"
 
 /obj/item/paper/admin/proc/generateHeader()
@@ -109,13 +109,13 @@
 		switch(alert("Are you sure you want to send the fax as is?",, "Yes", "No"))
 			if("Yes")
 				if(headerOn)
-					var/header_with_links = field_regex.Replace(header, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=$1'>write</A></font>")
-					header_with_links = sign_field_regex.Replace(header_with_links, " <I><A href='?src=\ref[src];signfield=$1'>sign here</A></I> ")
+					var/header_with_links = field_regex.Replace(header, "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=$1'>write</A></font>")
+					header_with_links = sign_field_regex.Replace(header_with_links, " <I><A href='byond://?src=\ref[src];signfield=$1'>sign here</A></I> ")
 					info = header + info
 					info_links = header_with_links + info_links
 				if(footerOn)
-					var/footer_with_links = field_regex.Replace(footer, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=$1'>write</A></font>")
-					footer_with_links = sign_field_regex.Replace(footer_with_links, " <I><A href='?src=\ref[src];signfield=$1'>sign here</A></I> ")
+					var/footer_with_links = field_regex.Replace(footer, "<font face=\"[deffont]\"><A href='byond://?src=\ref[src];write=$1'>write</A></font>")
+					footer_with_links = sign_field_regex.Replace(footer_with_links, " <I><A href='byond://?src=\ref[src];signfield=$1'>sign here</A></I> ")
 					info += footer
 					info_links += footer_with_links
 

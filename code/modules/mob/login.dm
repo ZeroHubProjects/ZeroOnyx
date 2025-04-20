@@ -17,10 +17,10 @@
 				is_multikeying = 1
 			if(matches)
 				if(M.client)
-					message_admins("<font color='red'><B>Notice: </B></font>[SPAN("info", "<A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.")]", 1)
+					message_admins("<font color='red'><B>Notice: </B></font>[SPAN("info", "<A href='byond://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.")]", 1)
 					log_access("Notice: [key_name(src, include_name = FALSE)] has the same [matches] as [key_name(M, include_name = FALSE)].")
 				else
-					message_admins("<font color='red'><B>Notice: </B></font>[SPAN("info", "<A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). ")]", 1)
+					message_admins("<font color='red'><B>Notice: </B></font>[SPAN("info", "<A href='byond://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). ")]", 1)
 					log_access("Notice: [key_name(src, include_name = FALSE)] has the same [matches] as [key_name(M, include_name = FALSE)] (no longer logged in).")
 	if(is_multikeying && !client.warned_about_multikeying)
 		client.warned_about_multikeying = 1

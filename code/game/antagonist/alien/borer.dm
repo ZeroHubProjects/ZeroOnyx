@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(borers, /datum/antagonist/borer, new)
 		min_player_age = config.game.borer_min_age
 
 /datum/antagonist/borer/get_extra_panel_options(datum/mind/player)
-	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
+	return "<a href='byond://?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
 
 /datum/antagonist/borer/antags_are_dead()
 	for(var/datum/mind/antag in current_antagonists)

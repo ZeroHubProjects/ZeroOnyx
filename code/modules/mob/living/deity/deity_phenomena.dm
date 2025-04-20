@@ -79,6 +79,6 @@
 		dat += "<table border='1' style='width:100%;border-collapse:collapse;'><tr><th>Modifier</th><th>Linked Phenomena</th></tr>"
 		for(var/modifier in intent_list)
 			var/datum/phenomena/P = intent_list[modifier]
-			dat += "<tr><td><A href='?src=\ref[src];intent=[intent];modifier=[modifier]'>[modifier]</a></td><td>[P ? "[P.name] ([P.cost] Power)" : "None"]</td>"
+			dat += "<tr><td><A href='byond://?src=\ref[src];intent=[intent];modifier=[modifier]'>[modifier]</a></td><td>[P ? "[P.name] ([P.cost] Power)" : "None"]</td>"
 		dat += "</table><br><br>"
 	show_browser(src, dat, "window=phenomena")

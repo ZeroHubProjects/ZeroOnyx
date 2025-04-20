@@ -100,11 +100,11 @@
 	if(emagged)
 		content += "<h2>PWNED by \"__S33nD1cK@__\"</h2>"
 		content += "<em>THE NAN07RAS3N 1S <strike>WATCHING</strike> HEARING YOU</em><br><br>"
-		content += "<a href='?src=\ref[src];show_interceptions=1'>HERE 1S YOUR SWEET SECRETS</a>"
+		content += "<a href='byond://?src=\ref[src];show_interceptions=1'>HERE 1S YOUR SWEET SECRETS</a>"
 	else if(!used)
 		content += hello_text
-		content += "<a href='?src=\ref[src];show_interceptions=1'>Print Intercepted Communications</a><br>"
-		content += "<a href='?src=\ref[src];logout=1'>Logout</a>"
+		content += "<a href='byond://?src=\ref[src];show_interceptions=1'>Print Intercepted Communications</a><br>"
+		content += "<a href='byond://?src=\ref[src];logout=1'>Logout</a>"
 	else
 		content += "<h2>Unexpected exception raised: \"Undefined procedure: `logout`\":</h2>"
 		content += "<code>SET ENVIRONMENT VARIABLE 'NT_TRACER=1' TO SHOW STACKTRACE</code><br><br>"

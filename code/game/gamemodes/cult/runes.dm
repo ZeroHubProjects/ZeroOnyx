@@ -236,7 +236,7 @@
 		if(!GLOB.cult.can_become_antag(target.mind, 1))
 			to_chat(target, SPAN_DANGER("Are you going insane?"))
 		else
-			to_chat(target, SPAN_OCCULT("Do you want to join the cult of Nar'Sie? You can choose to ignore the offer... <a href='?src=\ref[src];join=1'>Join the cult</a>."))
+			to_chat(target, SPAN_OCCULT("Do you want to join the cult of Nar'Sie? You can choose to ignore the offer... <a href='byond://?src=\ref[src];join=1'>Join the cult</a>."))
 
 	if(GLOB.wizards && (target.mind in GLOB.wizards.current_antagonists))
 		to_chat(target, SPAN_DANGER("<b>Yet you still sense your true powers angrily lurking inside you. Seems like your initiation will cost these adherents a great deal...</b>"))
@@ -343,8 +343,8 @@
 	for(var/obj/effect/rune/teleport/T in GLOB.cult.teleport_runes)
 		if(T == src)
 			continue
-		t += "<a href='?src=\ref[src];target=\ref[T]'>[T.destination]</a>"
-	to_chat(user, "Teleport runes: [english_list(t, nothing_text = "no other runes exist")]... or <a href='?src=\ref[src];leave=1'>return from this rune</a>.")
+		t += "<a href='byond://?src=\ref[src];target=\ref[T]'>[T.destination]</a>"
+	to_chat(user, "Teleport runes: [english_list(t, nothing_text = "no other runes exist")]... or <a href='byond://?src=\ref[src];leave=1'>return from this rune</a>.")
 
 /obj/effect/rune/teleport/proc/leaveRune(mob/living/user)
 	if(user.loc != src)

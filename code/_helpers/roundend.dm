@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(common_report)
 
 	var/datum/action/report/R = new
 	R.Grant(C.mob)
-	to_chat(C,"<a href='?src=\ref[R];report=1'>Show roundend report again</a>")
+	to_chat(C,"<a href='byond://?src=\ref[R];report=1'>Show roundend report again</a>")
 
 /datum/action/report
 	name = "Show roundend report"

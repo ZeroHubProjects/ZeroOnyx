@@ -134,11 +134,11 @@
 					var/A = G.name
 					var/B = G.data["blood_type"]
 					var/C = G.data["blood_DNA"]
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
 				else
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
 			else
-				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
 			show_browser(usr, dat, "window=chem_master;size=575x400")
 			return
 
@@ -244,14 +244,14 @@
 			#define MAX_PILL_SPRITE 25 //max icon state of the pill sprites
 			var/dat = "<meta charset=\"utf-8\"><table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href='?src=\ref[src]&pill_sprite=[i]'><img src=\"pill[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='byond://?src=\ref[src]&pill_sprite=[i]'><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			show_browser(usr, dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<meta charset=\"utf-8\"><table>"
 			for(var/sprite in BOTTLE_SPRITES)
-				dat += "<tr><td><a href='?src=\ref[src]&bottle_sprite=[sprite]'><img src=\"[sprite].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='byond://?src=\ref[src]&bottle_sprite=[sprite]'><img src=\"[sprite].png\" /></a></td></tr>"
 			dat += "</table>"
 			show_browser(usr, dat, "window=chem_master")
 			return
@@ -309,15 +309,15 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
-		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
+		dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 	else
 		var/datum/reagents/R = beaker:reagents
-		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!R.total_volume)
@@ -326,34 +326,34 @@
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=\ref[G];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=\ref[G];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=\ref[G];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=\ref[G];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=\ref[G]'>(Custom)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
+				dat += "<A href='byond://?src=\ref[src];add=\ref[G];amount=1'>(1)</A> "
+				dat += "<A href='byond://?src=\ref[src];add=\ref[G];amount=5'>(5)</A> "
+				dat += "<A href='byond://?src=\ref[src];add=\ref[G];amount=10'>(10)</A> "
+				dat += "<A href='byond://?src=\ref[src];add=\ref[G];amount=[G.volume]'>(All)</A> "
+				dat += "<A href='byond://?src=\ref[src];addcustom=\ref[G]'>(Custom)</A><BR>"
 
-		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
+		dat += "<HR>Transfer to <A href='byond://?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=\ref[N];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=\ref[N];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=\ref[N];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=\ref[N];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=\ref[N]'>(Custom)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "
+				dat += "<A href='byond://?src=\ref[src];remove=\ref[N];amount=1'>(1)</A> "
+				dat += "<A href='byond://?src=\ref[src];remove=\ref[N];amount=5'>(5)</A> "
+				dat += "<A href='byond://?src=\ref[src];remove=\ref[N];amount=10'>(10)</A> "
+				dat += "<A href='byond://?src=\ref[src];remove=\ref[N];amount=[N.volume]'>(All)</A> "
+				dat += "<A href='byond://?src=\ref[src];removecustom=\ref[N]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		dat += "<HR>Stored glass amount: [matter_storage]/[matter_storage_max]<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (30 units max)</A><a href='?src=\ref[src]&change_pill=1'><img src=\"pill[pillsprite].png\" /></a><BR>"
-			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat +=  "<A href='?src=\ref[src];createbottle_small=1'>Create small bottle  | 30 units max | Glass: 1000</A><BR>"
-			dat +=        "<A href='?src=\ref[src];createbottle=1'>Create normal bottle | 60 units max | Glass: 2000</A><BR>"
-			dat +=    "<A href='?src=\ref[src];createbottle_big=1'>Create big bottle    | 90 units max | Glass: 3000</A>"
+			dat += "<HR><BR><A href='byond://?src=\ref[src];createpill=1'>Create pill (30 units max)</A><a href='byond://?src=\ref[src]&change_pill=1'><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<A href='byond://?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
+			dat +=  "<A href='byond://?src=\ref[src];createbottle_small=1'>Create small bottle  | 30 units max | Glass: 1000</A><BR>"
+			dat +=        "<A href='byond://?src=\ref[src];createbottle=1'>Create normal bottle | 60 units max | Glass: 2000</A><BR>"
+			dat +=    "<A href='byond://?src=\ref[src];createbottle_big=1'>Create big bottle    | 90 units max | Glass: 3000</A>"
 		else
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle | 50 units max | Glass: 2000</A>"
+			dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle | 50 units max | Glass: 2000</A>"
 	if(!condi)
 		show_browser(user, "<meta charset=\"utf-8\"><TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	else
@@ -520,11 +520,11 @@
 	[beaker_contents]<hr>
 	"}
 		if (is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=grind'>Process the reagents</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=grind'>Process the reagents</a><BR>"
 		if(holdingitems && holdingitems.len > 0)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
 		if (beaker)
-			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
 	show_browser(user, "<meta charset=\"utf-8\"><HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")

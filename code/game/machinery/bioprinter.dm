@@ -93,7 +93,7 @@
 	var/dat = "<B>Loaded matter:</B> [stored_matter]/[max_stored_matter]."
 	dat += "<HR>Printing menu:"
 	for(var/entry in products)
-		dat += "<BR><a href='?src=\ref[src];item=[entry]'>[products[entry][1]]</a> - [products[entry][3]] matter"
+		dat += "<BR><a href='byond://?src=\ref[src];item=[entry]'>[products[entry][1]]</a> - [products[entry][3]] matter"
 
 	user.set_machine(src)
 	if(!printer_menu || printer_menu.user != user)

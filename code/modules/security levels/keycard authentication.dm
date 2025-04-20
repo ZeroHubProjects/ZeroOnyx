@@ -71,19 +71,19 @@
 		dat += "Select an event to trigger:<ul>"
 
 		var/decl/security_state/security_state = decls_repository.get_decl(GLOB.using_map.security_state)
-		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Engage [security_state.high_security_level.name]</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Red alert'>Engage [security_state.high_security_level.name]</A></li>"
 		if(!config.gamemode.ert_admin_only)
-			dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
+			dat += "<li><A href='byond://?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
 
-		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Nuclear Authorization Code'>Grant Nuclear Authorization Code</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Grant Nuclear Authorization Code'>Grant Nuclear Authorization Code</A></li>"
 		dat += "</ul>"
 		show_browser(user, dat, "window=keycard_auth;size=500x250")
 	if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
 		dat += "[event_additional_info ? "<p>Additional info: [event_additional_info]" : ""]"
-		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
+		dat += "<p><A href='byond://?src=\ref[src];reset=1'>Back</A>"
 		show_browser(user, dat, "window=keycard_auth;size=500x250")
 	return
 
@@ -192,7 +192,7 @@
 			if(!ert_timer)
 				visible_message(SPAN_NOTICE("\The [src] displays the message: The request has been created and the process of transferring the request to the emergency response service has been started, the approximate waiting time for processing is 2 minutes."), range=2)
 				ert_timer = addtimer(CALLBACK(src, nameof(.proc/call_ert)), 2 MINUTES, TIMER_STOPPABLE)
-				message_admins("An ERT call request was created with the reason:\n[event_additional_info].\nThis call will automatically be approved after 2 minutes. <A href='?src=\ref[src];approve_ert=1'>Approve</a>. <A href='?src=\ref[src];prohibit_ert=1'>Reject</a>.")
+				message_admins("An ERT call request was created with the reason:\n[event_additional_info].\nThis call will automatically be approved after 2 minutes. <A href='byond://?src=\ref[src];approve_ert=1'>Approve</a>. <A href='byond://?src=\ref[src];prohibit_ert=1'>Reject</a>.")
 		if("Grant Nuclear Authorization Code")
 			var/obj/machinery/nuclearbomb/nuke = locate(/obj/machinery/nuclearbomb/station) in world
 			if(nuke)

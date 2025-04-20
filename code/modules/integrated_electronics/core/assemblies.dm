@@ -82,7 +82,7 @@
 		to_chat(user, SPAN_NOTICE("The maintenance panel [opened ? "can be" : "is"] <b>screwed</b> in place."))
 
 	if((isobserver(user) && ckeys_allowed_to_scan[user.ckey]) || is_admin(user))
-		to_chat(user, "You can <a href='?src=\ref[src];ghostscan=1'>scan</a> this circuit.")
+		to_chat(user, "You can <a href='byond://?src=\ref[src];ghostscan=1'>scan</a> this circuit.")
 
 	for(var/obj/item/integrated_circuit/I in assembly_components)
 		I.external_examine(user)
@@ -138,7 +138,7 @@
 		return
 	var/datum/browser/popup = new(user, "scannerpanel", name, 600, 330) // Set up the popup browser window
 	popup.add_stylesheet("scannerpanel", 'html/browser/assembly_ui.css')
-	var/HTML = "<html><body><a href='?src=\ref[src];refresh=1'>Refresh</a><br><br>"
+	var/HTML = "<html><body><a href='byond://?src=\ref[src];refresh=1'>Refresh</a><br><br>"
 
 	var/listed_components = FALSE
 	for(var/obj/item/integrated_circuit/circuit in contents)
@@ -151,7 +151,7 @@
 			for(var/entry in topic_data)
 				var/href = topic_data[entry]
 				if(href)
-					HTML += "<a href='?src=\ref[circuit];ic_window=1;[href]'>[entry]</a>"
+					HTML += "<a href='byond://?src=\ref[circuit];ic_window=1;[href]'>[entry]</a>"
 				else
 					HTML += entry
 				HTML += "<br>"
@@ -180,8 +180,8 @@
 			circuit_pins = assembly_components[1]
 
 	// HEADER BUTTONS
-	var/HEADER_BUTTONS = "<a class='icon' title='Refresh' href='?src=\ref[src]'><div class='codicon codicon-refresh'></div></a>"
-	HEADER_BUTTONS += "<a class='icon' title='Rename' href='?src=\ref[src];rename=1'><div class='codicon codicon-edit'></div></a>"
+	var/HEADER_BUTTONS = "<a class='icon' title='Refresh' href='byond://?src=\ref[src]'><div class='codicon codicon-refresh'></div></a>"
+	HEADER_BUTTONS += "<a class='icon' title='Rename' href='byond://?src=\ref[src];rename=1'><div class='codicon codicon-edit'></div></a>"
 
 	popup.set_title_buttons(HEADER_BUTTONS)
 
@@ -196,15 +196,15 @@
 
 	for(var/obj/item/integrated_circuit/circuit in assembly_components)
 		if(!circuit.removable)
-			components += "<a class='grey' href='?src=\ref[src]'>[circuit.displayed_name]</a><br>\n"
+			components += "<a class='grey' href='byond://?src=\ref[src]'>[circuit.displayed_name]</a><br>\n"
 
 		// Non-inbuilt circuits come after inbuilt circuits
 		else
-			components += "<div class='segmented-control'><a href='?src=\ref[src];component=\ref[circuit];change_pos=1' style='text-decoration:none;'>[remove_num]</a>"
+			components += "<div class='segmented-control'><a href='byond://?src=\ref[src];component=\ref[circuit];change_pos=1' style='text-decoration:none;'>[remove_num]</a>"
 			if (circuit == circuit_pins)
-				components += "<a class='active' href='?src=\ref[src];component=\ref[circuit]'>[circuit.displayed_name]</a></div>\n"
+				components += "<a class='active' href='byond://?src=\ref[src];component=\ref[circuit]'>[circuit.displayed_name]</a></div>\n"
 			else
-				components += "<a href='?src=\ref[src];component=\ref[circuit]'>[circuit.displayed_name]</a></div>\n"
+				components += "<a href='byond://?src=\ref[src];component=\ref[circuit]'>[circuit.displayed_name]</a></div>\n"
 
 			remove_num++
 
@@ -231,16 +231,16 @@
 		HTML += "<div id='component_actions'>\n"
 
 		// REFRESH BUTTON
-		HTML += "<a class='icon align-to-text' href='?src=\ref[src];component=\ref[circuit_pins]'><i class='codicon codicon-refresh'></i></a>"
+		HTML += "<a class='icon align-to-text' href='byond://?src=\ref[src];component=\ref[circuit_pins]'><i class='codicon codicon-refresh'></i></a>"
 		// RENAME BUTTON
-		HTML += "<a class='icon align-to-text' title='Rename' href='?src=\ref[src];component=\ref[circuit_pins];rename_component=1'><i class='codicon codicon-pencil'></i></a>"
+		HTML += "<a class='icon align-to-text' title='Rename' href='byond://?src=\ref[src];component=\ref[circuit_pins];rename_component=1'><i class='codicon codicon-pencil'></i></a>"
 		// COPY REF BUTTON
-		HTML += "<a class='icon align-to-text' title='Copy Ref' href='?src=\ref[src];component=\ref[circuit_pins];scan=1'><i class='codicon codicon-copy'></i></a>"
+		HTML += "<a class='icon align-to-text' title='Copy Ref' href='byond://?src=\ref[src];component=\ref[circuit_pins];scan=1'><i class='codicon codicon-copy'></i></a>"
 		// INTERACT BUTTON
-		HTML += "<a class='icon align-to-text' title='Interact' href='?src=\ref[src];component=\ref[circuit_pins];interact=1'><i class='codicon codicon-play'></i></a>"
+		HTML += "<a class='icon align-to-text' title='Interact' href='byond://?src=\ref[src];component=\ref[circuit_pins];interact=1'><i class='codicon codicon-play'></i></a>"
 		if(circuit_pins.removable)
 			// REMOVE BUTTON
-			HTML += "<a class='icon align-to-text' title='Remove' href='?src=\ref[src];component=\ref[circuit_pins];remove=1'><i class='codicon codicon-close-all'></i></a>"
+			HTML += "<a class='icon align-to-text' title='Remove' href='byond://?src=\ref[src];component=\ref[circuit_pins];remove=1'><i class='codicon codicon-close-all'></i></a>"
 
 		// END COMPONENT_ACTIONS
 		HTML += "</div>\n"
@@ -301,7 +301,7 @@
 			if(!io)
 				continue
 
-			INPUTS += "<a class='grey' href='?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
+			INPUTS += "<a class='grey' href='byond://?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='byond://?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
 
 			if (!io.linked.len)
 				continue
@@ -309,7 +309,7 @@
 			INPUTS += "<ul>"
 			for(var/k in io.linked)
 				var/datum/integrated_io/linked = k
-				INPUTS += "<li><a class='grey' href='?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[linked]</a> ← <a class='grey' href='?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
+				INPUTS += "<li><a class='grey' href='byond://?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[linked]</a> ← <a class='grey' href='byond://?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
 
 			INPUTS += "</ul>"
 
@@ -320,7 +320,7 @@
 			if(!io)
 				continue
 
-			OUTPUTS += "<a class='grey' href='?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
+			OUTPUTS += "<a class='grey' href='byond://?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='byond://?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
 
 			if (!io.linked.len)
 				continue
@@ -328,7 +328,7 @@
 			OUTPUTS += "<ul>"
 			for(var/k in io.linked)
 				var/datum/integrated_io/linked = k
-				OUTPUTS += "<li><a class='grey' href='?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[linked]</a> ← <a class='grey' href='?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
+				OUTPUTS += "<li><a class='grey' href='byond://?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[linked]</a> ← <a class='grey' href='byond://?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
 
 			OUTPUTS += "</ul>"
 
@@ -354,15 +354,15 @@
 		for(var/activator in circuit_pins.activators)
 			HTML += "<tr><td colspan='1'>"
 			io = activator
-			var/ACTIVATORS = "<div class='segmented-control'><a href='?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-event fit-in-button'></i>[io]</a>"
-			ACTIVATORS += "<a href='?src=\ref[circuit_pins];act=data;pin=\ref[io]'>[io.data?"\<PULSE OUT\>":"\<PULSE IN\>"]</a></div>\n"
+			var/ACTIVATORS = "<div class='segmented-control'><a href='byond://?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-event fit-in-button'></i>[io]</a>"
+			ACTIVATORS += "<a href='byond://?src=\ref[circuit_pins];act=data;pin=\ref[io]'>[io.data?"\<PULSE OUT\>":"\<PULSE IN\>"]</a></div>\n"
 
 			if(io.linked.len)
 				ACTIVATORS += "<ul>"
 
 				for(var/k in io.linked)
 					var/datum/integrated_io/linked = k
-					ACTIVATORS += "<li><a class='grey' href='?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-event fit-in-button'></i>[linked]</a> ← <a class='grey' href='?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
+					ACTIVATORS += "<li><a class='grey' href='byond://?src=\ref[circuit_pins];act=unwire;pin=\ref[io];link=\ref[linked]'><i class='codicon codicon-symbol-event fit-in-button'></i>[linked]</a> ← <a class='grey' href='byond://?src=\ref[linked.holder]'><i class='codicon codicon-symbol-property fit-in-button'></i>[linked.holder.displayed_name]</a></li>"
 
 				ACTIVATORS += "</ul>"
 
@@ -385,12 +385,12 @@
 
 	// BATTERY
 	if(battery)
-		HTML += "<a class='icon' title='Eject Battery' href='?src=\ref[src];remove_cell=1'><i class='codicon codicon-symbol-event fit-in-button'></i>[battery] ([round(battery.charge, 0.1)]/[battery.maxcharge])</a>"
+		HTML += "<a class='icon' title='Eject Battery' href='byond://?src=\ref[src];remove_cell=1'><i class='codicon codicon-symbol-event fit-in-button'></i>[battery] ([round(battery.charge, 0.1)]/[battery.maxcharge])</a>"
 	else
 		HTML += "<a class='icon' title='Battery'><i class='codicon codicon-symbol-event fit-in-button'></i>No power cell detected!</a>"
 
 	// CHANGE UI INTERACTION STYLE
-	HTML += "<a class='icon' href='?src=\ref[src];change_ui_style=1'><i class='codicon codicon-multiple-windows fit-in-button'></i>Change UI interaction style</a>"
+	HTML += "<a class='icon' href='byond://?src=\ref[src];change_ui_style=1'><i class='codicon codicon-multiple-windows fit-in-button'></i>Change UI interaction style</a>"
 
 	// END STATUS BAR
 	HTML += "</div>\n"

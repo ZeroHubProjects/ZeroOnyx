@@ -96,14 +96,14 @@
 	var/dat
 	dat +="<div class='statusDisplay'>"
 	if(istype(inserted_id))
-		dat += "You have [inserted_id.mining_points ? inserted_id.mining_points : "no"] mining points collected. <A href='?src=\ref[src];choice=eject'>Eject ID.</A><br>"
+		dat += "You have [inserted_id.mining_points ? inserted_id.mining_points : "no"] mining points collected. <A href='byond://?src=\ref[src];choice=eject'>Eject ID.</A><br>"
 	else
-		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
+		dat += "No ID inserted.  <A href='byond://?src=\ref[src];choice=insert'>Insert ID.</A><br>"
 	dat += "</div>"
 	dat += "<br><b>Equipment point cost list:</b><BR><table border='0' width='300'>"
 	for(var/datum/data/mining_equipment/equipment in equipment_list)
 		if(equipment.amount != 0)
-			dat += "<tr><td>[equipment.name]</td><td>[equipment.cost]</td><td><A href='?src=\ref[src];purchase=\ref[equipment]'>Purchase</A> ([equipment.amount == -1 ? "No limit" : equipment.amount])</td></tr>"
+			dat += "<tr><td>[equipment.name]</td><td>[equipment.cost]</td><td><A href='byond://?src=\ref[src];purchase=\ref[equipment]'>Purchase</A> ([equipment.amount == -1 ? "No limit" : equipment.amount])</td></tr>"
 		else
 			dat += "<tr><td>[equipment.name]</td><td>(Out of stock!)</td></tr>"
 	dat += "</table>"

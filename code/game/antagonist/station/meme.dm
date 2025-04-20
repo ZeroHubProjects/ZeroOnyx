@@ -16,7 +16,7 @@
 	return "<br><b>Human indoctrinated:</b> [player.current:indoctrinated.len]"
 
 /datum/antagonist/meme/get_extra_panel_options(datum/mind/player)
-	return "<a href='?src=\ref[src];move=\ref[player.current]'>\[Move to selected human\].</a>"
+	return "<a href='byond://?src=\ref[src];move=\ref[player.current]'>\[Move to selected human\].</a>"
 
 /datum/antagonist/meme/Topic(href, href_list)
 	if (..())

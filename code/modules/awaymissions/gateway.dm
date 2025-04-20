@@ -178,11 +178,11 @@ GLOBAL_LIST_EMPTY(world_awaygateways)
 /obj/machinery/gateway/centerstation/proc/show_menu(mob/user)
 	if(is_admin(user))
 		var/dat = "Gateway Admin Actions\
-		<BR><a href='?src=\ref[src];select_awaygateway=1'>[awaygate ? "Selected awaygate location is [awaygate.gateway_area_name]" : "Awaygate not found."]</a>\
-		<BR><a href='?src=\ref[src];toggle_forced=1'>The forced mode is now [forced ? "on" : "off"]</a>\
-		<BR><a href='?src=\ref[src];toggleon=1'>Forced toggle on</a>\
-		<BR><a href='?src=\ref[src];toggleoff=1'>Forced toggle off</a>\
-		<BR><a href='?src=\ref[src];detect=1'>Detect gateways</a>\
+		<BR><a href='byond://?src=\ref[src];select_awaygateway=1'>[awaygate ? "Selected awaygate location is [awaygate.gateway_area_name]" : "Awaygate not found."]</a>\
+		<BR><a href='byond://?src=\ref[src];toggle_forced=1'>The forced mode is now [forced ? "on" : "off"]</a>\
+		<BR><a href='byond://?src=\ref[src];toggleon=1'>Forced toggle on</a>\
+		<BR><a href='byond://?src=\ref[src];toggleoff=1'>Forced toggle off</a>\
+		<BR><a href='byond://?src=\ref[src];detect=1'>Detect gateways</a>\
 		"
 		if(!gateway_menu || gateway_menu.user != user)
 			gateway_menu = new /datum/browser(user, "gateway", "<B>[src]</B>", 360, 410)

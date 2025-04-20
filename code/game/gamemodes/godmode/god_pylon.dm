@@ -50,4 +50,4 @@
 			if(P == src || linked_god.pylon == P)
 				continue
 			P.audible_message("<b>\The [P]</b> resonates, \"[text]\"", runechat_message = text)
-	to_chat(linked_god, "\icon[src] [SPAN("game say", "[SPAN("name", "[M]")] (<A href='?src=\ref[linked_god];jump=\ref[src];'>P</A>) [verb], [linked_god.pylon == src ? "<b>" : ""][SPAN("message", "[SPAN("body", "\"[text]\"")]")][linked_god.pylon == src ? "</b>" : ""]")]")
+	to_chat(linked_god, "\icon[src] [SPAN("game say", "[SPAN("name", "[M]")] (<A href='byond://?src=\ref[linked_god];jump=\ref[src];'>P</A>) [verb], [linked_god.pylon == src ? "<b>" : ""][SPAN("message", "[SPAN("body", "\"[text]\"")]")][linked_god.pylon == src ? "</b>" : ""]")]")

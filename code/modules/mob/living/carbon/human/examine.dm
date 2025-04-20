@@ -297,8 +297,8 @@
 			if(R)
 				criminal = R.get_criminalStatus()
 
-			msg += SPAN("deptradio", "Criminal status:") + " <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += SPAN("deptradio", "Security records:") + " <a href='?src=\ref[src];secrecord=`'>\[View\]</a>\n"
+			msg += SPAN("deptradio", "Criminal status:") + " <a href='byond://?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
+			msg += SPAN("deptradio", "Security records:") + " <a href='byond://?src=\ref[src];secrecord=`'>\[View\]</a>\n"
 
 	if(hasHUD(user, HUD_MEDICAL))
 		var/perpname = "wot"
@@ -319,9 +319,9 @@
 			physical = R.get_status_physical()
 			mental = R.get_status_mental()
 
-		msg += SPAN("deptradio", "Physical status:") + " <a href='?src=\ref[src];physical=1'>\[[physical]\]</a>\n"
-		msg += SPAN("deptradio", "Mental status:") + " <a href='?src=\ref[src];mental=1'>\[[mental]\]</a>\n"
-		msg += SPAN("deptradio", "Medical records:") + " <a href='?src=\ref[src];medrecord=`'>\[View\]</a>\n"
+		msg += SPAN("deptradio", "Physical status:") + " <a href='byond://?src=\ref[src];physical=1'>\[[physical]\]</a>\n"
+		msg += SPAN("deptradio", "Mental status:") + " <a href='byond://?src=\ref[src];mental=1'>\[[mental]\]</a>\n"
+		msg += SPAN("deptradio", "Medical records:") + " <a href='byond://?src=\ref[src];medrecord=`'>\[View\]</a>\n"
 
 
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
@@ -395,6 +395,6 @@
 	HTML += TextPreview(flavor_texts["feet"])
 	HTML += "<br>"
 	HTML += "<hr />"
-	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
+	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	show_browser(src, jointext(HTML,null), "window=flavor_changes;size=430x300")

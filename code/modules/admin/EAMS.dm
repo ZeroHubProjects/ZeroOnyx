@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(eams)
 
 /datum/controller/subsystem/eams/proc/GetPlayerPanelButton(datum/admins/source, client/player)
 	var/result = {"<br><br><b>EAMS whitelisted:</b>
-		[player.eams_info.whitelisted ? "<A href='?src=\ref[src];removefromwhitelist=\ref[player]'>Yes</A>" : "<A href='?src=\ref[src];addtowhitelist=\ref[player]'>No</A>"]
+		[player.eams_info.whitelisted ? "<A href='byond://?src=\ref[src];removefromwhitelist=\ref[player]'>Yes</A>" : "<A href='byond://?src=\ref[src];addtowhitelist=\ref[player]'>No</A>"]
 		"}
 	return result
 

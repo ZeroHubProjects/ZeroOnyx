@@ -152,9 +152,9 @@
 
 	var/dat = 	"<meta charset=\"utf-8\"><div align='center'><b>Inventory of [name]</b></div><p>"
 	if(hat)
-		dat +=	"<br><b>Head:</b> [hat] (<a href='?src=\ref[src];remove_inv=hat'>Remove</a>)"
+		dat +=	"<br><b>Head:</b> [hat] (<a href='byond://?src=\ref[src];remove_inv=hat'>Remove</a>)"
 	else
-		dat +=	"<br><b>Head:</b> <a href='?src=\ref[src];add_inv=hat'>Nothing</a>"
+		dat +=	"<br><b>Head:</b> <a href='byond://?src=\ref[src];add_inv=hat'>Nothing</a>"
 	show_browser(user, dat, text("window=mob[];size=325x325", name))
 	onclose(user, "mob[real_name]")
 	return

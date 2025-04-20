@@ -32,11 +32,11 @@
 		dat += "<FONT color=#005500>Data stored in memory.</FONT><BR>"
 	else
 		dat += "No data stored in memory.<BR>"
-	dat += "<A href='?src=\ref[src];scan=1'>\[Scan\]</A>"
+	dat += "<A href='byond://?src=\ref[src];scan=1'>\[Scan\]</A>"
 	if(cache || art_cache)
-		dat += "       <A href='?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR>"
+		dat += "       <A href='byond://?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR>"
 		if(current_item)
-			dat += "<A href='?src=\ref[src];eject=1'>\[Remove Item\]</A>"
+			dat += "<A href='byond://?src=\ref[src];eject=1'>\[Remove Item\]</A>"
 	else
 		dat += "<BR>"
 	show_browser(user, dat, "window=scanner")
