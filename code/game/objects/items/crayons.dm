@@ -104,18 +104,18 @@
 								 "Х","Ц","Ч","Ш","Щ","Ъ","Ы","Ь","Э","Ю","Я"
 							)
 	for(var/letter_num = 1, letter_num <= rus_alphabet.len, letter_num++)
-		dat += "<a href='?\ref[src];type=russian_letter;drawing=rus[letter_num]'>[rus_alphabet[letter_num]]</a> "
+		dat += "<a href='byond://?src=\ref[src];type=russian_letter;drawing=rus[letter_num]'>[rus_alphabet[letter_num]]</a> "
 
 	dat += "<hr>Write english: "
 	for(var/letter_num in text2ascii("a") to text2ascii("z"))
-		dat += "<a href='?\ref[src];type=english_letter;drawing=[ascii2text(letter_num)]'>[uppertext(ascii2text(letter_num))]</a> "
+		dat += "<a href='byond://?src=\ref[src];type=english_letter;drawing=[ascii2text(letter_num)]'>[uppertext(ascii2text(letter_num))]</a> "
 
-	dat += "<hr><a href='?\ref[src];type=rune;drawing=rune'>Draw rune</a>"
+	dat += "<hr><a href='byond://?src=\ref[src];type=rune;drawing=rune'>Draw rune</a>"
 
 	dat += "<hr>Show direction: "
 	var/list/arrows = list("left" = "&larr;", "right" = "&rarr;", "up" = "&uarr;", "down" = "&darr;")
 	for(var/drawing in arrows)
-		dat += "<a href='?\ref[src];type=arrow;drawing=[drawing]'>[arrows[drawing]]</a> "
+		dat += "<a href='byond://?src=\ref[src];type=arrow;drawing=[drawing]'>[arrows[drawing]]</a> "
 
 	dat += "<hr>Draw graffiti: "
 	// TODO(rufus): replace with a different system as crayon preview images not always have enough time
@@ -123,7 +123,7 @@
 	// them as image sources in the generated html.
 	for(var/drawing in icon_states('icons/effects/crayongraffiti.dmi'))
 		if(length(drawing) > 2 && copytext(drawing, -2) != "_s")
-			dat += "<a href='?\ref[src];type=graffiti;drawing=[drawing]'><img src=\"[get_graffiti_preview(colour, shadeColour, drawing, user)]\" style=\"width: 32px; height: 32px;\"></a> "
+			dat += "<a href='byond://?src=\ref[src];type=graffiti;drawing=[drawing]'><img src=\"[get_graffiti_preview(colour, shadeColour, drawing, user)]\" style=\"width: 32px; height: 32px;\"></a> "
 
 	if(!popup || popup.user != user)
 		popup = new /datum/browser(user, "crayon", "Choose drawing", 960, 230)

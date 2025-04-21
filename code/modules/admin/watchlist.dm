@@ -158,7 +158,7 @@
 		return
 
 	var/output = "<meta charset=\"utf-8\">"
-	output += "<form method='GET' name='search' action='?'>\
+	output += "<form method='GET' name='search' action='byond://?'>\
 	<input type='hidden' name='_src_' value='holder'>\
 	<input type='text' name='watchsearch' value='[search]'>\
 	<input type='submit' value='Search'></form>"

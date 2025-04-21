@@ -43,7 +43,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	client << browse({"
 	<script>
-		window.location.href="?asset_cache_confirm_arrival=[job]"
+		window.location.href="byond://?asset_cache_confirm_arrival=[job]"
 	</script>
 	"}, "window=asset_cache_browser")
 
@@ -84,7 +84,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	client << browse({"
 	<script>
-		window.location.href="?asset_cache_confirm_arrival=[job]"
+		window.location.href="byond://?asset_cache_confirm_arrival=[job]"
 	</script>
 	"}, "window=asset_cache_browser")
 

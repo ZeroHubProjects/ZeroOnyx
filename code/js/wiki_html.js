@@ -96,7 +96,7 @@ document.body.appendChild(scriptBody);
 var scriptOverwrite = document.createElement("script");
 var ending = "window.onload = function() {\
 	if(!head_loading_complete || !body_loading_complete) throw new Error('Loading failed');\
-	if (typeof ref !== 'undefined' && ref.length > 0) window.location = '?src=[0x'+Number(ref).toString(16)+'];title='+title;\
+	if (typeof ref !== 'undefined' && ref.length > 0) window.location = 'byond://?src=[0x'+Number(ref).toString(16)+'];title='+title;\
 	document.getElementsByTagName(\"html\")[0].innerHTML = html.innerHTML;\
 	}"
 scriptOverwrite.innerHTML = ending;

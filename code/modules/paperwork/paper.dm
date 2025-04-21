@@ -92,7 +92,7 @@
 	var/static/regex/sign_field_regex = regex(@"<I><span class='sign_field_(\w+)'>sign here</span></I>", "g")
 	var/static/regex/named_field_extraction_regex = regex(@#<!--paper_fieldstart_N(\w+)-->(.*?)(?:<!--paper_field_N\1-->)?<!--paper_fieldend_N\1-->#, "g")
 	var/static/regex/field_regex = regex(@#<!--paper_field_(\w+)-->#, "g")
-	var/static/regex/field_link_regex = regex("<font face=\"[deffont]\"><A href='\\?src=\[^'\]+?;write=\[^'\]+'>write</A></font>", "g")
+	var/static/regex/field_link_regex = regex("<font face=\"[deffont]\"><A href='byond://\\?src=\[^'\]+?;write=\[^'\]+'>write</A></font>", "g")
 
 /obj/item/paper/Initialize(mapload, text, title, rawhtml = TRUE, noinit = FALSE)
 	. = ..()

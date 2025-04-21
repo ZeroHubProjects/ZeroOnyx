@@ -47,7 +47,7 @@ document.body.appendChild(scriptBody);
 var scriptOverwrite = document.createElement("script");
 var ending = "window.onload = function() {\
 	if(!body_loading_complete) throw new Error('Loading failed');\
-	if (typeof ref !== 'undefined' && ref.length > 0) window.location = '?src=[0x'+Number(ref).toString(16)+'];title='+title;\
+	if (typeof ref !== 'undefined' && ref.length > 0) window.location = 'byond://?src=[0x'+Number(ref).toString(16)+'];title='+title;\
 	if(status_tag) status_tag.innerHTML = body.innerHTML;\
 	else document.getElementsByTagName(\"body\")[0].innerHTML = body.innerHTML;\
 	}"

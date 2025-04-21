@@ -38,7 +38,7 @@ var NanoUtility = function ()
 					queryString += key + '=' + parameters[key];
 				}
 			}
-			return queryString;
+			return 'byond://' + queryString;
 		}
     }
 } ();
