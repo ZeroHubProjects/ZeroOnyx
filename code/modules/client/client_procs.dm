@@ -127,6 +127,11 @@ If you have any  questions about this stuff feel free to ask. ~Carn
 	return 1
 
 /client/New(TopicData)
+	// Enable https://www.byond.com/docs/ref/#/{skin}/control/browser/byondStorage for clients
+	// that support it, used by TGUI to save preferences and chat history.
+	if(byond_version >= 516)
+		winset(src, "", "browser-options=byondstorage")
+
 	TopicData = null							// Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					// Invalid connection type.

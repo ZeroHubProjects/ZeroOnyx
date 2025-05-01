@@ -7,11 +7,11 @@
  */
 
 export const IMPL_MEMORY = 0
-export const IMPL_LOCAL_STORAGE = 1
+export const IMPL_HUB_STORAGE = 1
 export const IMPL_INDEXED_DB = 2
 
 const INDEXED_DB_VERSION = 1
-const INDEXED_DB_NAME = 'tgui'
+const INDEXED_DB_NAME = 'zeroonyx-tgui'
 const INDEXED_DB_STORE_NAME = 'storage-v1'
 
 const READ_ONLY = 'readonly'
@@ -25,12 +25,9 @@ const testGeneric = testFn => () => {
   }
 }
 
-// Localstorage can sometimes throw an error, even if DOM storage is not
-// disabled in IE11 settings.
-// See: https://superuser.com/questions/1080011
-const testLocalStorage = testGeneric(() => (
-  window.localStorage && window.localStorage.getItem
-))
+const testHubStorage = testGeneric(
+  () => window.hubStorage && window.hubStorage.getItem,
+);
 
 const testIndexedDb = testGeneric(() => (
   (window.indexedDB || window.msIndexedDB) &&
@@ -60,28 +57,28 @@ class MemoryBackend {
   }
 }
 
-class LocalStorageBackend {
+class HubStorageBackend {
   constructor () {
-    this.impl = IMPL_LOCAL_STORAGE
+    this.impl = IMPL_HUB_STORAGE
   }
 
-  get (key) {
-    const value = localStorage.getItem(key)
+  async get (key) {
+    const value = await window.hubStorage.getItem('zeroonyx-' + key)
     if (typeof value === 'string') {
       return JSON.parse(value)
     }
   }
 
   set (key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+    window.hubStorage.setItem('zeroonyx-' + key, JSON.stringify(value));
   }
 
   remove (key) {
-    localStorage.removeItem(key)
+    window.hubStorage.removeItem('zeroonyx-' + key)
   }
 
   clear () {
-    localStorage.clear()
+    window.hubStorage.clear()
   }
 }
 
@@ -122,13 +119,6 @@ class IndexedDbBackend {
   }
 
   async set (key, value) {
-    // The reason we don't _save_ null is because IE 10 does
-    // not support saving the `null` type in IndexedDB. How
-    // ironic, given the bug below!
-    // See: https://github.com/mozilla/localForage/issues/161
-    if (value === null) {
-      value = undefined
-    }
     // NOTE: We deliberately make this operation transactionless
     const store = await this.getStore(READ_WRITE)
     store.put(value, key)
@@ -154,6 +144,9 @@ class IndexedDbBackend {
 class StorageProxy {
   constructor () {
     this.backendPromise = (async () => {
+      if (!Byond.TRIDENT && testHubStorage()) {
+        return new HubStorageBackend();
+      }
       if (testIndexedDb()) {
         try {
           const backend = new IndexedDbBackend()
@@ -161,9 +154,9 @@ class StorageProxy {
           return backend
         } catch {}
       }
-      if (testLocalStorage()) {
-        return new LocalStorageBackend()
-      }
+      console.warn(
+        'No supported storage backend found. Using in-memory storage.',
+      );
       return new MemoryBackend()
     })()
   }
