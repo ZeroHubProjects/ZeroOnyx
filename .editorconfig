@@ -15,6 +15,12 @@ insert_final_newline = true
 [*.{dm,dme,dmm}]
 end_of_line = lf
 
+# Avoid automatically formatting these as DreamMaker has its own preferred style
+# with some trailing whitespace and newlines.
+# Just manually edit these files and keep them clean.
+[*.{dme,dmf}]
+trim_trailing_whitespace = false
+
 [*.sh]
 end_of_line = lf
 
