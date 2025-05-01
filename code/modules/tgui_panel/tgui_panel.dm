@@ -15,7 +15,7 @@
 
 /datum/tgui_panel/New(client/client)
 	src.client = client
-	window = new(client, "browseroutput")
+	window = new(client, "tgchat_output")
 	window.subscribe(src, nameof(.proc/on_message))
 
 /datum/tgui_panel/Del()

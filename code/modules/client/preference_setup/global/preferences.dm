@@ -249,8 +249,7 @@ var/global/list/_client_preferences_by_type
 	if(new_value == GLOB.PREF_YES)
 		preference_mob.client.tgui_panel.initialize()
 	else
-		winset(preference_mob, "output", "on-show=&is-disabled=0&is-visible=1")
-		winset(preference_mob, "browseroutput", "is-disabled=1;is-visible=0")
+		winset(preference_mob, "output_container", "left=byond_chat")
 
 /datum/client_preference/browser_style
 	description = "Fake NanoUI Browser Style"

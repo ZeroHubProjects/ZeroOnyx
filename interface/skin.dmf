@@ -1031,23 +1031,12 @@ window "outputwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
-	elem "browseroutput"
-		type = BROWSER
-		pos = 0,0
+	elem "output_container"
+		type = CHILD
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #ffffff
-		is-visible = false
-		saved-params = ""
-	elem "output"
-		type = OUTPUT
-		pos = 0,0
-		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-default = true
-		saved-params = ""
+		left = "byond_chat"
 	elem "saybutton_alt"
 		type = BUTTON
 		pos = 519,460
@@ -1083,6 +1072,29 @@ window "outputwindow"
 		text = "Hotkey Toggle"
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle_alt.is-checked=false input_alt.focus=true : mainwindow.macro=hotkeymode hotkey_toggle_alt.is-checked=true mapwindow.map.focus=true\""
 		button-type = pushbox
+
+window "byond_chat"
+	elem "byond_chat"
+		type = MAIN
+		size = 640x480
+		is-pane = true
+	elem "byond_output"
+		type = OUTPUT
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+
+window "tgui_chat"
+	elem "tgui_chat"
+		type = MAIN
+		size = 640x480
+		is-pane = true
+	elem "tgchat_output"
+		type = BROWSER
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
 
 window "browserwindow"
 	elem "browserwindow"

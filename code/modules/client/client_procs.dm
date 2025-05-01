@@ -431,10 +431,10 @@ If you have any  questions about this stuff feel free to ask. ~Carn
 		winset(src, "hotkey_toggle", "is-visible=false;is-disabled=true;is-default=false")
 		winset(src, "saybutton", "is-visible=false;is-disabled=true;is-default=false")
 
-		var/current_size = splittext(winget(src, "outputwindow.output", "size"), "x")
+		var/current_size = splittext(winget(src, "byond_chat.byond_output", "size"), "x")
 		var/new_size = "[current_size[1]]x[text2num(current_size[2]) - input_height]"
-		winset(src, "outputwindow.output", "size=[new_size]")
-		winset(src, "outputwindow.browseroutput", "size=[new_size]")
+		winset(src, "byond_chat.byond_output", "size=[new_size]")
+		winset(src, "tgui_chat.tgchat_output", "size=[new_size]")
 
 		current_size = splittext(winget(src, "mainwindow.mainvsplit", "size"), "x")
 		new_size = "[current_size[1]]x[text2num(current_size[2]) + input_height]"
@@ -451,10 +451,10 @@ If you have any  questions about this stuff feel free to ask. ~Carn
 		winset(src, "hotkey_toggle", "is-visible=true;is-disabled=false;is-default=true")
 		winset(src, "saybutton", "is-visible=true;is-disabled=false;is-default=true")
 
-		var/current_size = splittext(winget(src, "outputwindow.output", "size"), "x")
+		var/current_size = splittext(winget(src, "byond_chat.byond_output", "size"), "x")
 		var/new_size = "[current_size[1]]x[text2num(current_size[2]) + input_height]"
-		winset(src, "outputwindow.output", "size=[new_size]")
-		winset(src, "outputwindow.browseroutput", "size=[new_size]")
+		winset(src, "byond_chat.byond_output", "size=[new_size]")
+		winset(src, "tgui_chat.tgchat_output", "size=[new_size]")
 
 		current_size = splittext(winget(src, "mainwindow.mainvsplit", "size"), "x")
 		new_size = "[current_size[1]]x[text2num(current_size[2]) - input_height]"

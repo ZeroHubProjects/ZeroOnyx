@@ -24,21 +24,18 @@
 	// Failed to fix, using tgalert as fallback
 	action = alert(src, "Did that work?", "", "Yes", "No, switch to old ui")
 	if (action == "No, switch to old ui")
-		winset(src, "output", "on-show=&is-disabled=0&is-visible=1")
-		winset(src, "browseroutput", "is-disabled=1;is-visible=0")
+		winset(src, "output_container", "left=byond_chat")
 		log_tgui(src, "Failed to fix.", context = "verb/fix_tgui_panel")
 
 /client/verb/nuke_chat()
 	set name = "Nuke Chat"
 	set hidden = TRUE
 	// Catch all solution (kick the whole thing in the pants)
-	winset(src, "output", "on-show=&is-disabled=0&is-visible=1")
-	winset(src, "browseroutput", "is-disabled=1;is-visible=0")
+	winset(src, "output_container", "left=byond_chat")
 	if(!tgui_panel || !istype(tgui_panel))
 		log_tgui(src, "tgui_panel datum is missing",
 			context = "verb/fix_tgui_panel")
 		tgui_panel = new(src)
 	tgui_panel.initialize(force = TRUE)
 	// Force show the panel to see if there are any errors
-	winset(src, "output", "is-disabled=1&is-visible=0")
-	winset(src, "browseroutput", "is-disabled=0;is-visible=1")
+	winset(src, "output_container", "left=tgui_chat")
