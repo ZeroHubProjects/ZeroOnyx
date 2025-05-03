@@ -149,6 +149,12 @@ type ByondType = {
   parseJson(text: string): any;
 
   /**
+   * Allows user to download the specified blob via File System API.
+   * Opens a File Picker pop-up for user to specify the download destination.
+   */
+  saveBlob(blob: Blob, filename: string, ext: string): void;
+
+  /**
    * Sends a message to `/datum/tgui_window` which hosts this window instance.
    */
   sendMessage(type: string, payload?: any): void;
