@@ -51,3 +51,13 @@
 		to_chat(src, "<b>Current Storyteller:</b> N/A")
 	else
 		to_chat(src, "<b>Current Storyteller:</b> [SSstoryteller.character.name] - [SSstoryteller.character.desc]")
+
+// Verb to enable access to browser devtools on right-click.
+// Note that this is just a convenience verb to save some typing,
+// the same can be achieved by any client via `.winset "browser-options=devtools"`.
+/client/verb/browser_devtools()
+	set name = ".devtools"
+	set desc = "Enable access to devtools on right-click on any browser UIs (plain browser, NanoUI, or TGUI windows)."
+
+	winset(usr, null, "browser-options=devtools")
+	to_chat(src, "Devtools enabled! Right click any browser UI and select \"Inspect\" to open devtools for that window.")

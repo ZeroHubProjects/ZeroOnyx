@@ -452,11 +452,10 @@
 		log_and_message_admins("stop hard deleting garbage queue.", usr)
 	return
 
+// Just a convenience verb for visibility, accessible from the Debug verb list for admins.
 /client/proc/enable_browser_devtools()
 	set category = "Debug"
 	set name = "Enable Browser Devtools"
 	set desc = "Enable access to devtools on right-click on any browser UIs (plain browser, NanoUI, or TGUI windows)."
-	if (!check_rights(R_DEBUG))
-		return
-	winset(usr, null, "browser-options=devtools")
-	to_chat(src, "Enabled! Right click any browser UI and select \"Inspect\" to open devtools for that window.")
+
+	browser_devtools()
