@@ -34,10 +34,18 @@ const findNearestScrollableParent = (startingNode) => {
   const body = document.body;
   let node = startingNode;
   while (node && node !== body) {
-    // This definitely has a vertical scrollbar, because it reduces
-    // scrollWidth of the element. Might not work if element uses
-    // overflow: hidden.
-    if (node.scrollWidth < node.offsetWidth) {
+    // Use className and indexOf for compatibility with IE < 10.
+    //
+    // We specifically look for the scrollable layout container used by TGUI chat.
+    // This logic assumes the chat is only rendered inside the TGUI panel,
+    // and does not attempt to support arbitrary or external mount targets.
+    //
+    // Avoiding general scroll detection logic keeps this simple, predictable, and
+    // compatible with older web engines.
+    if (
+      typeof node.className === 'string' &&
+      node.className.indexOf('Layout__content--scrollable') !== -1
+    ) {
       return node;
     }
     node = node.parentNode;
