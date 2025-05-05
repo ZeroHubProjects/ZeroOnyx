@@ -2,8 +2,8 @@
 FROM debian:stable-slim AS base
 
 # Global env variables
-ENV BYOND_MAJOR=515
-ENV BYOND_MINOR=1643
+ENV BYOND_MAJOR=516
+ENV BYOND_MINOR=1662
 ENV DME_FILE=baystation12.dme
 ENV DMB_FILE=baystation12.dmb
 ENV SERVER_PORT=14076

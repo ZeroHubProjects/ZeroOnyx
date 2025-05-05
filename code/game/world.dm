@@ -1,7 +1,7 @@
 /world/New()
 	SetupLogs()
 
-	if(byond_version < 515)
+	if(byond_version < 516)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	// Load converter lib that is required for reading TOML configs

@@ -7,5 +7,4 @@
 #
 # This file is only for developers and is not used by any scripts or code.
 
-NOTE: transition to BYOND 516 is currently in progress.
-Expected BYOND version: 515.1643
+Expected BYOND version: 516.1662
