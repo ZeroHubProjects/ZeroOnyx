@@ -32,7 +32,7 @@ if errorlevel 1 (
 
 echo.
 echo Image built, starting...
-docker run -d -v %cd%\config:/ss13config -v %cd%\data:/ss13data --network host --name zeroonyx zeroonyx-server
+docker run --restart=unless-stopped -d -v %cd%\config:/ss13config -v %cd%\data:/ss13data --network host --name zeroonyx zeroonyx-server
 if errorlevel 1 (
 	echo Failed to start the container
 	pause

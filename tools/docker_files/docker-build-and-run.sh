@@ -24,7 +24,7 @@ docker build -t zeroonyx-server . || (echo "Failed to build the image" && exit)
 echo
 echo "Image built, starting..."
 
-docker run -d -e VOLUMES_FILESYSTEM_WORKAROUND=false -v $(pwd)/config:/home/spessman/zeroonyx/config -v $(pwd)/data:/home/spessman/zeroonyx/data --network host --name zeroonyx zeroonyx-server || (echo "Failed to start the container" && exit)
+docker run --restart=unless-stopped -d -e VOLUMES_FILESYSTEM_WORKAROUND=false -v $(pwd)/config:/home/spessman/zeroonyx/config -v $(pwd)/data:/home/spessman/zeroonyx/data --network host --name zeroonyx zeroonyx-server || (echo "Failed to start the container" && exit)
 
 echo
 echo "Container successfully started!"
