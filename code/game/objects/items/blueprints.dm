@@ -141,12 +141,19 @@ move an amendment</a> to the drawing, or <a href='byond://?src=\ref[src];action=
 
 	A.always_unpowered = 0
 
+	var/zone/Z = new
+	move_turfs_to_zone(turfs, Z)
+
 	addtimer(CALLBACK(src, nameof(.proc/interact)), 10)
 
 /obj/item/blueprints/proc/move_turfs_to_area(list/turf/turfs, area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
 		//T.loc = A //error: cannot change constant value
+
+/obj/item/blueprints/proc/move_turfs_to_zone(list/turf/turfs, zone/Z)
+	for(var/turf/T in turfs)
+		Z.add(T)
 
 /obj/item/blueprints/proc/edit_area(mob/user)
 	if(!user)
