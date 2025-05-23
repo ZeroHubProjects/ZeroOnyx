@@ -9,4 +9,6 @@
 /client/verb/ping()
 	set name = "Ping"
 	set category = "OOC"
-	winset(src, null, "command=.display_ping+[world.time+world.tick_lag*TICK_USAGE/100]")
+	// explicit num2text(..., 10) to enforce more significant digits and avoid scientific notation,
+	// as it breaks `time as num` argument parsing of `display_ping` verb.
+	winset(src, null, "command=.display_ping+[num2text(world.time+world.tick_lag*TICK_USAGE/100,10)]")
