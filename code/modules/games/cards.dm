@@ -53,8 +53,8 @@
 		cards += P
 
 /obj/item/deck/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/hand))
-		var/obj/item/hand/H = O
+	if(istype(O,/obj/item/handofcards))
+		var/obj/item/handofcards/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		qdel(O)
@@ -80,10 +80,10 @@
 		to_chat(usr, "There are no cards in the deck.")
 		return
 
-	var/obj/item/hand/H
-	if(user.l_hand && istype(user.l_hand,/obj/item/hand))
+	var/obj/item/handofcards/H
+	if(user.l_hand && istype(user.l_hand,/obj/item/handofcards))
 		H = user.l_hand
-	else if(user.r_hand && istype(user.r_hand,/obj/item/hand))
+	else if(user.r_hand && istype(user.r_hand,/obj/item/handofcards))
 		H = user.r_hand
 	else
 		H = new(get_turf(src))
@@ -123,7 +123,7 @@
 	deal_at(usr, M)
 
 /obj/item/deck/proc/deal_at(mob/user, mob/target)
-	var/obj/item/hand/H = new(get_step(user, user.dir))
+	var/obj/item/handofcards/H = new(get_step(user, user.dir))
 
 	H.cards += cards[1]
 	cards -= cards[1]
@@ -135,9 +135,9 @@
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target, target.dir), 10, 1, H)
 
-/obj/item/hand/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/hand))
-		var/obj/item/hand/H = O
+/obj/item/handofcards/attackby(obj/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/handofcards))
+		var/obj/item/handofcards/H = O
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
 		H.concealed = src.concealed
@@ -178,7 +178,7 @@
 		qdel(src)
 		return
 	user.visible_message("[user] rips open \the [src]!")
-	var/obj/item/hand/H = new()
+	var/obj/item/handofcards/H = new()
 
 	H.cards += cards
 	cards.Cut()
@@ -186,8 +186,7 @@
 	H.update_icon()
 	user.replace_item(src, H, TRUE)
 
-// TODO(rufus): rename "hand" to "hand of cards" for clarity
-/obj/item/hand
+/obj/item/handofcards
 	name = "hand of cards"
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
@@ -197,7 +196,7 @@
 	var/concealed = 0
 	var/list/cards = list()
 
-/obj/item/hand/verb/discard()
+/obj/item/handofcards/verb/discard()
 
 	set category = "Object"
 	set name = "Discard"
@@ -212,7 +211,7 @@
 
 	var/datum/playingcard/card = to_discard[discarding]
 
-	var/obj/item/hand/H = new(src.loc)
+	var/obj/item/handofcards/H = new(src.loc)
 	H.cards += card
 	cards -= card
 	H.concealed = 0
@@ -224,19 +223,19 @@
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(mob/user as mob)
+/obj/item/handofcards/attack_self(mob/user as mob)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
 
-/obj/item/hand/_examine_text(mob/user)
+/obj/item/handofcards/_examine_text(mob/user)
 	. = ..()
 	if((!concealed || src.loc == user) && cards.len)
 		. += "\nIt contains: "
 		for(var/datum/playingcard/P in cards)
 			. += "\nThe [P.name]."
 
-/obj/item/hand/update_icon(direction = 0)
+/obj/item/handofcards/update_icon(direction = 0)
 
 	if(!cards.len)
 		qdel(src)
@@ -288,22 +287,21 @@
 		overlays += I
 		i++
 
-/obj/item/hand/dropped(mob/user as mob)
+/obj/item/handofcards/dropped(mob/user as mob)
 	..()
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/hand/pickup(mob/user as mob)
+/obj/item/handofcards/pickup(mob/user as mob)
 	src.update_icon()
 
-
 /*** A special thing that steals a card from a deck, probably lost in maint somewhere. ***/
-/obj/item/hand/missing_card
+/obj/item/handofcards/missing_card
 	name = "missing playing card"
 
-/obj/item/hand/missing_card/Initialize()
+/obj/item/handofcards/missing_card/Initialize()
 	. = ..()
 
 	var/list/deck_list = list()
