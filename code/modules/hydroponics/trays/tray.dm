@@ -127,7 +127,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
 	if(mechanical && !usr.incapacitated() && Adjacent(usr))
-		close_lid(usr)
+		toggle_lid(usr)
 		return
 	..()
 
@@ -613,7 +613,7 @@
 
 		. += "\nThe tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
 
-/obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb()
+/obj/machinery/portable_atmospherics/hydroponics/verb/toggle_lid_verb()
 	set name = "Toggle Tray Lid"
 	set category = "Object"
 	set src in view(1)
@@ -621,11 +621,10 @@
 		return
 
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		close_lid(usr)
+		toggle_lid(usr)
 	return
 
-// TODO(rufus): rename to "toggle_lid"
-/obj/machinery/portable_atmospherics/hydroponics/proc/close_lid(mob/living/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/toggle_lid(mob/living/user)
 	closed_system = !closed_system
 	to_chat(user, "You [closed_system ? "close" : "open"] the tray's lid.")
 	update_icon()

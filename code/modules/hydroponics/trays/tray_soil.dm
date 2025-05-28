@@ -15,7 +15,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/New()
 	..()
-	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb
+	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/toggle_lid_verb
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/setlight
 
 // Holder for vine plants.
