@@ -44,15 +44,15 @@
 
 /obj/item/integrated_circuit/security/weapon_firing/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gun/energy))
-		var/obj/item/gun/energy/gun = O
+		var/obj/item/gun/Energy = O
 		if(installed_gun)
 			to_chat(user, SPAN("warning", "There's already a weapon installed."))
 			return
-		if(!user.drop(gun, src))
+		if(!user.drop(Energy, src))
 			to_chat(user, SPAN("warning", "It doesn't seem to be possible."))
 			return
-		installed_gun = gun
-		to_chat(user, SPAN("notice", "You slide \the [gun] into the firing mechanism."))
+		installed_gun = Energy
+		to_chat(user, SPAN("notice", "You slide \the [Energy] into the firing mechanism."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		if(installed_gun.fire_delay)
 			cooldown_per_use = installed_gun.fire_delay * 10

@@ -1,5 +1,5 @@
 // TODO(rufus): refactor path from gun/energy/gun to a proper one without duplicate words
-/obj/item/gun/energy/gun
+/obj/item/gun/energy/taser
 	name = "tactical taser"
 	desc = "Crafted in underground factories of Redknight & Company Dominance Tech, the TEG02 Mjolnir is a versatile energy based sidearm, \
 	capable of switching between low, medium and high power projectile settings. In other words: stun, shock, and kill."
@@ -40,7 +40,7 @@
 		list(mode_name = "lethal", projectile_type = /obj/item/projectile/beam/laser/small, modifystate = "tasertacticalkill")
 		)
 
-/obj/item/gun/energy/gun/small
+/obj/item/gun/energy/small
 	name = "small energy gun"
 	desc = "A smaller model of the versatile LAEP90 Perun, the LAEP90-C packs considerable utility in a smaller package. Best used in situations where full-sized sidearms are inappropriate."
 	icon_state = "smallgunstun"
@@ -71,12 +71,12 @@
 		list(mode_name = "lethal", projectile_type = /obj/item/projectile/beam/laser/small, modifystate = "smallgunkill")
 		)
 
-/obj/item/gun/energy/gun/mounted
+/obj/item/gun/energy/mounted
 	name = "mounted energy gun"
 	self_recharge = 1
 	use_external_power = 1
 
-/obj/item/gun/energy/gun/nuclear
+/obj/item/gun/energy/nuclear
 	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	description_info = "This is an energy weapon. To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
@@ -104,7 +104,7 @@
 	var/fail_counter = 0
 
 //override for failcheck behaviour
-/obj/item/gun/energy/gun/nuclear/Process()
+/obj/item/gun/energy/nuclear/Process()
 	if(fail_counter > 0)
 		fail_counter--
 		if(fail_counter > 20)
@@ -113,7 +113,7 @@
 
 	return ..()
 
-/obj/item/gun/energy/gun/nuclear/emp_act(severity)
+/obj/item/gun/energy/nuclear/emp_act(severity)
 	..()
 	switch(severity)
 		if(1)
@@ -124,7 +124,7 @@
 			if(ismob(loc))
 				to_chat(loc, SPAN("warning", "\The [src] feels pleasantly warm."))
 
-/obj/item/gun/energy/gun/nuclear/Fire(atom/target, mob/living/user, clickparams, pointblank = 0, reflex = 0)
+/obj/item/gun/energy/nuclear/Fire(atom/target, mob/living/user, clickparams, pointblank = 0, reflex = 0)
 	..()
 	if(fail_counter > 35)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -151,7 +151,7 @@
 	else if(fail_counter > 15)
 		to_chat(loc, SPAN("warning", "\The [src] feels pleasantly warm."))
 
-/obj/item/gun/energy/gun/nuclear/_examine_text(mob/user)
+/obj/item/gun/energy/nuclear/_examine_text(mob/user)
 	. = ..()
 	if(. && user.Adjacent(src))
 		if(fail_counter > 30)
@@ -159,12 +159,12 @@
 		else if(fail_counter > 15)
 			. += "\n[SPAN("warning", "It feels pleasantly warm.")]"
 
-/obj/item/gun/energy/gun/nuclear/proc/get_charge_overlay()
+/obj/item/gun/energy/nuclear/proc/get_charge_overlay()
 	var/ratio = power_supply.percent()
 	ratio = round(ratio, 25)
 	return "nucgun-[ratio]"
 
-/obj/item/gun/energy/gun/nuclear/proc/get_reactor_overlay()
+/obj/item/gun/energy/nuclear/proc/get_reactor_overlay()
 	if(fail_counter > 30)
 		return "nucgun-crit"
 	if(fail_counter > 15)
@@ -173,7 +173,7 @@
 		return "nucgun-light"
 	return "nucgun-clean"
 
-/obj/item/gun/energy/gun/nuclear/proc/get_mode_overlay()
+/obj/item/gun/energy/nuclear/proc/get_mode_overlay()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun")
@@ -181,7 +181,7 @@
 		if("lethal")
 			return "nucgun-kill"
 
-/obj/item/gun/energy/gun/nuclear/update_icon()
+/obj/item/gun/energy/nuclear/update_icon()
 	var/list/new_overlays = list()
 
 	new_overlays += get_charge_overlay()

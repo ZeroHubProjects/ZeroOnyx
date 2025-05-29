@@ -189,7 +189,7 @@
 	interface_name = "mounted energy gun"
 	interface_desc = "A forearm-mounted suit-powered energy gun."
 	origin_tech = list(TECH_POWER = 6, TECH_COMBAT = 6, TECH_ENGINEERING = 6)
-	gun = /obj/item/gun/energy/gun/mounted
+	gun = /obj/item/gun/energy/mounted
 
 /obj/item/rig_module/mounted/taser
 
