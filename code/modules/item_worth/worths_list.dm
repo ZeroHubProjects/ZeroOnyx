@@ -273,10 +273,12 @@ var/list/worths = list(
 					/obj/item/melee/baton = 80,
 					/obj/item/melee/classic_baton = 30,
 					/obj/item/melee/telebaton = 390,
+					/obj/item/melee = 250,
 //SHIELDS
 					/obj/item/shield/buckler = 300, //More expensive because people don't make them anymore,
 					/obj/item/shield/riot = 150,
 					/obj/item/shield/energy = 1200,
+					/obj/item/shield = 200,
 //MATERIAL
 					/obj/item/material/sword/katana/replica = -120,
 					/obj/item/material/sword/katana = -150,
