@@ -78,7 +78,7 @@
 								/obj/item/gun/energy/stunrevolver 					= TRADER_THIS_TYPE,
 								/obj/item/gun/energy/xray 							= TRADER_ALL,
 								/obj/item/gun/energy/laser 							= TRADER_THIS_TYPE,
-								/obj/item/gun/energy/taser 							= TRADER_THIS_TYPE,
+								/obj/item/gun/energy/tactical 							= TRADER_THIS_TYPE,
 								/obj/item/gun/energy/egun 							= TRADER_THIS_TYPE,
 								/obj/item/gun/energy/ionrifle 						= TRADER_ALL,
 								/obj/item/gun/energy/pulse_rifle/pistol 			= TRADER_THIS_TYPE,

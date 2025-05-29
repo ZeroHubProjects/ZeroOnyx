@@ -30,7 +30,7 @@
 	shoes = /obj/item/clothing/shoes/swat
 	gloves = /obj/item/clothing/gloves/thick/swat
 	l_ear = /obj/item/device/radio/headset/ert
-	belt = /obj/item/gun/energy/taser
+	belt = /obj/item/gun/energy/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/storage/backpack/satchel
 

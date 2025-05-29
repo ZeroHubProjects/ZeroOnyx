@@ -1,4 +1,4 @@
-/obj/item/gun/energy/taser
+/obj/item/gun/energy/tactical
 	name = "tactical taser"
 	desc = "Crafted in underground factories of Redknight & Company Dominance Tech, the TEG02 Mjolnir is a versatile energy based sidearm, \
 	capable of switching between low, medium and high power projectile settings. In other words: stun, shock, and kill."
