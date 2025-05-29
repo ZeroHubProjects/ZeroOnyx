@@ -85,8 +85,8 @@ var/list/worths = list(
 					/obj/item/gun/projectile/pistol/holdout = 2000,
 					/obj/item/gun/projectile/pistol/magnum_pistol = 2750,
 					/obj/item/gun/projectile/pistol/secgun = 1200,
-					/obj/item/gun/projectile/pistol/silenced = 1700,
 					/obj/item/gun/projectile/pistol/silenced/cheap = 1500,
+					/obj/item/gun/projectile/pistol/silenced = 1700,
 					/obj/item/gun/projectile/pistol/vp78 = 1500,
 					/obj/item/gun/projectile/pistol = 1000,
 //SILENCER
@@ -105,8 +105,8 @@ var/list/worths = list(
 					/obj/item/gun/projectile = 1500,
 					/obj/item/gun = 500,
 //AMMO
-					/obj/item/ammo_casing = 5,
 					/obj/item/ammo_casing/rocket = 400,
+					/obj/item/ammo_casing = 5,
 					/obj/item/ammo_magazine = 30,
 //MATERIAL STACKS,
 					/obj/item/stack/material/marble = -20,
