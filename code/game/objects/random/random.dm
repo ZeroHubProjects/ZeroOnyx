@@ -243,7 +243,7 @@
 
 /obj/random/energy/spawn_choices()
 	return list(/obj/item/gun/energy/laser = 4,
-				/obj/item/gun/energy/taser = 3,
+				/obj/item/gun/energy/tactical = 3,
 				/obj/item/gun/energy/retro = 2,
 				/obj/item/gun/energy/lasercannon = 2,
 				/obj/item/gun/energy/xray = 3,

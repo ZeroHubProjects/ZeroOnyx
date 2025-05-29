@@ -139,7 +139,7 @@
 		if(/obj/item/gun/energy/lasercannon)
 			iconholder = 1
 
-		if(/obj/item/gun/energy/taser)
+		if(/obj/item/gun/energy/tactical)
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
@@ -147,7 +147,7 @@
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
-		if(/obj/item/gun/energy/taser)
+		if(/obj/item/gun/energy/tactical)
 			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 			egun = 1
