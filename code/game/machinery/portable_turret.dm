@@ -139,7 +139,7 @@
 		if(/obj/item/gun/energy/lasercannon)
 			iconholder = 1
 
-		if(/obj/item/gun/energy/tactical)
+		if(/obj/item/gun/energy/taser)
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
