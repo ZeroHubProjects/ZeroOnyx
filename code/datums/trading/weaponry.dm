@@ -23,7 +23,6 @@
 								/obj/item/gun/projectile/pistol/magnum_pistol 		= TRADER_ALL,
 								/obj/item/gun/projectile/revolver 					= TRADER_THIS_TYPE,
 								/obj/item/gun/projectile/revolver/detective 		= TRADER_ALL,
-								/obj/item/gun/projectile/revolver/detective/m2019 	= TRADER_THIS_TYPE,
 								/obj/item/gun/projectile/revolver/coltpython 		= TRADER_THIS_TYPE,
 								/obj/item/gun/projectile/revolver/deckard 			= TRADER_ALL,
 								/obj/item/gun/projectile/pistol 					= TRADER_SUBTYPES_ONLY,
