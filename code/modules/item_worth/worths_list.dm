@@ -43,9 +43,9 @@ var/list/worths = list(
 //MAGIC STAFF
 					/obj/item/gun/energy/staff = 250, //"It's just a pretty stick. What's so magical about it?!" - Unknown Officer
 //TASERS
-					/obj/item/gun/energy/taser = 500,
-					/obj/item/gun/energy/taser/carbine = 750,
 					/obj/item/gun/energy/taser/mounted = 1000,
+					/obj/item/gun/energy/taser/carbine = 750,
+					/obj/item/gun/energy/taser = 500,
 //ENERGY
 					/obj/item/gun/energy/laser/practice = 500,
 					/obj/item/gun/energy/laser/dogan = 1900,
