@@ -21,7 +21,7 @@
 	name = "Small Energy Gun"
 	desc = "A pocket-sized energy based sidearm with two options: stun and kill."
 	item_cost = 5
-	path = /obj/item/gun/energy/gun/small
+	path = /obj/item/gun/energy/small
 
 /datum/uplink_item/item/badassery/money_cannon
 	name = "Modified Money Cannon"

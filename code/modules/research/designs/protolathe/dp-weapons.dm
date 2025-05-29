@@ -78,7 +78,7 @@
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	materials = list(MATERIAL_STEEL = 5000, MATERIAL_GLASS = 1000, MATERIAL_URANIUM = 500)
-	build_path = /obj/item/gun/energy/gun/nuclear
+	build_path = /obj/item/gun/energy/nuclear
 	sort_string = "TAEAA"
 
 /datum/design/item/weapon/lasercannon
