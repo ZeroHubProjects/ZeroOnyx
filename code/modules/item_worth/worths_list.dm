@@ -60,6 +60,7 @@ var/list/worths = list(
 					/obj/item/gun/energy/crossbow/largecrossbow = 1600,
 					/obj/item/gun/energy/crossbow = 750,
 					/obj/item/gun/energy/temperature = 3000,
+					/obj/item/gun/energy/lasertag = 50,
 					/obj/item/gun/energy = 2100,
 //LAUNCHERS
 					/obj/item/gun/launcher/crossbow = 120,
@@ -98,10 +99,8 @@ var/list/worths = list(
 					/obj/item/gun/projectile/revolver/deckard = 2250,
 					/obj/item/gun/projectile/revolver/detective = 1750,
 					/obj/item/gun/projectile/revolver/mateba = 3250,
-					/obj/item/gun/projectile/revolver = 2500,
-//TOYGUNS
-					/obj/item/gun/energy/lasertag = 50,
 					/obj/item/gun/projectile/revolver/capgun = 100,
+					/obj/item/gun/projectile/revolver = 2500,
 //GUN
 					/obj/item/gun/projectile = 1500,
 					/obj/item/gun = 500,
