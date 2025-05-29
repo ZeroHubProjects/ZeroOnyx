@@ -286,7 +286,7 @@
 
 /obj/random/handgun/spawn_choices()
 	return list(/obj/item/gun/projectile/pistol/vp78 = 3,
-				/obj/item/gun/energy = 2,
+				/obj/item/gun/energy/tactical = 2,
 				/obj/item/gun/projectile/pistol/colt = 2,
 				/obj/item/gun/projectile/pistol/holdout = 2,
 				/obj/item/gun/energy/retro = 1,
