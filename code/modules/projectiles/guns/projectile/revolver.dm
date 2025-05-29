@@ -158,7 +158,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c44
 
-/obj/item/gun/projectile/revolver/m2019/detective
+/obj/item/gun/projectile/revolver/detective/m2019
 	name = "M2019 Detective Special"
 	desc = "Though this one resembles a regular NT's M2019, it is definitely a masterpiece. It can use any .38 round, but works best with .38 SPEC and .38 CHEM."
 	var/base_icon = "lapd2019"
@@ -173,7 +173,7 @@
 	var/shotcost = 20
 	var/obj/item/cell/bcell
 
-/obj/item/gun/projectile/revolver/m2019/detective/Initialize()
+/obj/item/gun/projectile/revolver/detective/m2019/Initialize()
 	bcell = new /obj/item/cell/device/high(src)
 	update_icon()
 	..()
@@ -189,14 +189,14 @@
 	return null*/
 
 
-/obj/item/gun/projectile/revolver/m2019/detective/_examine_text(mob/user)
+/obj/item/gun/projectile/revolver/detective/m2019/_examine_text(mob/user)
 	. = ..()
 	if(!bcell)
 		. += "\n\The [src] has no power cell installed."
 	else
 		. += "\n\The [src] is [round(bcell.percent())]% charged."
 
-/obj/item/gun/projectile/revolver/m2019/detective/consume_next_projectile()
+/obj/item/gun/projectile/revolver/detective/m2019/consume_next_projectile()
 	if(chamber_offset)
 		chamber_offset--
 	//get the next casing
@@ -224,7 +224,7 @@
 		return chambered.BB
 	return null
 
-/obj/item/gun/projectile/revolver/m2019/detective/attack_self(mob/living/user as mob)
+/obj/item/gun/projectile/revolver/detective/m2019/attack_self(mob/living/user as mob)
 	if(chargemode == 0)
 		to_chat(user, SPAN("warning", "[src] has no battery installed!"))
 		return
@@ -236,12 +236,12 @@
 		chargemode = 2
 	update_icon()
 
-/obj/item/gun/projectile/revolver/m2019/detective/attackby(obj/item/cell/device/C, mob/user)
+/obj/item/gun/projectile/revolver/detective/m2019/attackby(obj/item/cell/device/C, mob/user)
 	if(!istype(C))
 		return ..()
 	insert_cell(C, user)
 	return 1
-/obj/item/gun/projectile/revolver/m2019/detective/proc/usecharge(UC)
+/obj/item/gun/projectile/revolver/detective/m2019/proc/usecharge(UC)
 	if(bcell && chambered?.BB)
 		if(bcell.checked_use(UC))
 			return 1
@@ -250,7 +250,7 @@
 			return 0
 	return null
 
-/obj/item/gun/projectile/revolver/m2019/detective/proc/insert_cell(obj/item/cell/B, mob/user)
+/obj/item/gun/projectile/revolver/detective/m2019/proc/insert_cell(obj/item/cell/B, mob/user)
 	if(bcell)
 		to_chat(user, SPAN("notice", "[src] already has the [bcell] installed."))
 		return
@@ -260,7 +260,7 @@
 		chargemode = 1
 		update_icon()
 
-/obj/item/gun/projectile/revolver/m2019/detective/verb/remove_cell()
+/obj/item/gun/projectile/revolver/detective/m2019/verb/remove_cell()
 	set name = "Remove Powercell"
 	set desc = "Remove the powercell from your gun."
 	set category = "Object"
@@ -274,11 +274,11 @@
 	update_icon()
 	return
 
-/obj/item/gun/projectile/revolver/m2019/detective/AltClick()
+/obj/item/gun/projectile/revolver/detective/m2019/AltClick()
 	if(CanPhysicallyInteract(usr))
 		unload_ammo(usr)
 
-/obj/item/gun/projectile/revolver/m2019/detective/update_icon()
+/obj/item/gun/projectile/revolver/detective/m2019/update_icon()
 	..()
 	if(loaded.len)
 		icon_state = "[src.base_icon]-loaded"

@@ -64,7 +64,7 @@
 	        - .38 CHEM non-lethal - emits a weak electromagnetic impulse.<br>\
 	        - .38 CHEM lethal - not intended for use, the cartridge quickly melts under high temperatures."
 	spawn_items = list(
-		/obj/item/gun/projectile/revolver/m2019/detective,
+		/obj/item/gun/projectile/revolver/detective/m2019,
 		/obj/item/ammo_magazine/c38/spec = 3,
 		/obj/item/ammo_magazine/c38/chem = 2,
 		/obj/item/cell/device/high
