@@ -400,7 +400,7 @@ var/list/worths = list(
 					/obj/item/clothing/mask/greenscarf = 15,
 					/obj/item/clothing/mask/ninjascarf = 15,
 					/obj/item/clothing/mask/ai = 3000,
-					/obj/item/clothing/mask/smokable/cigarette = 2, //Excuse me?
+					/obj/item/clothing/mask/smokable/cigarette = 2,
 					/obj/item/clothing/mask/smokable/ecig/util = 100,
 					/obj/item/clothing/mask/smokable/ecig/simple = 150,
 					/obj/item/clothing/mask/breath/medical = 180,
@@ -560,7 +560,7 @@ var/list/worths = list(
 					/obj/item/wirecutters = 25,
 //RCD
 					/obj/item/rcd = 500,
-					/obj/item/rcd_ammo/large = 650, //It's a lot harder to get than RCDs
+					/obj/item/rcd_ammo/large = 450,
 					/obj/item/rcd_ammo = 50,
 //CIRCUITBOARDS
 					/obj/item/circuitboard/aicore = 2500,
