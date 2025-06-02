@@ -66,40 +66,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a50
 
-/obj/item/gun/projectile/revolver/detective
-	name = "Legacy .38"
-	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
-	icon_state = "detective"
-	fire_sound = 'sound/effects/weapons/gun/fire_revolver1.ogg'
-	max_shells = 6
-	caliber = ".38"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	ammo_type = /obj/item/ammo_casing/c38
-
-/obj/item/gun/projectile/revolver/detective/saw620
-	name = "S&W 620"
-	desc = "A cheap Martian knock-off of a Smith & Wesson Model 620. Uses .38-Special rounds."
-	icon_state = "saw620"
-
-/obj/item/gun/projectile/revolver/detective/verb/rename_gun()
-	set name = "Name Gun"
-	set category = "Object"
-	set desc = "Click to rename your gun. If you're the detective."
-
-	var/mob/M = usr
-	if(!M.mind)	return 0
-	if(!M.mind.assigned_role == "Detective")
-		to_chat(M, SPAN("notice", "You don't feel cool enough to name this gun, chump."))
-		return 0
-
-	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
-
-	if(src && input && !M.stat && in_range(M,src))
-		SetName(input)
-		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
-		return 1
-
-
 // Blade Runner pistol.
 // NOTE(rufus): this and M2019 are references to the same fictional gun.
 //   The plan is to keep both, but make Deckard into an antique gun from bygone era by lore means, similar to cap's ancient gun.
@@ -157,6 +123,39 @@
 	caliber = ".44"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c44
+
+/obj/item/gun/projectile/revolver/detective
+	name = "Legacy .38"
+	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
+	icon_state = "detective"
+	fire_sound = 'sound/effects/weapons/gun/fire_revolver1.ogg'
+	max_shells = 6
+	caliber = ".38"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	ammo_type = /obj/item/ammo_casing/c38
+
+/obj/item/gun/projectile/revolver/detective/saw620
+	name = "S&W 620"
+	desc = "A cheap Martian knock-off of a Smith & Wesson Model 620. Uses .38-Special rounds."
+	icon_state = "saw620"
+
+/obj/item/gun/projectile/revolver/detective/verb/rename_gun()
+	set name = "Name Gun"
+	set category = "Object"
+	set desc = "Click to rename your gun. If you're the detective."
+
+	var/mob/M = usr
+	if(!M.mind)	return 0
+	if(!M.mind.assigned_role == "Detective")
+		to_chat(M, SPAN("notice", "You don't feel cool enough to name this gun, chump."))
+		return 0
+
+	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
+
+	if(src && input && !M.stat && in_range(M,src))
+		SetName(input)
+		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
+		return 1
 
 /obj/item/gun/projectile/revolver/detective/m2019
 	name = "M2019 Detective Special"
