@@ -42,6 +42,7 @@
 	qdel(installed_gun)
 	return ..()
 
+<<<<<<< Updated upstream
 /obj/item/integrated_circuit/security/weapon_firing/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gun/energy))
 		var/obj/item/gun/E = O
@@ -53,6 +54,19 @@
 			return
 		installed_gun = E
 		to_chat(user, SPAN("notice", "You slide \the [E] into the firing mechanism."))
+=======
+/obj/item/integrated_circuit/security/weapon_firing/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/gun/energy))
+		var/obj/item/gun/energy/gun_to_install = I
+		if(installed_gun)
+			to_chat(user, SPAN("warning", "There's already a weapon installed."))
+			return
+		if(!user.drop(gun_to_install, src))
+			to_chat(user, SPAN("warning", "It doesn't seem to be possible."))
+			return
+		installed_gun = gun_to_install
+		to_chat(user, SPAN("notice", "You slide \the [gun_to_install] into the firing mechanism."))
+>>>>>>> Stashed changes
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		if(installed_gun.fire_delay)
 			cooldown_per_use = installed_gun.fire_delay * 10
