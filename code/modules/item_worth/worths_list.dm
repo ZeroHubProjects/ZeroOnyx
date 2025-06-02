@@ -43,7 +43,8 @@ var/list/worths = list(
 //MAGIC STAFF
 					/obj/item/gun/energy/staff = 250, //"It's just a pretty stick. What's so magical about it?!" - Unknown Officer
 //TASERS
-					/obj/item/gun/energy/taser/mounted = 1000,
+					/obj/item/gun/energy/stunrevolver/rifle = 1000,
+					/obj/item/gun/energy/stunrevolver = 500,
 					/obj/item/gun/energy/taser/carbine = 750,
 					/obj/item/gun/energy/taser = 500,
 //ENERGY
@@ -81,13 +82,14 @@ var/list/worths = list(
 //PISTOLS
 					/obj/item/gun/projectile/pistol/colt = 1700,
 					/obj/item/gun/projectile/pistol/det_m9 = 1500,
-					/obj/item/gun/projectile/pistol/gyropistol = 2500, //This low price is due to the rarity of the cartridge. It is extremely difficult to obtain.
+					/obj/item/gun/projectile/pistol/gyropistol = 1750, // The price is relatively low considering the gyrojet's power, but 20mm cartridges are extremely hard to obtain.
 					/obj/item/gun/projectile/pistol/holdout = 2000,
 					/obj/item/gun/projectile/pistol/magnum_pistol = 2750,
+					/obj/item/gun/projectile/pistol/secgun/MK = 900,
 					/obj/item/gun/projectile/pistol/secgun = 1200,
 					/obj/item/gun/projectile/pistol/silenced/cheap = 1500,
 					/obj/item/gun/projectile/pistol/silenced = 1700,
-					/obj/item/gun/projectile/pistol/vp78 = 1500,
+					/obj/item/gun/projectile/pistol/vp78 = 1250,
 					/obj/item/gun/projectile/pistol = 1000,
 //SILENCER
 					/obj/item/silencer = 500,
@@ -667,7 +669,7 @@ var/list/worths = list(
 //PINPOINTERS
 					/obj/item/pinpointer/advpinpointer = 330,
 					/obj/item/pinpointer = 180,
-//DICKS
+//DISKS
 					/obj/item/disk/nuclear = 10000,
 					/obj/item/disk = -90,
 //HANDCUFFS
