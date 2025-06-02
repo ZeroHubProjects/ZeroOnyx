@@ -25,7 +25,7 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/installation = /obj/item/gun/energy/gun		//the type of weapon installed
+	var/installation = /obj/item/gun/energy		//the type of weapon installed
 	var/gun_charge = 0		//the charge of the gun inserted
 	var/projectile = null	//holder for bullettype
 	var/eprojectile = null	//holder for the shot when emagged
@@ -147,12 +147,12 @@
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
-		if(/obj/item/gun/energy/gun)
+		if(/obj/item/gun/energy/tactical)
 			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 			egun = 1
 
-		if(/obj/item/gun/energy/gun/nuclear)
+		if(/obj/item/gun/energy/nuclear)
 			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 			egun = 1
@@ -294,9 +294,9 @@ var/list/turret_icons
 				if(prob(70))
 					to_chat(user, SPAN("notice", "You remove the turret and salvage some components."))
 					if(installation)
-						var/obj/item/gun/energy/Gun = new installation(loc)
-						Gun.power_supply.charge = gun_charge
-						Gun.update_icon()
+						var/obj/item/gun/energy/E = new installation(loc)
+						E.power_supply.charge = gun_charge
+						E.update_icon()
 					if(prob(50))
 						new /obj/item/stack/material/steel(loc, rand(1,4))
 					if(prob(50))
@@ -856,12 +856,12 @@ var/list/turret_icons
 				return
 			build_step = 3
 
-			var/obj/item/gun/energy/Gun = new installation(loc)
-			Gun.power_supply.charge = gun_charge
-			Gun.update_icon()
+			var/obj/item/gun/energy/E = new installation(loc)
+			E.power_supply.charge = gun_charge
+			E.update_icon()
 			installation = null
 			gun_charge = 0
-			to_chat(user, SPAN("notice", "You remove [Gun] from the turret frame."))
+			to_chat(user, SPAN("notice", "You remove [E] from the turret frame."))
 
 		if(5)
 			to_chat(user, SPAN("notice", "You remove the prox sensor from the turret frame."))

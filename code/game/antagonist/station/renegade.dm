@@ -23,7 +23,7 @@ GLOBAL_DATUM_INIT(renegades, /datum/antagonist/renegade, new)
 
 	var/list/spawn_guns = list(
 		/obj/item/gun/energy/laser,
-		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/tactical,
 		/obj/item/gun/energy/crossbow,
 		/obj/item/gun/energy/crossbow/largecrossbow,
 		/obj/item/gun/projectile/automatic/machine_pistol,

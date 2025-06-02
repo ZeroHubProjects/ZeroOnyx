@@ -36,7 +36,7 @@
 		if(!powered())
 			to_chat(user, SPAN("warning", "The [name] blinks red as you try to insert the item!"))
 			return
-		if (istype(G, /obj/item/gun/energy/gun/nuclear) || istype(G, /obj/item/gun/energy/crossbow))
+		if (istype(G, /obj/item/gun/energy/nuclear) || istype(G, /obj/item/gun/energy/crossbow))
 			to_chat(user, SPAN("notice", "Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
 		if (istype(G, /obj/item/gun/energy/staff))
