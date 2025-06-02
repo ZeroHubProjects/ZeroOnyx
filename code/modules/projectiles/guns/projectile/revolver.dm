@@ -164,9 +164,7 @@
 	icon_state = "lapd201900"
 	item_state = "lapd2019"
 	max_shells = 5
-	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3)
-	ammo_type = /obj/item/ammo_casing/c38
 	starts_loaded = 0
 	var/chargemode = 1
 	var/shotcost = 20
