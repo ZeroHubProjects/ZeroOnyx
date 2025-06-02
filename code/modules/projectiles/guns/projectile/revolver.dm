@@ -16,21 +16,6 @@
 	fire_sound = 'sound/effects/weapons/gun/fire2.ogg'
 	mag_insert_sound = 'sound/effects/weapons/gun/spin_cylinder1.ogg'
 
-/obj/item/gun/projectile/revolver/coltpython
-	name = "Colt Python"
-	desc = "The Lumoco Arms Colt Python is a choice revolver for when you absolutely, positively need to put a hole in a criminal. Uses .357 ammo."
-	icon_state = "colt-python"
-	item_state = "revolver"
-	caliber = "357"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3)
-	handle_casings = CYCLE_CASINGS
-	max_shells = 6
-	mod_weight = 0.7
-	mod_reach = 0.5
-	mod_handy = 1.0
-	fire_delay = 6.75 //Revolvers are naturally slower-firing
-	ammo_type = /obj/item/ammo_casing/a357
-
 /obj/item/gun/projectile/revolver/AltClick()
 	if(CanPhysicallyInteract(usr))
 		spin_cylinder()
@@ -57,6 +42,21 @@
 /obj/item/gun/projectile/revolver/load_ammo(obj/item/A, mob/user)
 	chamber_offset = 0
 	return ..()
+
+/obj/item/gun/projectile/revolver/coltpython
+	name = "Colt Python"
+	desc = "The Lumoco Arms Colt Python is a choice revolver for when you absolutely, positively need to put a hole in a criminal. Uses .357 ammo."
+	icon_state = "colt-python"
+	item_state = "revolver"
+	caliber = "357"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3)
+	handle_casings = CYCLE_CASINGS
+	max_shells = 6
+	mod_weight = 0.7
+	mod_reach = 0.5
+	mod_handy = 1.0
+	fire_delay = 6.75 //Revolvers are naturally slower-firing
+	ammo_type = /obj/item/ammo_casing/a357
 
 /obj/item/gun/projectile/revolver/mateba
 	name = "mateba"
