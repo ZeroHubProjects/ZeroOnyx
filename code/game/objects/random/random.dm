@@ -1279,7 +1279,7 @@ var/list/random_useful_
 			random_junk_ += /obj/item/inflatable/torn
 			random_junk_ += /obj/effect/decal/cleanable/molten_item
 			random_junk_ += /obj/item/material/shard
-			random_junk_ += /obj/item/hand/missing_card
+			random_junk_ += /obj/item/handofcards/missing_card
 
 			random_junk_ -= /obj/item/trash/dish/plate
 			random_junk_ -= /obj/item/trash/dish/bowl
