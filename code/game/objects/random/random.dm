@@ -253,7 +253,7 @@
 				/obj/item/gun/energy/toxgun = 3,
 				/obj/item/gun/energy/taser = 4,
 				/obj/item/gun/energy/crossbow/largecrossbow = 2,
-				/obj/item/gun/energy/stunrevolver = 4)
+				/obj/item/gun/energy/taser/revolver = 4)
 
 /obj/random/projectile
 	name = "random projectile weapon"

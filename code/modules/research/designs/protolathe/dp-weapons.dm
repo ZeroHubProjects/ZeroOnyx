@@ -64,14 +64,14 @@
 	id = "stunrevolver"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(MATERIAL_STEEL = 4000)
-	build_path = /obj/item/gun/energy/stunrevolver
+	build_path = /obj/item/gun/energy/taser/revolver
 	sort_string = "TADAB"
 
 /datum/design/item/weapon/stunrifle
 	id = "stun_rifle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	materials = list(MATERIAL_STEEL = 4000, MATERIAL_GLASS = 1000, MATERIAL_SILVER = 500)
-	build_path = /obj/item/gun/energy/stunrevolver/rifle
+	build_path = /obj/item/gun/energy/taser/rifle
 	sort_string = "TADAC"
 
 /datum/design/item/weapon/nuclear_gun

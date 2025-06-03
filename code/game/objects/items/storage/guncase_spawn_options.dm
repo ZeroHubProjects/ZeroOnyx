@@ -188,7 +188,7 @@
 	        Unfortunately, pepperspray refills are not included.<br><br>\
 	        <b>NOTE</b>: By selecting the Non-lethal combo™, you agree to NanoTrasen's \"Non-lethal\" liability waiver."
 	spawn_items = list(
-		/obj/item/gun/energy/stunrevolver/rifle,
+		/obj/item/gun/energy/taser/rifle,
 		/obj/item/backwear/reagent/pepper
 	)
 

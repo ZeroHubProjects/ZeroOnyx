@@ -135,7 +135,7 @@
 /decl/hierarchy/supply_pack/security/nonlethal
 	name = "Weapons - Non-lethal energy weapons"
 	contains = list(/obj/item/gun/energy/taser/carbine = 2,
-					/obj/item/gun/energy/stunrevolver/rifle = 2)
+					/obj/item/gun/energy/taser/rifle = 2)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Non-lethal energy weapons crate"

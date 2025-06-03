@@ -143,7 +143,7 @@
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
-		if(/obj/item/gun/energy/stunrevolver)
+		if(/obj/item/gun/energy/taser/revolver)
 			eprojectile = /obj/item/projectile/beam
 			eshot_sound = 'sound/effects/weapons/energy/Laser.ogg'
 
