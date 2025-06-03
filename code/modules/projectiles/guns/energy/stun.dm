@@ -40,6 +40,9 @@
 		list(mode_name = "shock",  projectile_type = /obj/item/projectile/beam/stun/shock/heavy),
 		)
 
+//TODO: Maybe make it a little cooler somehow.
+//In this realization it is significantly inferior to its predecessor in the form of a carbine.
+//Which in turn has as many as three firing modes.
 /obj/item/gun/energy/taser/rifle
 	name = "stun rifle"
 	desc = "A LAEP38 Thor, a vastly oversized variant of the LAEP20 Zeus. Fires overcharged electrodes to take down hostile armored targets without harming them too much."
