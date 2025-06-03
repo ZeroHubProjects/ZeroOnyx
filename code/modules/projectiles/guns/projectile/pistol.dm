@@ -1,4 +1,5 @@
 /obj/item/gun/projectile/pistol
+	var/base_icon_state = "" //Use for those cases when we want to keep the icon state in the base state.
 	fire_delay = 5.5
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
@@ -6,19 +7,24 @@
 	mag_insert_sound = 'sound/effects/weapons/gun/pistol_magin.ogg'
 	mag_eject_sound = 'sound/effects/weapons/gun/pistol_magout.ogg'
 
+/obj/item/gun/projectile/pistol/proc/empty_icon()
+	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		icon_state = base_icon_state
+	else
+		icon_state = "[base_icon_state]-e"
+
+/obj/item/gun/projectile/pistol/update_icon()
+	..()
+	empty_icon()
+
 /obj/item/gun/projectile/pistol/secgun
 	name = ".45 pistol"
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip, among other modifications. Uses .45 rounds."
 	icon_state = "secguncomp"
+	base_icon_state = "secguncomp"
 	magazine_type = /obj/item/ammo_magazine/c45m
 	allowed_magazines = /obj/item/ammo_magazine/c45m
 	caliber = ".45"
-/obj/item/gun/projectile/pistol/secgun/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "secguncomp"
-	else
-		icon_state = "secguncomp-e"
 
 /obj/item/gun/projectile/pistol/secgun/flash
 	name = ".45 signal pistol"
@@ -28,96 +34,61 @@
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip, among other modifications. Uses .45 rounds."
 	name = "custom .45 Pistol"
 	icon_state = "secgundark"
+	base_icon_state = "secgundark"
 	accuracy = 0
-
-/obj/item/gun/projectile/pistol/secgun/wood/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "secgundark"
-	else
-		icon_state = "secgundark-e"
 
 /obj/item/gun/projectile/pistol/colt
 	name = "vintage .45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
 	icon_state = "colt"
+	base_icon_state = "colt"
 	magazine_type = /obj/item/ammo_magazine/c45m
 	allowed_magazines = /obj/item/ammo_magazine/c45m
 	caliber = ".45"
 	fire_sound = 'sound/effects/weapons/gun/fire_colt2.ogg'
 
-/obj/item/gun/projectile/pistol/colt/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "colt"
-	else
-		icon_state = "colt-e"
-
 /obj/item/gun/projectile/pistol/colt/officer
 	name = "military .45 pistol"
 	desc = "The WT45 - a mass produced kinetic sidearm well-known in films and entertainment programming for being the daily carry choice issued to officers of the Sol Central Government Defense Forces. Uses .45 rounds."
 	icon_state = "usp"
+	base_icon_state = "usp"
 	accuracy = 0.35
 	fire_delay = 6.5
-
-/obj/item/gun/projectile/pistol/colt/officer/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "usp"
-	else
-		icon_state = "usp-e"
 
 /obj/item/gun/projectile/pistol/vp78
 	name = "VP78"
 	desc = "The VT78 pistol is a common and reliable sidearm, used by security forces and colonial marshalls all over the world. Uses .45 rounds."
 	icon_state = "VP78"
 	item_state = "vp78"
+	base_icon_state = "VP78"
 	magazine_type = /obj/item/ammo_magazine/c45m/stun
 	allowed_magazines = /obj/item/ammo_magazine/c45m
 	caliber = ".45"
 	accuracy = -0.35
 
-/obj/item/gun/projectile/pistol/vp78/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "VP78"
-	else
-		icon_state = "VP78-e"
-
 /obj/item/gun/projectile/pistol/vp78/wood
 	name = "VP78 Special"
 	desc = "The VP78 pistol is a common and reliable sidearm, used by security forces and colonial marshalls all over the world. This one has a sweet wooden grip, among other modifications. Uses .45 rounds."
 	icon_state = "VP78wood"
+	base_icon_state = "VP78wood"
 	accuracy = 0.35
 	fire_delay = 4.5
-
-/obj/item/gun/projectile/pistol/vp78/wood/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "VP78wood"
-	else
-		icon_state = "VP78wood-e"
 
 /obj/item/gun/projectile/pistol/vp78/tactical
 	name = "VP78 Tactical"
 	desc = "The VT78 pistol is a common and reliable sidearm, used by security forces and colonial marshalls all over the world. This one is heavily modified and painted in green camo. Uses .45 rounds."
 	icon_state = "VP78tactic"
+	base_icon_state = "VP78tactic"
 	magazine_type = /obj/item/ammo_magazine/c45m
 	auto_eject = 1
 	auto_eject_sound = 'sound/effects/weapons/misc/smg_empty_alarm.ogg'
 	fire_delay = 6.5
 
-/obj/item/gun/projectile/pistol/vp78/tactical/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "VP78tactic"
-	else
-		icon_state = "VP78tactic-e"
-
 /obj/item/gun/projectile/pistol/silenced
 	name = "silenced pistol"
 	desc = "A handgun with an integral silencer. Uses .45 rounds."
 	icon_state = "silenced_pistol"
+	base_icon_state = "silenced_pistol"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = ".45"
 	silenced = 1
@@ -129,19 +100,12 @@
 	magazine_type = /obj/item/ammo_magazine/c45m
 	allowed_magazines = /obj/item/ammo_magazine/c45m
 
-// TODO(rufus): generalize this repeating "empty icon" boilerplate into a proc + controlling variable
-/obj/item/gun/projectile/pistol/silenced/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "silenced_pistol"
-	else
-		icon_state = "silenced_pistol-e"
-
 /obj/item/gun/projectile/pistol/magnum_pistol
 	name = ".50 magnum pistol"
 	desc = "The HelTek Magnus, a robust terran handgun that uses .50 AE ammo."
 	icon_state = "magnum"
 	item_state = "revolver"
+	base_icon_state = "magnum"
 	force = 12.0
 	mod_weight = 0.9
 	mod_reach = 0.65
@@ -152,13 +116,6 @@
 	magazine_type = /obj/item/ammo_magazine/a50
 	allowed_magazines = /obj/item/ammo_magazine/a50
 	fire_sound = 'sound/effects/weapons/gun/fire2.ogg'
-
-/obj/item/gun/projectile/pistol/magnum_pistol/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "magnum"
-	else
-		icon_state = "magnum-e"
 
 /obj/item/gun/projectile/pistol/gyropistol
 	name = "gyrojet pistol"
@@ -178,7 +135,7 @@
 	fire_sound = 'sound/effects/weapons/gun/fire3.ogg'
 
 /obj/item/gun/projectile/pistol/gyropistol/update_icon()
-	..()
+	//TODO: Adjust this code to proc empty_icon()
 	if(ammo_magazine)
 		icon_state = "gyropistolloaded"
 	else
@@ -188,6 +145,7 @@
 	name = "T9 Patrol"
 	desc = "A relatively cheap and reliable knock-off of a Beretta M9. Uses 9mm rounds. Used to be a standart-issue gun in almost every security company."
 	icon_state = "det-m9"
+	base_icon_state = "det-m9"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = "9mm"
 	fire_delay = 1
@@ -199,17 +157,11 @@
 	allowed_magazines = /obj/item/ammo_magazine/mc9mm
 	fire_sound = 'sound/effects/weapons/gun/fire_9mm.ogg'
 
-/obj/item/gun/projectile/pistol/det_m9/update_icon()
-	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		icon_state = "det-m9"
-	else
-		icon_state = "det-m9-e"
-
 /obj/item/gun/projectile/pistol/holdout
 	name = "holdout pistol"
 	desc = "The Lumoco Arms P3 Whisper. A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
+	base_icon_state = "pistol"
 	item_state = null
 	w_class = ITEM_SIZE_SMALL
 	caliber = "9mm"
@@ -258,11 +210,10 @@
 	..()
 
 /obj/item/gun/projectile/pistol/holdout/update_icon()
-	..()
 	if(silenced)
-		icon_state = "pistol-silencer"
+		icon_state = "[base_icon_state]-silencer"
 	else
-		icon_state = "pistol"
+		icon_state = base_icon_state
 	if(!(ammo_magazine && ammo_magazine.stored_ammo.len))
 		icon_state = "[icon_state]-e"
 
