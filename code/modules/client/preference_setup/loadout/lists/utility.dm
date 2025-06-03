@@ -43,5 +43,3 @@
 /datum/gear/mask/gas/clear
 	display_name = "clear gas mask"
 	path = /obj/item/clothing/mask/gas/clear
-
-// TODO(rufus): custom music tape and boombox are temporarily removed, reintroduce them later with some whitelisting or ban system in case it's abused
