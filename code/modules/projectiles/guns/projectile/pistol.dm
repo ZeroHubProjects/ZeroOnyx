@@ -122,7 +122,8 @@
 	fire_sound = 'sound/effects/weapons/gun/fire3.ogg'
 
 /obj/item/gun/projectile/pistol/gyropistol/update_icon()
-	//TODO: Adjust this code to proc parent proc update_icon()
+	//TODO: Adjust this code to proc parent proc update_icon() & remove
+	..()
 	if(ammo_magazine)
 		icon_state = "gyropistolloaded"
 	else
