@@ -195,6 +195,7 @@
 	..()
 
 /obj/item/gun/projectile/pistol/holdout/update_icon()
+	..()
 	if(silenced)
 		icon_state = "pistol-silencer"
 	else
