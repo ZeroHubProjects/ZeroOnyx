@@ -37,7 +37,7 @@
 	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
 /obj/item/gun/energy/taser/revolver
-	name = "stun revolver"
+	name = "taser revolver"
 	desc = "A LAEP20 Zeus. Designed by Lawson Arms and produced under the wing of the FTU, several TSCs have been trying to get a hold of the blueprints for half a decade."
 	icon_state = "stunrevolver"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
@@ -49,7 +49,7 @@
 	firemodes = list()
 
 /obj/item/gun/energy/taser/carbine
-	name = "stun carbine"
+	name = "taser carbine"
 	desc = "The NT Mk44 NL is a high capacity gun used for non-lethal takedowns. It can switch between high and low intensity stun beams, and concentrated stun spheres."
 	icon_state = "tasercarbine"
 	w_class = ITEM_SIZE_LARGE
@@ -76,7 +76,7 @@
 //In this realization it is significantly inferior to its predecessor in the form of a carbine.
 //Which in turn has as many as three firing modes.
 /obj/item/gun/energy/taser/rifle
-	name = "stun rifle"
+	name = "taser rifle"
 	desc = "A LAEP38 Thor, a vastly oversized variant of the LAEP20 Zeus. Fires overcharged electrodes to take down hostile armored targets without harming them too much."
 	icon_state = "stunrifle"
 	w_class = ITEM_SIZE_HUGE
@@ -223,17 +223,17 @@
 	update_held_icon()
 
 /obj/item/gun/energy/security/pistol
-	name = "taser pistol"
+	name = "\improper Security taser pistol"
 	icon_state = "taser"
 	subtype = /decl/taser_types/pistol
 
 /obj/item/gun/energy/security/smg
-	name = "taser SMG"
+	name = "\improper Security taser SMG"
 	icon_state = "taser_smg"
 	subtype = /decl/taser_types/smg
 
 /obj/item/gun/energy/security/rifle
-	name = "taser rifle"
+	name = "\improper Security taser rifle"
 	icon_state = "taser_rifle"
 	subtype = /decl/taser_types/rifle
 
@@ -255,7 +255,7 @@
 	var/type_desc = ""
 
 /decl/taser_types/pistol
-	name = "taser pistol"
+	name = "\improper Security taser pistol"
 	desc = "The smallest of all the tasers. It only has a single fire mode, but each shot wields power."
 	icon_state = "taser"
 	wielded_item_state = FALSE
@@ -272,7 +272,7 @@
 	type_desc = "Baseline taser gun. No alternative firemodes. Compact and lightweighted, it can be stored in holsters."
 
 /decl/taser_types/smg
-	name = "taser SMG"
+	name = "\improper Security taser SMG"
 	desc = "This model is not as powerful as pistols, but is capable of launching electrodes left and right with its remarkable rate of fire."
 	icon_state = "taser_smg"
 	wielded_item_state = FALSE
@@ -292,7 +292,7 @@
 	type_desc = "Rapid-firing taser gun. Can launch electrodes in 3-shot bursts. A little bigger than pistols, it cannot be holstered."
 
 /decl/taser_types/rifle
-	name = "taser rifle"
+	name = "\improper Security taser rifle"
 	desc = "This model is bulky and heavy, it must be wielded with both hands. Although its rate of fire is way below average, it is capable of shooting stun beams."
 	icon_state = "taser_rifle"
 	wielded_item_state = TRUE
