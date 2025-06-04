@@ -82,6 +82,7 @@
 	then click where you want to fire. Laser mode can fire through windows harmlessly. To switch between stun and lethal, click the weapon \
 	in your hand. Unlike most energy weapons, this weapon recharges on its own."
 	icon_state = "nucgun"
+	item_state = null	//so the human update icon uses the icon_state instead.
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_LARGE
