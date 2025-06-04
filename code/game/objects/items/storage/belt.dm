@@ -152,7 +152,7 @@
 		/obj/item/reagent_containers/food/donut/,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
-		/obj/item/gun/energy/stunrevolver,
+		/obj/item/gun/energy/taser/revolver,
 		/obj/item/shield/barrier,
 		/obj/item/flame/lighter,
 		/obj/item/clothing/glasses/hud,

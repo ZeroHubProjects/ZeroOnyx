@@ -16,6 +16,38 @@
 		list(mode_name="shock", projectile_type=/obj/item/projectile/beam/stun/shock),
 		)
 
+/obj/item/gun/energy/taser/mounted
+	name = "mounted taser gun"
+	desc = "Modified NT Mk30 NL, designed to be mounted on cyborgs and other battle machinery. It can switch between high and low intensity stun beams, and concentrated stun spheres."
+	icon_state = "btaser"
+	self_recharge = 1
+	use_external_power = 1
+	projectile_type = /obj/item/projectile/energy/electrode
+
+	firemodes = list(
+		list(mode_name = "sphere", projectile_type = /obj/item/projectile/energy/electrode),
+		list(mode_name = "stun",   projectile_type = /obj/item/projectile/beam/stun),
+		list(mode_name = "shock",  projectile_type = /obj/item/projectile/beam/stun/shock),
+		)
+
+/obj/item/gun/energy/taser/mounted/cyborg
+	name = "taser gun"
+	max_shots = 6
+	fire_delay = 15
+	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
+
+/obj/item/gun/energy/taser/revolver
+	name = "stun revolver"
+	desc = "A LAEP20 Zeus. Designed by Lawson Arms and produced under the wing of the FTU, several TSCs have been trying to get a hold of the blueprints for half a decade."
+	icon_state = "stunrevolver"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	projectile_type = /obj/item/projectile/energy/electrode/greater
+	fire_delay = 10
+	max_shots = 6
+	combustion = 0
+
+	firemodes = list()
+
 /obj/item/gun/energy/taser/carbine
 	name = "stun carbine"
 	desc = "The NT Mk44 NL is a high capacity gun used for non-lethal takedowns. It can switch between high and low intensity stun beams, and concentrated stun spheres."
@@ -40,43 +72,13 @@
 		list(mode_name = "shock",  projectile_type = /obj/item/projectile/beam/stun/shock/heavy),
 		)
 
-/obj/item/gun/energy/taser/mounted
-	name = "mounted taser gun"
-	desc = "Modified NT Mk30 NL, designed to be mounted on cyborgs and other battle machinery. It can switch between high and low intensity stun beams, and concentrated stun spheres."
-	icon_state = "btaser"
-	self_recharge = 1
-	use_external_power = 1
-	projectile_type = /obj/item/projectile/energy/electrode
-
-	firemodes = list(
-		list(mode_name = "sphere", projectile_type = /obj/item/projectile/energy/electrode),
-		list(mode_name = "stun",   projectile_type = /obj/item/projectile/beam/stun),
-		list(mode_name = "shock",  projectile_type = /obj/item/projectile/beam/stun/shock),
-		)
-
-/obj/item/gun/energy/taser/mounted/cyborg
-	name = "taser gun"
-	max_shots = 6
-	fire_delay = 15
-	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
-
-
-/obj/item/gun/energy/stunrevolver
-	name = "stun revolver"
-	desc = "A LAEP20 Zeus. Designed by Lawson Arms and produced under the wing of the FTU, several TSCs have been trying to get a hold of the blueprints for half a decade."
-	icon_state = "stunrevolver"
-	item_state = "stunrevolver"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	projectile_type = /obj/item/projectile/energy/electrode/greater
-	fire_delay = 10
-	max_shots = 6
-	combustion = 0
-
-/obj/item/gun/energy/stunrevolver/rifle
+//TODO: Maybe make it a little cooler somehow.
+//In this realization it is significantly inferior to its predecessor in the form of a carbine.
+//Which in turn has as many as three firing modes.
+/obj/item/gun/energy/taser/rifle
 	name = "stun rifle"
 	desc = "A LAEP38 Thor, a vastly oversized variant of the LAEP20 Zeus. Fires overcharged electrodes to take down hostile armored targets without harming them too much."
 	icon_state = "stunrifle"
-	item_state = "stunrifle"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	one_hand_penalty = 6
@@ -86,6 +88,8 @@
 	accuracy = 1
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
 	wielded_item_state = "stunrifle-wielded"
+
+	firemodes = list()
 
 /obj/item/gun/energy/crossbow
 	name = "mini energy-crossbow"

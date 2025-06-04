@@ -75,7 +75,7 @@ GLOBAL_DATUM_INIT(raiders, /datum/antagonist/raider, new)
 		/obj/item/gun/energy/xray/pistol,
 		/obj/item/gun/energy/mindflayer,
 		/obj/item/gun/energy/toxgun,
-		/obj/item/gun/energy/stunrevolver,
+		/obj/item/gun/energy/taser/revolver,
 		/obj/item/gun/energy/ionrifle,
 		/obj/item/gun/energy/taser,
 		/obj/item/gun/energy/crossbow/largecrossbow,
