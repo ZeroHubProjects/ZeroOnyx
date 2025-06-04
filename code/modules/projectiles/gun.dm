@@ -199,7 +199,6 @@
 	next_fire_time = world.time + fire_delay
 
 //obtains the next projectile to fire
-// TODO(rufus):
 /obj/item/gun/proc/consume_next_projectile()
 	return null
 
